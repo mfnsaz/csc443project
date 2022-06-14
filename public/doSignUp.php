@@ -15,7 +15,7 @@
         
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
-                echo "<p>Processing your sign in/sign up request...</p>";
+                echo "<p>Processing your sign up request...</p>";
                 echo "<p>Please wait for a few seconds.</p>";
                 $email = $_POST["email"];
                 if(empty(trim($_POST["email"]))){
