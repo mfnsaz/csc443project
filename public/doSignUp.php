@@ -6,8 +6,9 @@
     <body>
         <h1>Authenticating...</h1>
         <?php
+            echo "<p>Processing your sign up request...</p>";
             // Include config file
-            require_once "/db/auth/connect.php";
+            //require_once "/db/auth/connect.php";
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
@@ -15,7 +16,6 @@
         
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
-                echo "<p>Processing your sign up request...</p>";
                 echo "<p>Please wait for a few seconds.</p>";
                 $email = $_POST["email"];
                 if(empty(trim($_POST["email"]))){
@@ -28,8 +28,8 @@
                 // Validate password
                 if(empty(trim($_POST["password"]))){
                     $password_err = "Please enter a password.";     
-                } elseif(strlen(trim($_POST["password"])) < 6){
-                    $password_err = "Password must have atleast 6 characters.";
+                } elseif(strlen(trim($_POST["password"])) < 8){
+                    $password_err = "Password must have atleast 8 characters.";
                 } else{
                     $password = trim($_POST["password"]);
                 }
