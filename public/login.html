@@ -28,15 +28,15 @@
                     <p>Please enter the email and password to continue.</p>
                     <form id="loginForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="signInEmailAddress" type="email" placeholder="Email Address *" data-sb-validations="required,email" />
-                            <label for="emailAddress">Email Address *</label>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address * is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address * Email is not valid.</div>
+                            <input class="form-control" id="signInEmailAddress" type="email" placeholder="Email Address" required/>
+                            <label for="emailAddress">Email Address</label>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="signInPassword" type="password" placeholder="Password *" data-sb-validations="required" />
-                            <label for="password">Password *</label>
-                            <div class="invalid-feedback" data-sb-feedback="password:required">Password * is required.</div>
+                            <input class="form-control" id="signInPassword" type="password" placeholder="Password" required />
+                            <label for="password">Password</label>
+                            <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signInButton" type="submit">Sign In</button>
@@ -47,36 +47,39 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                 <div class="container px-5 my-4">
                     <h3>Sign Up</h3>
-                    <p>Please fill in this form</p>
-                    <form id="signupForm" data-sb-form-api-token="API_TOKEN">
+                    <p>Please fill in this form to continue.</p>
+                    <form id="signupForm" action="doSignUp.php">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="emailAddress" type="email" placeholder="Email Address *" data-sb-validations="required,email" />
-                            <label for="emailAddress">Email Address *</label>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address * is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address * Email is not valid.</div>
+                            <input class="form-control" name="email" type="email" placeholder="Email Address" required/>
+                            <label for="emailAddress">Email Address</label>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="password" type="text" placeholder="Password *" data-sb-validations="required" />
-                            <label for="password">Password *</label>
-                            <div class="invalid-feedback" data-sb-feedback="password:required">Password * is required.</div>
+                            <input class="form-control" name="password" type="password" placeholder="Password" required/>
+                            <label for="password">Password</label>
+                            <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="name" type="text" placeholder="Name *" data-sb-validations="required" />
-                            <label for="name">Name *</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">Name * is required.</div>
+                            <input class="form-control" name="confirmPassword" type="password" placeholder="Confirm Password" required/>
+                            <label for="password">Confirm Password</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="telephone" type="text" placeholder="Telephone *" data-sb-validations="required" />
-                            <label for="telephone">Telephone *</label>
-                            <div class="invalid-feedback" data-sb-feedback="telephone:required">Telephone * is required.</div>
+                            <input class="form-control" name="name" type="text" placeholder="Name" required/>
+                            <label for="name">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="role" aria-label="Role *">
+                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
+                            <label for="telephone">Telephone</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="role" aria-label="Role" required>
+                                <option value=""></option>
                                 <option value="Student">Student</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Officer">Officer</option>
                             </select>
-                            <label for="role">Role *</label>
+                            <label for="role">Role</label>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signUpButton" type="submit">Sign Up</button>
