@@ -8,7 +8,7 @@
         <?php
             echo "<p>Processing your sign up request...</p>";
             // Include config file
-            require_once "/db/auth/connect.php";
+            require_once "/inc/connect.php";
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";

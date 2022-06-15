@@ -7,7 +7,7 @@
         <h1>Authenticating...</h1>
         <?php
             // Include config file
-            require_once "/db/auth/connect.php";
+            require_once "/inc/connect.php";
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
