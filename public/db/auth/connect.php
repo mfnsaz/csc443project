@@ -1,5 +1,5 @@
 <?php
-    $creds = parse_ini_file(__dir__."/.env");
+    $creds = parse_ini_file(__dir__."/.ini");
     $server = $creds["server"];
     $username = $creds["username"];
     $password = $creds["password"];
