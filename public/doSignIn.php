@@ -20,21 +20,25 @@
                 $email = $_POST["email"];
                 if(empty(trim($_POST["email"]))){
                     $email_err = "Please enter an email.";
+                    die($email_err);
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "Invalid email format";
+                    die($emailErr);
                 }
 
                 // Validate password
                 if(empty(trim($_POST["password"]))){
-                    $password_err = "Please enter a password.";     
-                } elseif(strlen(trim($_POST["password"])) < 6){
-                    $password_err = "Password must have atleast 6 characters.";
+                    $password_err = "Please enter a password.";
+                    die($password_err);
+                } elseif(strlen(trim($_POST["password"])) < 8){
+                    $password_err = "Password must have atleast 8 characters.";
+                    die($password_err);
                 } else{
                     $password = trim($_POST["password"]);
                 }
             } else {
-                echo "Invalid method.";
+                die("Invalid method.");
             }
         ?>
     </body>
