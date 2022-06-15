@@ -74,11 +74,16 @@
                     $user_email = $email;
 
                     if(mysqli_stmt_execute($stmt)){
-                        if(mysqli_stmt_get_result($stmt)){
-                            //duplicate exists
-                            die("ERROR: DUPLICATE EMAIL");
-                        } else {
-                            //no duplicates
+                        $emailQueryArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $emailValid = $emailQueryArray["user_email"];
+                        foreach($emailValid as $n){
+                            if($n == $email){
+                                //duplicate exists
+                                header("refresh:2;url=login.html");
+                                die('<script>alert("ERROR: DUPLICATE EMAIL")</script>');
+                            } else {
+                                //no duplicates
+                            }
                         }
                         echo "SUCCESS QUERY USERS TABLE!\n";
                     } else {
