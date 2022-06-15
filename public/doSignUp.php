@@ -54,7 +54,7 @@
                 echo $_POST["role"];
                 
             } else {
-                echo "Invalid method.";
+                die("Invalid method.");
             }
         ?>
     </body>
