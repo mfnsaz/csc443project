@@ -67,27 +67,14 @@
                 //MYSQL STATEMENTS BELOW
 
                 //check for duplicate email
-                $getEmailSQL = "SELECT user_email FROM users";
-                if ($stmt=mysqli_prepare($conn, $getEmailSQL)){
-                    if(mysqli_stmt_execute($stmt)){
-                        $emailQueryArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                        $emailValid = $emailQueryArray["user_email"];
-                        foreach($emailValid as $n){
-                            if($email == $n){
-                                //duplicate exists
-                                header("refresh:2;url=login.html");
-                                die('<script>alert("ERROR: DUPLICATE EMAIL")</script>');
-                            } else {
-                                //no duplicates
-                            }
-                        }
-                        echo "SUCCESS QUERY USERS TABLE!\n";
-                    } else {
-                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                    }
+                $sql = "SELECT count(email) FROM vols2012 WHERE email='$email'" ;
 
-                    mysqli_stmt_close($stmt);
-                }
+                $result = mysqli_query($conn, $sql);
+                $countRes = mysqli_fetch_column($result, 1);
+
+                if( $countRes != null || $countRes > 0){
+                    die( "There is already a user with that email!" ) ;
+                }//end if
 
                 //prepare mysql statements for user
                 $signUpSQL = "INSERT INTO users (user_email, user_pass, user_type) VALUES (?, ?, ?)";
