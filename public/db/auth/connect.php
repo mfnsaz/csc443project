@@ -13,6 +13,7 @@
     define('DB_NAME', $database);
 
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    echo "Connection established!";
     if (mysqli_connect_errno())
     {
         echo "Failed to connect to MySQL: ".mysqli_connect_error();
