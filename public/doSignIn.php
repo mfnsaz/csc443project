@@ -46,7 +46,7 @@
                 echo $email;
                 //get usercreds
                 $getUserCredsSQL = "SELECT user_id, user_pass, user_type FROM users WHERE user_email = (?)";
-                if ($stmt=mysqli_prepare($conn, $getUserIDSQL)){
+                if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
                     mysqli_stmt_bind_param($stmt, "s", $user_email);
 
                     $user_email = $email;
