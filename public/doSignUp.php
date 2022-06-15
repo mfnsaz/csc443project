@@ -69,10 +69,9 @@
                 //check for duplicate email
                 $sql = "SELECT count(email) FROM vols2012 WHERE email='$email'" ;
 
-                $result = mysqli_query($conn, $sql);
-                $countRes = mysqli_fetch_column($result, 1);
+                $result = mysqli_fetch_column(mysqli_query($conn, $sql), 1);
 
-                if( $countRes != null || $countRes > 0){
+                if( $result != null || $countRes > 0){
                     die( "There is already a user with that email!" ) ;
                 }//end if
 
