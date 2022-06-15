@@ -103,7 +103,7 @@
                 }
 
                 //prepare mysql statements for role-specific stuff
-                if ($role = 0){
+                if ($role == 0){
                     //students
                     $studentSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $studentSignUpSQL)){
@@ -121,7 +121,7 @@
 
                         mysqli_stmt_close($stmt);
                     }
-                } else if ($role = 1){
+                } else if ($role == 1){
                     //admin
                     $adminSignUpSQL = "INSERT INTO students (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $adminSignUpSQL)){
@@ -139,7 +139,7 @@
 
                         mysqli_stmt_close($stmt);
                     }
-                } else if ($role = 2){
+                } else if ($role == 2){
                     //officer
                     $officerSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $officerSignUpSQL)){
