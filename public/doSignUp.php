@@ -66,6 +66,28 @@
 
                 //MYSQL STATEMENTS BELOW
 
+                //check for duplicate email
+                $getUserIDSQL = "SELECT user_email FROM users WHERE user_email = (?)";
+                if ($stmt=mysqli_prepare($conn, $getUserIDSQL)){
+                    mysqli_stmt_bind_param($stmt, "s", $user_email);
+
+                    $user_email = $email;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        if(mysqli_stmt_get_result($stmt)){
+                            //duplicate exists
+                            die("ERROR: DUPLICATE EMAIL");
+                        } else {
+                            //no duplicates
+                        }
+                        echo "SUCCESS QUERY USERS TABLE!\n";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
                 //prepare mysql statements for user
                 $signUpSQL = "INSERT INTO users (user_email, user_pass, user_type) VALUES (?, ?, ?)";
                 if ($stmt=mysqli_prepare($conn, $signUpSQL)){
