@@ -166,6 +166,8 @@
                 die("<p>Invalid method.</p>");
             }
             mysqli_close($conn);
+            echo "<br>You may login now.<br>";
+            header("refresh:5;url=login.html");
         ?>
     </body>
 </html>
