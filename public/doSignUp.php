@@ -6,11 +6,11 @@
     <body>
         <h1>Authenticating...</h1>
         <?php
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
             echo "<p>Processing your sign up request...</p>";
+            //error_reporting(E_ALL);
+            //ini_set('display_errors', 1);
             // Include config file
-            require "inc/connect.php";
+            require_once "inc/connect.php";
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
@@ -61,7 +61,7 @@
                 echo $_POST["role"];
                 
             } else {
-                echo "<p>Invalid method.</p>";
+                die("<p>Invalid method.</p>");
             }
         ?>
     </body>
