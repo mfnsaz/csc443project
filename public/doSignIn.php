@@ -40,7 +40,7 @@
                 } else{
                     $password = trim($_POST["signInPassword"]);
                 }
-                
+
                 //get usercreds
                 $getUserCredsSQL = "SELECT user_id, user_pass, user_type FROM users WHERE user_email = (?)";
                 if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
@@ -67,7 +67,7 @@
                     if($userType == 0){
                         //student
                         $getStudentInfoSQL = "SELECT student_id, student_name, student_telno FROM students WHERE user_id = (?)";
-                        if ($stmt=mysqli_prepare($conn, $geStudentInfoSQL)){
+                        if ($stmt=mysqli_prepare($conn, $getStudentInfoSQL)){
                             mysqli_stmt_bind_param($stmt, "i", $u_id);
 
                             $u_id = $userId;
