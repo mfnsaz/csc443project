@@ -20,8 +20,8 @@
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "<p>Please wait for a few seconds.</p>";
-                $email = $_POST["email"];
-                if(empty(trim($_POST["email"]))){
+                $email = $_POST["signInEmail"];
+                if(empty(trim($_POST["signInEmail"]))){
                     $email_err = "Please enter an email.";
                     die($email_err);
                 }
@@ -31,15 +31,15 @@
                 }
 
                 // Validate password
-                if(empty(trim($_POST["password"]))){
+                if(empty(trim($_POST["signInPassword"]))){
                     $password_err = "Please enter a password.";
                     die($password_err);
-                } elseif(strlen(trim($_POST["password"])) < 8){
+                } elseif(strlen(trim($_POST["signInPassword"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the login page.";
                     header("refresh:5;url=login.html");
                     die($password_err);
                 } else{
-                    $password = trim($_POST["password"]);
+                    $password = trim($_POST["signInPassword"]);
                 }
 
                 $password = password_hash($password, PASSWORD_DEFAULT);
