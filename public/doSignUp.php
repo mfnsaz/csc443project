@@ -49,8 +49,11 @@
                         die($confirm_password_err);
                     }
                 }
-                echo $_POST["name"];
-                echo $_POST["telephone"];
+
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                echo $password;
+                echo $_POST["name"]."<br>";
+                echo $_POST["telephone"]."<br>";
                 echo $_POST["role"];
                 
             } else {
