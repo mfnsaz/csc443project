@@ -119,7 +119,7 @@
                     } else if ($userType == 2){
                         //officer
                         $getOfficerInfoSQL = "SELECT officer_id, officer_name, officer_telno FROM officers WHERE user_id = (?)";
-                        if ($stmt=mysqli_prepare($conn, $getUserInfoSQL)){
+                        if ($stmt=mysqli_prepare($conn, $getOfficerInfoSQL)){
                             mysqli_stmt_bind_param($stmt, "i", $u_id);
 
                             $u_id = $userId;
