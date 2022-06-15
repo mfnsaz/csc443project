@@ -1,5 +1,5 @@
 <?php
-    $rootDir = dirname(__FILE__, 2);
+    $rootDir = dirname(__DIR__, 2);
     $creds = parse_ini_file($rootDir."/.ini");
     $server = $creds["server"];
     $username = $creds["username"];
@@ -14,9 +14,10 @@
     define('DB_NAME', $database);
 
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-    echo "Connection established!";
     if (mysqli_connect_errno())
     {
         echo "Failed to connect to MySQL: ".mysqli_connect_error();
+    } else {
+        echo "Connection established!";
     }
 ?>
