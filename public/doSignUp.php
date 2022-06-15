@@ -67,17 +67,13 @@
                 //MYSQL STATEMENTS BELOW
 
                 //check for duplicate email
-                $getUserIDSQL = "SELECT user_email FROM users WHERE user_email = (?)";
-                if ($stmt=mysqli_prepare($conn, $getUserIDSQL)){
-                    mysqli_stmt_bind_param($stmt, "s", $user_email);
-
-                    $user_email = $email;
-
+                $getEmailSQL = "SELECT user_email FROM users";
+                if ($stmt=mysqli_prepare($conn, $getEmailSQL)){
                     if(mysqli_stmt_execute($stmt)){
                         $emailQueryArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $emailValid = $emailQueryArray["user_email"];
                         foreach($emailValid as $n){
-                            if($n == $email){
+                            if($email == $n){
                                 //duplicate exists
                                 header("refresh:2;url=login.html");
                                 die('<script>alert("ERROR: DUPLICATE EMAIL")</script>');
