@@ -6,7 +6,6 @@
     <body>
         <h1>Authenticating...</h1>
         <?php
-            session_start();
             echo "<p>Processing your sign in request...</p>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
@@ -67,6 +66,7 @@
 
                 if(password_verify($password, $userPass)){
                     //correct password
+                    session_start();
                     if($userType == 0){
                         //student
                         $getStudentInfoSQL = "SELECT student_id, student_name, student_telno FROM students WHERE user_id = (?)";
