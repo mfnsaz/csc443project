@@ -20,8 +20,8 @@
                 </ul>
 
                 <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-outline-primary me-2">Sign In</button>
-                    <button type="button" class="btn btn-primary">Sign Up</button>
+                    <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='login.html';">Sign In</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='login.html';">Sign Up</button>
                 </div>
             </header>
         </div>
