@@ -123,7 +123,7 @@
                     }
                 } else if ($role == 1){
                     //admin
-                    $adminSignUpSQL = "INSERT INTO students (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
+                    $adminSignUpSQL = "INSERT INTO admins (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $adminSignUpSQL)){
                         mysqli_stmt_bind_param($stmt, "ssi", $adm_name, $adm_telno, $u_id);
 
@@ -141,7 +141,7 @@
                     }
                 } else if ($role == 2){
                     //officer
-                    $officerSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
+                    $officerSignUpSQL = "INSERT INTO officers (officers_name, officers_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $officerSignUpSQL)){
                         mysqli_stmt_bind_param($stmt, "ssi", $off_name, $off_telno, $u_id);
 
