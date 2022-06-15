@@ -48,13 +48,6 @@
         echo '<p><b> You Forgot to Enter Your Proposal Title! </b></p>';
     }
 
-    if (strlen($_POST["proptitle"]) >0) {
-        $_POST["proptitle"] = $_POST["proptitle"];
-    }else{
-        $_POST["proptitle"]= null;
-        
-        echo '<p><b> You Forgot to Enter Your Proposal Title! </b></p>';
-    }
 
     if (strlen($_POST["filename"]) >0) {
         $_POST["filename"] = $_POST["filename"];
@@ -63,5 +56,5 @@
         
         echo '<p><b> You Forgot to Upload Your File! </b></p>';
     }
-
+  
 ?>
