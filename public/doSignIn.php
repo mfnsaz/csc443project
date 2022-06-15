@@ -40,6 +40,10 @@
                 } else{
                     $password = trim($_POST["password"]);
                 }
+
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                echo $password;
+                echo $email;
             } else {
                 die("Invalid method.");
             }
