@@ -1,5 +1,5 @@
 <?php
-    $creds = parse_ini_file("/home/ubuntu/inis/dbcsc.ini");
+    $creds = parse_ini_file(__dir__."/.env");
     $server = $creds["server"];
     $username = $creds["username"];
     $password = $creds["password"];
