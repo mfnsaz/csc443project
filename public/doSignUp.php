@@ -35,7 +35,7 @@
                     die($password_err);
                 } elseif(strlen(trim($_POST["password"])) < 8){
                     $password_err = "Password must have atleast 8 characters. Redirecting back to the signup page.";
-                    header("Location: login.html");
+                    header("refresh:5;url=login.html");
                     die($password_err);
                 } else{
                     $password = trim($_POST["password"]);
@@ -49,7 +49,7 @@
                     $confirm_password = trim($_POST["confirmPassword"]);
                     if(empty($password_err) && ($password != $confirm_password)){
                         $confirm_password_err = "Password did not match. Redirecting back to the signup page.";
-                        header("Location: login.html");
+                        header("refresh:5;url=login.html");
                         die($confirm_password_err);
                     }
                 }
