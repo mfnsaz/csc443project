@@ -78,7 +78,7 @@
                     if(mysqli_stmt_execute($stmt)){
                         echo "SUCCESS ADD TO USERS TABLE!";
                     } else {
-                        echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE!";
+                        echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
                     }
 
                     mysqli_stmt_close($stmt);
@@ -96,7 +96,7 @@
                         $userId = $usersArray["user_id"];
                         echo "SUCCESS QUERY USERS TABLE!";
                     } else {
-                        echo "MYSQL ERROR QUERY USERS TABLE!";
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                     }
 
                     mysqli_stmt_close($stmt);
@@ -116,7 +116,7 @@
                         if(mysqli_stmt_execute($stmt)){
                             echo "SUCCESS ADD TO STUDENTS TABLE!";
                         } else {
-                            echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE!";
+                            echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
                         }
 
                         mysqli_stmt_close($stmt);
@@ -134,7 +134,7 @@
                         if(mysqli_stmt_execute($stmt)){
                             echo "SUCCESS ADD TO ADMINS TABLE!";
                         } else {
-                            echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE!";
+                            echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
                         }
 
                         mysqli_stmt_close($stmt);
@@ -152,7 +152,7 @@
                         if(mysqli_stmt_execute($stmt)){
                             echo "SUCCESS ADD TO OFFICERS TABLE!";
                         } else {
-                            echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE!";
+                            echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
                         }
 
                         mysqli_stmt_close($stmt);
