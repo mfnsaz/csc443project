@@ -1,6 +1,6 @@
 <?php
-    $RootDir = RootDirectory::getRootDir();
-    $creds = parse_ini_file($RootDir."/.ini");
+    $rootDir = dirname(__FILE__, 2);
+    $creds = parse_ini_file($rootDir."/.ini");
     $server = $creds["server"];
     $username = $creds["username"];
     $password = $creds["password"];
