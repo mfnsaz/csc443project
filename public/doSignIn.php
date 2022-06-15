@@ -34,7 +34,8 @@
                     $password_err = "Please enter a password.";
                     die($password_err);
                 } elseif(strlen(trim($_POST["password"])) < 8){
-                    $password_err = "Password must have atleast 8 characters.";
+                    $password_err = "Password must have atleast 8 characters. Redirecting back to the login page.";
+                    header("Location: login.html");
                     die($password_err);
                 } else{
                     $password = trim($_POST["password"]);
