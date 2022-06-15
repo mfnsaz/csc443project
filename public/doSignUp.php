@@ -41,11 +41,11 @@
                 }
 
                 // Validate confirm password
-                if(empty(trim($_POST["confirm_password"]))){
+                if(empty(trim($_POST["confirmPassword"]))){
                     $confirm_password_err = "Please confirm password.";
                     die($confirm_password_err);
                 } else{
-                    $confirm_password = trim($_POST["confirm_password"]);
+                    $confirm_password = trim($_POST["confirmPassword"]);
                     if(empty($password_err) && ($password != $confirm_password)){
                         $confirm_password_err = "Password did not match.";
                         die($confirm_password_err);
