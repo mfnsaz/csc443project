@@ -40,10 +40,7 @@
                 } else{
                     $password = trim($_POST["signInPassword"]);
                 }
-
-                $password = password_hash($password, PASSWORD_DEFAULT);
-                echo $password;
-                echo $email;
+                
                 //get usercreds
                 $getUserCredsSQL = "SELECT user_id, user_pass, user_type FROM users WHERE user_email = (?)";
                 if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
