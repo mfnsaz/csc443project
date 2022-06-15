@@ -7,8 +7,8 @@
         <h1>Authenticating...</h1>
         <?php
             echo "<p>Processing your sign up request...</p>";
-            //error_reporting(E_ALL);
-            //ini_set('display_errors', 1);
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
             // Include config file
             require_once "inc/connect.php";
 
@@ -55,14 +55,117 @@
                 }
 
                 $password = password_hash($password, PASSWORD_DEFAULT);
-                echo $password;
-                echo $_POST["name"]."<br>";
-                echo $_POST["telephone"]."<br>";
-                echo $_POST["role"];
+                $name = $_POST["name"];
+                $tel = $_POST["telephone"];
+                $role = $_POST["role"];
+
+                if ($role < 0 || $role > 2){
+                    header("refresh:5;url=login.html");
+                    die("ERROR: Invalid role. Redirecting back to the signup page.");
+                }
+
+                //MYSQL STATEMENTS BELOW
+
+                //prepare mysql statements for user
+                $signUpSQL = "INSERT INTO users (user_email, user_pass, user_type) VALUES (?, ?, ?)";
+                if ($stmt=mysqli_prepare($conn, $signUpSQL)){
+                    mysqli_stmt_bind_param($stmt, "ssi", $db_email, $db_password, $db_type);
+
+                    $db_email = $email;
+                    $db_password = $password;
+                    $db_type = $role;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        echo "SUCCESS ADD TO USERS TABLE!";
+                    } else {
+                        echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE!";
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
+                //get userid
+                $getUserIDSQL = "SELECT user_id FROM users WHERE user_email = (?)";
+                if ($stmt=mysqli_prepare($conn, $getUserIDSQL)){
+                    mysqli_stmt_bind_param($stmt, "s", $user_email);
+
+                    $user_email = $email;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        $usersArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $userId = $usersArray["user_id"];
+                        echo "SUCCESS QUERY USERS TABLE!";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE!";
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
+                //prepare mysql statements for role-specific stuff
+                if ($role = 0){
+                    //students
+                    $studentSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
+                    if ($stmt=mysqli_prepare($conn, $studentSignUpSQL)){
+                        mysqli_stmt_bind_param($stmt, "ssi", $stu_name, $stu_telno, $u_id);
+
+                        $stu_name = $name;
+                        $stu_telno = $tel;
+                        $u_id = $userId;
+
+                        if(mysqli_stmt_execute($stmt)){
+                            echo "SUCCESS ADD TO STUDENTS TABLE!";
+                        } else {
+                            echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE!";
+                        }
+
+                        mysqli_stmt_close($stmt);
+                    }
+                } else if ($role = 1){
+                    //admin
+                    $adminSignUpSQL = "INSERT INTO students (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
+                    if ($stmt=mysqli_prepare($conn, $adminSignUpSQL)){
+                        mysqli_stmt_bind_param($stmt, "ssi", $adm_name, $adm_telno, $u_id);
+
+                        $adm_name = $name;
+                        $adm_telno = $tel;
+                        $u_id = $userId;
+
+                        if(mysqli_stmt_execute($stmt)){
+                            echo "SUCCESS ADD TO ADMINS TABLE!";
+                        } else {
+                            echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE!";
+                        }
+
+                        mysqli_stmt_close($stmt);
+                    }
+                } else if ($role = 2){
+                    //officer
+                    $officerSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
+                    if ($stmt=mysqli_prepare($conn, $officerSignUpSQL)){
+                        mysqli_stmt_bind_param($stmt, "ssi", $off_name, $off_telno, $u_id);
+
+                        $off_name = $name;
+                        $off_telno = $tel;
+                        $u_id = $userId;
+
+                        if(mysqli_stmt_execute($stmt)){
+                            echo "SUCCESS ADD TO OFFICERS TABLE!";
+                        } else {
+                            echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE!";
+                        }
+
+                        mysqli_stmt_close($stmt);
+                    }
+                } else {
+                    die("Invalid Role when adding to database! DATABASE MIGHT BE CORRUPT. PLEASE CONTACT ADMINISTRATOR.");
+                }
                 
             } else {
+                mysqli_close($conn);
                 die("<p>Invalid method.</p>");
             }
+            mysqli_close($conn);
         ?>
     </body>
 </html>
