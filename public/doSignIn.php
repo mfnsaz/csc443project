@@ -35,7 +35,7 @@
                     die($password_err);
                 } elseif(strlen(trim($_POST["signInPassword"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the login page.";
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.html");
                     die($password_err);
                 } else{
                     $password = trim($_POST["signInPassword"]);
@@ -77,7 +77,7 @@
                                 $studentId = $studentArray["student_id"];
                                 $studentName = $studentArray["student_name"];
                                 $studentTel = $studentArray["student_telno"];
-                                echo "SUCCESS QUERY USERS TABLE!\n";
+                                echo "SUCCESS QUERY USERS TABLE!<br>";
                             } else {
                                 echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
@@ -89,7 +89,7 @@
                         $_SESSION["name"] = $studentName;
                         $_SESSION["tel"] = $studentTel;
                         $_SESSION["student_id"] = $studentId;
-                        header("refresh:5;url=/student/index.php");
+                        header("refresh:2;url=/student/index.php");
                     } else if ($userType == 1){
                         //admin
                         $getAdminInfoSQL = "SELECT admin_id, admin_name, admin_telno FROM admins WHERE user_id = (?)";
@@ -103,7 +103,7 @@
                                 $adminId = $adminArray["admin_id"];
                                 $adminName = $adminArray["admin_name"];
                                 $adminTel = $adminArray["admin_telno"];
-                                echo "SUCCESS QUERY USERS TABLE!\n";
+                                echo "SUCCESS QUERY USERS TABLE!<br>";
                             } else {
                                 echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
@@ -129,7 +129,7 @@
                                 $officertId = $officerArray["officer_id"];
                                 $officerName = $officerArray["officer_name"];
                                 $officerTel = $officerArray["officer_telno"];
-                                echo "SUCCESS QUERY USERS TABLE!\n";
+                                echo "SUCCESS QUERY USERS TABLE!<br>";
                             } else {
                                 echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
@@ -141,15 +141,17 @@
                         $_SESSION["name"] = $officerName;
                         $_SESSION["tel"] = $officerTel;
                         $_SESSION["officer_id"] = $officerId;
-                        header("refresh:5;url=/officer/index.php");
+                        header("refresh:2;url=/officer/index.php");
                     }
                 } else {
                     echo '<script>alert("Wrong password. Returning to login page...")</script>';
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.html");
                 }
             } else {
+                mysqli_close($conn);
                 die("<p>Invalid method.</p>");
             }
+            mysqli_close($conn);
         ?>
     </body>
 </html>
