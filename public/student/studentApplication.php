@@ -48,13 +48,6 @@
         echo '<p><b> You Forgot to Enter Your Proposal Title! </b></p>';
     }
 
-    if (strlen($_POST["proptitle"]) >0) {
-        $_POST["proptitle"] = $_POST["proptitle"];
-    }else{
-        $_POST["proptitle"]= null;
-        
-        echo '<p><b> You Forgot to Enter Your Proposal Title! </b></p>';
-    }
 
     if (strlen($_POST["filename"]) >0) {
         $_POST["filename"] = $_POST["filename"];
@@ -63,5 +56,37 @@
         
         echo '<p><b> You Forgot to Upload Your File! </b></p>';
     }
-
+    require_once 'google-api-php-client/src/Google_Client.php';
+    require_once 'google-api-php-client/src/contrib/Google_DriveService.php';
+    //create a Google OAuth client
+    $client = new Google_Client();
+    $client->setClientId('YOUR CLIENT ID');
+    $client->setClientSecret('YOUR CLIENT SECRET');
+    $redirect = filter_var('https://drive.google.com/drive/folders/1LRAebZGyTr2HwbzUrE-XDaRgqDoYQfv1?usp=sharing' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'],
+        FILTER_SANITIZE_URL);
+    $client->setRedirectUri($redirect);
+    $client->setScopes(array('https://www.googleapis.com/auth/drive'));
+    if(empty($_GET['code']))
+    {
+        $client->authenticate();
+    }
+    
+    if(!empty($_FILES["filename"]["name"]))
+    {
+      $target_file=$_FILES["filename"]["name"];
+      // Create the Drive service object
+      $accessToken = $client->authenticate($_GET['code']);
+      $client->setAccessToken($accessToken);
+      $service = new Google_DriveService($client);
+      // Create the file on your Google Drive
+      $fileMetadata = new Google_Service_Drive_DriveFile(array(
+        'name' => 'My file'));
+      $content = file_get_contents($target_file);
+      $mimeType=mime_content_type($target_file);
+      $file = $driveService->files->create($fileMetadata, array(
+        'data' => $content,
+        'mimeType' => $mimeType,
+        'fields' => 'id'));
+      printf("File ID: %s\n", $file->id);
+    }
 ?>
