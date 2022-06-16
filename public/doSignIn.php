@@ -89,7 +89,6 @@
                         $_SESSION["name"] = $studentName;
                         $_SESSION["tel"] = $studentTel;
                         $_SESSION["student_id"] = $studentId;
-                        $_SESSION["isSignedIn"] = true;
                         header("refresh:2;url=/student/index.php");
                     } else if ($userType == 1){
                         //admin
@@ -116,7 +115,6 @@
                         $_SESSION["name"] = $adminName;
                         $_SESSION["tel"] = $adminTel;
                         $_SESSION["admin_id"] = $adminId;
-                        $_SESSION["isSignedIn"] = true;
                         header("refresh:5;url=/admin/index.php");
                     } else if ($userType == 2){
                         //officer
@@ -143,7 +141,6 @@
                         $_SESSION["name"] = $officerName;
                         $_SESSION["tel"] = $officerTel;
                         $_SESSION["officer_id"] = $officerId;
-                        $_SESSION["isSignedIn"] = true;
                         header("refresh:2;url=/officer/index.php");
                     }
                 } else {
