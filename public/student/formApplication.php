@@ -48,23 +48,23 @@
         <p>Please fill in the form below.</p>
         <form id="contactForm" action="./studentApplication.php" method="post">
             <div class="form-floating mb-3">
-                <input class="form-control" id="applicationName" type="text" placeholder="Application Name" required/>
+                <input class="form-control" name="appName" type="text" placeholder="Application Name" required/>
                 <label for="applicationName">Application Name</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="startDate" type="date" placeholder="Start Date" required/>
+                <input class="form-control" name="startDate" type="date" placeholder="Start Date" required/>
                 <label for="startDate">Start Date</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="endDate" type="date" placeholder="End Date" required/>
+                <input class="form-control" name="endDate" type="date" placeholder="End Date" required/>
                 <label for="endDate">End Date</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="time" type="time" placeholder="Time" required/>
+                <input class="form-control" name="time" type="time" placeholder="Time" required/>
                 <label for="time">Time</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="proposalFilesLink" type="url" placeholder="Proposal Files Link" required/>
+                <input class="form-control" name="proposalUrl" type="url" placeholder="Proposal Files Link" required/>
                 <label for="proposalFilesLink">Proposal Files Link</label>
             </div>
             <div class="d-grid">
