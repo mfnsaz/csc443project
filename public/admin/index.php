@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION["admin_id"])){
-        header("refresh:5;url=/login.html");
+        header("refresh:5;url=/login.php");
         die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
     }
 ?>

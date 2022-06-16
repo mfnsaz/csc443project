@@ -35,7 +35,7 @@
                     die($password_err);
                 } elseif(strlen(trim($_POST["signInPassword"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the login page.";
-                    header("refresh:2;url=login.html");
+                    header("refresh:2;url=login.php");
                     die($password_err);
                 } else{
                     $password = trim($_POST["signInPassword"]);
@@ -145,7 +145,7 @@
                     }
                 } else {
                     echo '<script>alert("Wrong password. Returning to login page...")</script>';
-                    header("refresh:2;url=login.html");
+                    header("refresh:2;url=login.php");
                 }
             } else {
                 mysqli_close($conn);

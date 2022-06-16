@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
-        header("refresh:5;url=/login.html");
+        header("refresh:5;url=/login.php");
         die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
 ?>
@@ -54,13 +54,13 @@
                         $clubIdArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $clubId= $clubIdArray["count(user_email)"];
                         if($clubId == NULL){
-                            header("refresh:5;url=/login.html");
+                            header("refresh:5;url=/login.php");
                             die( '<script>alert("clubid does not exist! please contact administrator!")</script>');
                         }//end if
                         echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/student/formApplication.html';\">New Activity Application</button>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=/login.html");
+                        header("refresh:5;url=/login.php");
                         die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
