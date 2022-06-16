@@ -1,4 +1,7 @@
 <?php
+    echo "<p>Processing your sign in request...</p>";
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     require_once "../inc/connect.php";
     
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -80,8 +83,6 @@
 
             mysqli_stmt_close($stmt);
         }
-
-
         echo '<script>alert("Add application SUCCESS.")</script>';
         header("refresh:2;url=/student/index.php");
     } else {
