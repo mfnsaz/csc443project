@@ -1,9 +1,5 @@
 <?php
     session_start();
-    if (isset($_SESSION["student_id"])){
-        header("refresh:5;url=login.html");
-        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
-    }
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +36,10 @@
             <h1>Available actions:</h1>
             <?php
                 require_once "/inc/connect.php";
+                if (isset($_SESSION["student_id"])){
+                    header("refresh:5;url=login.html");
+                    die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+                }
 
                 $studentId = $_SESSION["student_id"];
 
