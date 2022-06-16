@@ -69,7 +69,7 @@
                 //check for duplicate email
                 $sql = "SELECT count(user_email) FROM users WHERE user_email='$email'" ;
 
-                $result = mysqli_fetch_column(mysqli_query($conn, $sql),0);
+                $result = mysqli_fetch_all(mysqli_query($conn, $sql));
 
                 if($result > 0){
                     header("refresh:5;url=login.html");
