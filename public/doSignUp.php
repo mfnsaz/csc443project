@@ -21,7 +21,7 @@
                 $clubid = $_POST["clubid"];
                 $role = $_POST["role"];
 
-                if($role > 0 && $club_id != null){
+                if($role > 0 && ($club_id != null || $club_id == "")){
                     header("refresh:5;url=login.html");
                     die('<script>alert("ClubID should only be present if role is student!")</script>');
                 }
