@@ -39,7 +39,7 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-primary" onclick="location.href='/login.html';">Login</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/doSignOut.php';">Logout</button>
             </div>
         </header>
     </div>
