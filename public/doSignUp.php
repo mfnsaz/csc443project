@@ -26,7 +26,8 @@
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "Invalid email format";
-                    die($emailErr);
+                    header("refresh:5;url=login.html");
+                    die('<script>alert("'.$emailErr.'")</script>');
                 }
 
                 // Validate password
@@ -36,7 +37,7 @@
                 } elseif(strlen(trim($_POST["password"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the signup page.";
                     header("refresh:5;url=login.html");
-                    die($password_err);
+                    die('<script>alert("'.$password_err.'")</script>');
                 } else{
                     $password = trim($_POST["password"]);
                 }
@@ -50,7 +51,7 @@
                     if(empty($password_err) && ($password != $confirm_password)){
                         $confirm_password_err = "ERROR: Password did not match. Redirecting back to the signup page.";
                         header("refresh:5;url=login.html");
-                        die($confirm_password_err);
+                        die('<script>alert("'.$confirm_password_err.'")</script>');
                     }
                 }
 
@@ -66,6 +67,30 @@
 
                 //MYSQL STATEMENTS BELOW
 
+                //check for duplicate email
+                $emailsql = "SELECT count(user_email) FROM users WHERE user_email = (?)" ;
+                if ($stmt=mysqli_prepare($conn, $emailsql)){
+                    mysqli_stmt_bind_param($stmt, "s", $user_email);
+
+                    $user_email = $email;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        $emailArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $userEmail = $emailArray["count(user_email)"];
+                        if($userEmail > 0 || $userEmail != NULL){
+                            header("refresh:5;url=login.html");
+                            die( '<script>alert("There is already a user with that email!")</script>' ) ;
+                        }//end if
+                        echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
                 //prepare mysql statements for user
                 $signUpSQL = "INSERT INTO users (user_email, user_pass, user_type) VALUES (?, ?, ?)";
                 if ($stmt=mysqli_prepare($conn, $signUpSQL)){
@@ -76,9 +101,11 @@
                     $db_type = $role;
 
                     if(mysqli_stmt_execute($stmt)){
-                        echo "SUCCESS ADD TO USERS TABLE!\n";
+                        echo "SUCCESS ADD TO USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
                     mysqli_stmt_close($stmt);
@@ -94,9 +121,11 @@
                     if(mysqli_stmt_execute($stmt)){
                         $usersArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $userId = $usersArray["user_id"];
-                        echo "SUCCESS QUERY USERS TABLE!\n";
+                        echo "SUCCESS QUERY USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
                     mysqli_stmt_close($stmt);
@@ -114,16 +143,18 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO STUDENTS TABLE!\n";
+                            echo "SUCCESS ADD TO STUDENTS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
                     }
                 } else if ($role == 1){
                     //admin
-                    $adminSignUpSQL = "INSERT INTO students (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
+                    $adminSignUpSQL = "INSERT INTO admins (admin_name, admin_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $adminSignUpSQL)){
                         mysqli_stmt_bind_param($stmt, "ssi", $adm_name, $adm_telno, $u_id);
 
@@ -132,16 +163,18 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO ADMINS TABLE!\n";
+                            echo "SUCCESS ADD TO ADMINS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
                     }
                 } else if ($role == 2){
                     //officer
-                    $officerSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
+                    $officerSignUpSQL = "INSERT INTO officers (officer_name, officer_telno, user_id) VALUES (?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $officerSignUpSQL)){
                         mysqli_stmt_bind_param($stmt, "ssi", $off_name, $off_telno, $u_id);
 
@@ -150,9 +183,11 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO OFFICERS TABLE!\n";
+                            echo "SUCCESS ADD TO OFFICERS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
@@ -166,6 +201,8 @@
                 die("<p>Invalid method.</p>");
             }
             mysqli_close($conn);
+            echo '<script>alert("You may login now.")</script>';
+            header("refresh:5;url=login.html");
         ?>
     </body>
 </html>

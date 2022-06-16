@@ -46,15 +46,12 @@
                     <p>Please enter the email and password to continue.</p>
                     <form id="loginForm" action="doSignIn.php" method="post">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="signInEmailAddress" type="email" placeholder="Email Address" required/>
+                            <input class="form-control" name="signInEmail" type="email" placeholder="Email Address" required/>
                             <label for="emailAddress">Email Address</label>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="signInPassword" type="password" placeholder="Password" required />
+                            <input class="form-control" name="signInPassword" type="password" placeholder="Password" required/>
                             <label for="password">Password</label>
-                            <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signInButton" type="submit">Sign In</button>
