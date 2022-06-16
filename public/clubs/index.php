@@ -36,24 +36,21 @@
 
                 //get clublist
                 $getClubSQL = "SELECT club_name, club_id FROM clubs";
-                if ($stmt=mysqli_prepare($conn, $getClubSQL)){
-                    if(mysqli_stmt_execute($stmt)){
-                        $clubsArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                        $clubsArrayRowCount = mysqli_num_rows(mysqli_stmt_get_result($stmt));
-                        $clubName = $clubsArray["club_name"];
-                        $clubId = $clubsArray["club_id"];
-                        echo "<table><tr><th>No</th><th>Club Name</th><th>Club ID</th></tr>";
-                        for($i = 0; $i <= $clubsArrayRowCount; $i++){
-                            $currClubName = $clubName[$i];
-                            $currClubId = $clubId[$i];
-                            echo "<tr><td>".$i++."</td><td>$currClubName</td><td>$currClubId</td></tr>";
-                        }
-                        echo "</table>";
-                    } else {
-                        echo "MYSQL ERROR QUERY CLUBS TABLE! ".mysqli_error($conn);
+                $clubRes = mysqli_query($conn, $getClubSQL);
+                if(!is_bool($clubRes)){
+                    $clubRowNum = mysqli_num_rows($clubRes);
+                    $clubArr = mysqli_fetch_array($clubRes);
+                    $clubName = $clubArr["club_name"];
+                    $clubId = $clubArr["club_id"];
+                    echo "<table><tr><th>No</th><th>Club Name</th><th>Club ID</th></tr>";
+                    for($i = 0; $i <= $clubRowNum; $i++){
+                        $currClubName = $clubName[$i];
+                        $currClubId = $clubId[$i];
+                        echo "<tr><td>".$i++."</td><td>$currClubName</td><td>$currClubId</td></tr>";
                     }
-
-                    mysqli_stmt_close($stmt);
+                    echo "</table>";
+                } else {
+                    echo "ERROR";
                 }
             ?>
         </div>
