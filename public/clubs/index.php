@@ -39,11 +39,7 @@
                 $clubRes = mysqli_query($conn, $getClubSQL);
                 if(!is_bool($clubRes)){
                     $clubArr = mysqli_fetch_all($clubRes);
-                    //echo "\"".implode("\", \"",$clubArr[0])."\"";
-                    //echo implode(", ",$clubArr[1]);
-                    print_r($clubArr);
                     $clubArr = array_values($clubArr);
-                    print_r($clubArr);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     $tableIndex = 1;
                     foreach($clubArr as $currClub){
