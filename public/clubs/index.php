@@ -42,13 +42,14 @@
                     $clubArr = mysqli_fetch_all($clubRes);
                     echo implode(", ",$clubArr[0]);
                     echo implode(", ",$clubArr[1]);
-                    $clubName = $clubArr["club_name"];
-                    $clubId = $clubArr["club_id"];
-                    echo "<table><tr><th>No</th><th>Club Name</th><th>Club ID</th></tr>";
+                    echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     for($i = 0; $i <= $clubRowNum; $i++){
-                        $currClubName = $clubName[$i];
-                        $currClubId = $clubId[$i];
-                        echo "<tr><td>".$i++."</td><td>$currClubName</td><td>$currClubId</td></tr>";
+                        echo "<tr><td>$i</td>";
+                        $currClubArr = $clubArr[$i];
+                        foreach($currClubArr as $v){
+                            echo "<td>$v</td>";
+                        }
+                        echo "</tr>";
                     }
                     echo "</table>";
                 } else {
