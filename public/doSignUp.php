@@ -67,12 +67,13 @@
                 //MYSQL STATEMENTS BELOW
 
                 //check for duplicate email
-                $sql = "SELECT count(email) FROM vols2012 WHERE email='$email'" ;
+                $sql = "SELECT count(user_email) FROM users WHERE user_email='$email'" ;
 
-                $result = mysqli_fetch_column(mysqli_query($conn, $sql), 1);
+                $result = mysqli_fetch_column(mysqli_query($conn, $sql),0);
 
-                if( $result != null || $countRes > 0){
-                    die( "There is already a user with that email!" ) ;
+                if($result > 0){
+                    header("refresh:5;url=login.html");
+                    die( '<script>alert("There is already a user with that email!")</script>' ) ;
                 }//end if
 
                 //prepare mysql statements for user
@@ -175,7 +176,7 @@
                 die("<p>Invalid method.</p>");
             }
             mysqli_close($conn);
-            echo "<br>You may login now.<br>";
+            echo '<script>alert("You may login now.")</script>';
             header("refresh:5;url=login.html");
         ?>
     </body>
