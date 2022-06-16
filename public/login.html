@@ -85,20 +85,11 @@
                             <label for="telephone">Telephone</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
+                            <input class="form-control" name="clubid" type="number" placeholder="Telephone" required/>
                             <label for="clubid">Club ID</label>
                         </div>
                         <div>
                             <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" name="role" aria-label="Role" required>
-                                <option value=""></option>
-                                <option value="0">Student</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Officer</option>
-                            </select>
-                            <label for="role">Role</label>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signUpButton" type="submit">Sign Up</button>
@@ -107,6 +98,19 @@
                 </div>
             </div>
         </div>
+        <style>
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+            -moz-appearance: textfield;
+            }
+        </style>
         <!-- JavaScript Bundle with Popper -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
