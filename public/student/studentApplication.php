@@ -1,5 +1,13 @@
 <?php
     session_start();
+    if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
+        header("refresh:5;url=/login.html");
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+    }
+    if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
+        header("refresh:5;url=/login.html");
+        die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
+    }
     echo "<p>Processing your sign in request...</p>";
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
