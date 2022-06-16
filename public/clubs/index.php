@@ -42,11 +42,12 @@
                     //echo "\"".implode("\", \"",$clubArr[0])."\"";
                     //echo implode(", ",$clubArr[1]);
                     print_r($clubArr);
+                    $clubArr = array_values($clubArr);
+                    print_r($clubArr);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     for($i = 0; $i <= sizeof($clubArr); $i++){
                         $tableIndex = $i+1;
                         echo "<tr><td>$tableIndex</td>";
-                        $clubArr = array_values($clubArr);
                         $currClubArr = $clubArr[$i];
                         foreach($currClubArr as $v){
                             echo "<td>$v</td>";
