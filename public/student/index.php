@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if (isset($_SESSION["student_id"])){
+        header("refresh:5;url=login.html");
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +35,38 @@
         </div>
         <div class="px-5 text-center">
             <h1>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h1>
+        </div>
+        <div class="px-5">
+            <h1>Available actions:</h1>
+            <?php
+                require_once "/inc/connect.php";
+
+                $studentId = $_SESSION["student_id"];
+
+                //check if clubid exists
+                $clubidsql = "SELECT club_id FROM students WHERE student_id = (?)" ;
+                if ($stmt=mysqli_prepare($conn, $emailsql)){
+                    mysqli_stmt_bind_param($stmt, "i", $student_id);
+
+                    $student_id = $studentId;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        $clubIdArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $clubId= $clubIdArray["count(user_email)"];
+                        if($clubId == NULL){
+                            header("refresh:5;url=/login.html");
+                            die( '<script>alert("clubid does not exist! please contact administrator!")</script>');
+                        }//end if
+                        echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/student/formApplication.html';\">New Activity Application</button>";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=/login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+            ?>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
