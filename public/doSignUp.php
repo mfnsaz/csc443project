@@ -18,6 +18,33 @@
         
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $clubid = $_POST["clubid"];
+
+                //get clublist
+                //check if clublist exists
+                $clublistsql = "SELECT club_id FROM clubs WHERE club_id = (?)" ;
+                if ($stmt=mysqli_prepare($conn, $clublistsql)){
+                    mysqli_stmt_bind_param($stmt, "i", $club_id);
+
+                    $club_id = $clubid;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $clubIdRes = $clubidArray["club_id"];
+                        if($clubIdRes == 0 || $clubIdRes == NULL){
+                            header("refresh:5;url=login.html");
+                            die( '<script>alert("Invalid Club ID!")</script>' ) ;
+                        }//end if
+                        echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
                 echo "<p>Please wait for a few seconds.</p>";
                 $email = $_POST["email"];
                 if(empty(trim($_POST["email"]))){
@@ -58,7 +85,7 @@
                 $password = password_hash($password, PASSWORD_DEFAULT);
                 $name = $_POST["name"];
                 $tel = $_POST["telephone"];
-                $role = $_POST["role"];
+                $role = 0;
 
                 if ($role < 0 || $role > 2){
                     header("refresh:5;url=login.html");
