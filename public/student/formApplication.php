@@ -36,60 +36,42 @@
         <p>Please fill in the form below.</p>
         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
             <div class="form-floating mb-3">
-                <input class="form-control" name="studentName" type="text" placeholder="Student Name" data-sb-validations="required" />
-                <label for="studentName">Student Name</label>
-                <div class="invalid-feedback" data-sb-feedback="studentName:required">Student Name is required.</div>
+                <input class="form-control" id="applicationName" type="text" placeholder="Application Name" data-sb-validations="required" />
+                <label for="applicationName">Application Name</label>
+                <div class="invalid-feedback" data-sb-feedback="applicationName:required">Application Name is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select" name="gender" aria-label="Gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-                <label for="gender">Gender</label>
+                <input class="form-control" id="startDate" type="text" placeholder="Start Date" data-sb-validations="required" />
+                <label for="startDate">Start Date</label>
+                <div class="invalid-feedback" data-sb-feedback="startDate:required">Start Date is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                <label for="emailAddress">Email Address</label>
-                <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                <input class="form-control" id="endDate" type="text" placeholder="End Date" data-sb-validations="required" />
+                <label for="endDate">End Date</label>
+                <div class="invalid-feedback" data-sb-feedback="endDate:required">End Date is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="numberPhone" type="text" placeholder="Number Phone" data-sb-validations="required" />
-                <label for="numberPhone">Number Phone</label>
-                <div class="invalid-feedback" data-sb-feedback="numberPhone:required">Number Phone is required.</div>
+                <input class="form-control" id="time" type="text" placeholder="Time" data-sb-validations="required" />
+                <label for="time">Time</label>
+                <div class="invalid-feedback" data-sb-feedback="time:required">Time is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="clubName" type="text" placeholder="Club Name" data-sb-validations="required" />
-                <label for="clubName">Club Name</label>
-                <div class="invalid-feedback" data-sb-feedback="clubName:required">Club Name is required.</div>
+                <input class="form-control" id="proposalFilesLink" type="text" placeholder="Proposal Files Link" data-sb-validations="required" />
+                <label for="proposalFilesLink">Proposal Files Link</label>
+                <div class="invalid-feedback" data-sb-feedback="proposalFilesLink:required">Proposal Files Link is required.</div>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" name="proposalTitle" type="text" placeholder="Proposal Title" data-sb-validations="required" />
-                <label for="proposalTitle">Proposal Title</label>
-                <div class="invalid-feedback" data-sb-feedback="proposalTitle:required">Proposal Title is required.</div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" name="fileLinkGoogleDrive" type="text" placeholder="File Link Google Drive" data-sb-validations="required" />
-                <label for="fileLinkGoogleDrive">File Link Google Drive</label>
-                <div class="invalid-feedback" data-sb-feedback="fileLinkGoogleDrive:required">File Link Google Drive is required.</div>
-            </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" name="comments" type="text" placeholder="Comments" style="height: 10rem;" data-sb-validations="required"></textarea>
-                <label for="comments">Comments</label>
-                <div class="invalid-feedback" data-sb-feedback="comments:required">Comments is required.</div>
-            </div>
-            <div class="d-none" name="submitSuccessMessage">
+            <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center mb-3">
                     <div class="fw-bolder">Form submission successful!</div>
                     <p>To activate this form, sign up at</p>
                     <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                 </div>
             </div>
-            <div class="d-none" name="submitErrorMessage">
+            <div class="d-none" id="submitErrorMessage">
                 <div class="text-center text-danger mb-3">Error sending message!</div>
             </div>
             <div class="d-grid">
-                <button class="btn btn-primary btn-lg disabled" name="submitButton" type="submit">Submit</button>
+                <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
             </div>
         </form>
     </div>
