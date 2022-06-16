@@ -44,7 +44,8 @@
                     echo implode(", ",$clubArr[1]);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     for($i = 0; $i <= $clubRowNum; $i++){
-                        echo "<tr><td>$i</td>";
+                        $tableIndex = $i+1;
+                        echo "<tr><td>$tableIndex</td>";
                         $currClubArr = $clubArr[$i];
                         foreach($currClubArr as $v){
                             echo "<td>$v</td>";
