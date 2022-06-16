@@ -35,7 +35,7 @@
                 require_once "../inc/connect.php";
 
                 //get clublist
-                $getClubSQL = "SELECT club_name, club_id FROM clubs";
+                $getClubSQL = "SELECT * FROM clubs";
                 $clubRes = mysqli_query($conn, $getClubSQL);
                 if(!is_bool($clubRes)){
                     $clubRowNum = mysqli_num_rows($clubRes);
