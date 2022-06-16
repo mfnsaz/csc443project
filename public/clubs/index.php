@@ -51,8 +51,8 @@
                         $tableIndex++;
                         foreach($currClub as $currField){
                             echo "<td>$currField</td>";
-                            echo "</tr>";
                         }
+                        echo "</tr>";
                     }
                     echo "</table>";
                 } else {
