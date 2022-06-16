@@ -45,7 +45,7 @@
                     for($i = 0; $i <= sizeof($clubArr); $i++){
                         $tableIndex = $i+1;
                         echo "<tr><td>$tableIndex</td>";
-                        $currClubArr = array("\"".implode("\", \"",$clubArr[$i])."\"");
+                        $currClubArr = array($clubArr[$i]);
                         foreach($currClubArr as $v){
                             echo "<td>$v</td>";
                         }
