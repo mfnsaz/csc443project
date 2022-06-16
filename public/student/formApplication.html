@@ -5,31 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-          background-color: rgb(135, 191, 239);
-        }
-        </style>
+
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-    <center>
-    <form action = "studentApplication.php" method="post">
-        <h1><b>PROPOSAL APPROVAL</b></h1>
-        <p><b>Student Name:</b><input type="text" size="25" maxlength="36" name="name"><p />
-            <p><b>Gender</b>
-                <input type="radio" name="gender" value="M" />Male
-                <input type="radio" name="gender" value="F" />Female
-                </p>
-        <p><b>Email Address :</b> <input type="text" size="25" maxlength="36" name="email"><p />
-        <p><b>Number Phone :</b><input type="text" size="25" maxlength="36" name="numphone"><p />
-        <p><b>Club Name :</b><input type="text" size="25" maxlength="36" name="clubname"><p />
-        <p><b>Proposal Title :</b><input type="text" size="25" maxlength="36" name="proptitle"><p />
-        <p><b>Upload File (Link Google Drive) :</b><input type="text" size="25" maxlength="100" name="filename"><p />
-        <p><b>Comments:</b> <textarea name="comments" rows="3" cols="50"> </textarea></p>
-        <div align="center"> <input type="submit" name="submit" value="Submit Information" />
-        </div>
-        </form>
-    </center>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                <img src="https://api.alzhahir.com/static/images/logos/alzhahir/alz-logo-shadow-outline.png" class="img-fluid px-5" alt="alzhahir Logo">
+            </a>
 
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-primary" onclick="location.href='/login.html';">Login</button>
+            </div>
+        </header>
+    </div>
+    <div class="container px-5 my-5">
+        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <div class="form-floating mb-3">
+                <input class="form-control" name="studentName" type="text" placeholder="Student Name" data-sb-validations="required" />
+                <label for="studentName">Student Name</label>
+                <div class="invalid-feedback" data-sb-feedback="studentName:required">Student Name is required.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" name="gender" aria-label="Gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <label for="gender">Gender</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
+                <label for="emailAddress">Email Address</label>
+                <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="numberPhone" type="text" placeholder="Number Phone" data-sb-validations="required" />
+                <label for="numberPhone">Number Phone</label>
+                <div class="invalid-feedback" data-sb-feedback="numberPhone:required">Number Phone is required.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="clubName" type="text" placeholder="Club Name" data-sb-validations="required" />
+                <label for="clubName">Club Name</label>
+                <div class="invalid-feedback" data-sb-feedback="clubName:required">Club Name is required.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="proposalTitle" type="text" placeholder="Proposal Title" data-sb-validations="required" />
+                <label for="proposalTitle">Proposal Title</label>
+                <div class="invalid-feedback" data-sb-feedback="proposalTitle:required">Proposal Title is required.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="fileLinkGoogleDrive" type="text" placeholder="File Link Google Drive" data-sb-validations="required" />
+                <label for="fileLinkGoogleDrive">File Link Google Drive</label>
+                <div class="invalid-feedback" data-sb-feedback="fileLinkGoogleDrive:required">File Link Google Drive is required.</div>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="comments" type="text" placeholder="Comments" style="height: 10rem;" data-sb-validations="required"></textarea>
+                <label for="comments">Comments</label>
+                <div class="invalid-feedback" data-sb-feedback="comments:required">Comments is required.</div>
+            </div>
+            <div class="d-none" name="submitSuccessMessage">
+                <div class="text-center mb-3">
+                    <div class="fw-bolder">Form submission successful!</div>
+                    <p>To activate this form, sign up at</p>
+                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                </div>
+            </div>
+            <div class="d-none" name="submitErrorMessage">
+                <div class="text-center text-danger mb-3">Error sending message!</div>
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg disabled" name="submitButton" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
