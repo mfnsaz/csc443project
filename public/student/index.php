@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(!$_SESSION["isSignedIn"] == true){
+        header("refresh:5;url=login.html");
+        die('<script>alert("NOT SIGNED IN. INVALID SESSION.")</script>');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +13,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     </head>
     <body>
+        <?php
+            if (isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
+                header("refresh:5;url=login.html");
+                die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+            }
+        ?>
         <div class="container">
             <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -29,12 +39,6 @@
                 </div>
             </header>
         </div>
-        <?php
-            if (isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
-                header("refresh:5;url=login.html");
-                die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
-            }
-        ?>
         <div class="px-5 text-center">
             <h1>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h1>
         </div>
