@@ -4,6 +4,10 @@
         header("refresh:5;url=/login.html");
         die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
+    if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
+        header("refresh:5;url=/login.html");
+        die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +42,7 @@
         </div>
         <div class="px-5">
             <h1>Available actions:</h1>
+            <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.html';">New Activity Application</button>
             <?php
                 require_once "../inc/connect.php";
 

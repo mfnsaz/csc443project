@@ -66,7 +66,7 @@
                     session_start();
                     if($userType == 0){
                         //student
-                        $getStudentInfoSQL = "SELECT student_id, student_name, student_telno FROM students WHERE user_id = (?)";
+                        $getStudentInfoSQL = "SELECT student_id, student_name, student_telno, club_id FROM students WHERE user_id = (?)";
                         if ($stmt=mysqli_prepare($conn, $getStudentInfoSQL)){
                             mysqli_stmt_bind_param($stmt, "i", $u_id);
 
@@ -77,6 +77,7 @@
                                 $studentId = $studentArray["student_id"];
                                 $studentName = $studentArray["student_name"];
                                 $studentTel = $studentArray["student_telno"];
+                                $studentClubId = $studentArray["club_id"];
                                 echo "SUCCESS QUERY USERS TABLE!<br>";
                             } else {
                                 echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
@@ -89,6 +90,7 @@
                         $_SESSION["name"] = $studentName;
                         $_SESSION["tel"] = $studentTel;
                         $_SESSION["student_id"] = $studentId;
+                        $_SESSION["club_id"] = $studentClubId;
                         header("refresh:2;url=/student/index.php");
                     } else if ($userType == 1){
                         //admin
