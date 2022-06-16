@@ -1,10 +1,22 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
+        header("refresh:5;url=/login.html");
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+    }
+    if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
+        header("refresh:5;url=/login.html");
+        die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Application Form</title>
 
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -34,41 +46,26 @@
     <div class="container px-5 my-5">
         <h1 class="pb-4">New Activity Application</h1>
         <p>Please fill in the form below.</p>
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <form id="contactForm" action="./studentApplication.php" method="post">
             <div class="form-floating mb-3">
-                <input class="form-control" id="applicationName" type="text" placeholder="Application Name" data-sb-validations="required" />
+                <input class="form-control" id="applicationName" type="text" placeholder="Application Name" required/>
                 <label for="applicationName">Application Name</label>
-                <div class="invalid-feedback" data-sb-feedback="applicationName:required">Application Name is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="startDate" type="text" placeholder="Start Date" data-sb-validations="required" />
+                <input class="form-control" id="startDate" type="date" placeholder="Start Date" required/>
                 <label for="startDate">Start Date</label>
-                <div class="invalid-feedback" data-sb-feedback="startDate:required">Start Date is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="endDate" type="text" placeholder="End Date" data-sb-validations="required" />
+                <input class="form-control" id="endDate" type="date" placeholder="End Date" required/>
                 <label for="endDate">End Date</label>
-                <div class="invalid-feedback" data-sb-feedback="endDate:required">End Date is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="time" type="text" placeholder="Time" data-sb-validations="required" />
+                <input class="form-control" id="time" type="time" placeholder="Time" required/>
                 <label for="time">Time</label>
-                <div class="invalid-feedback" data-sb-feedback="time:required">Time is required.</div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="proposalFilesLink" type="text" placeholder="Proposal Files Link" data-sb-validations="required" />
+                <input class="form-control" id="proposalFilesLink" type="url" placeholder="Proposal Files Link" required/>
                 <label for="proposalFilesLink">Proposal Files Link</label>
-                <div class="invalid-feedback" data-sb-feedback="proposalFilesLink:required">Proposal Files Link is required.</div>
-            </div>
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    <p>To activate this form, sign up at</p>
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                </div>
-            </div>
-            <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3">Error sending message!</div>
             </div>
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
