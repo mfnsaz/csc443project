@@ -1,60 +1,91 @@
 <?php
-    include("formApplication.html"); #Script handle form 
-    if (strlen($_POST["name"]) >0) {
-        $_POST["name"] = $_POST["name"];
-    }else{
-        $_POST["name"]= null;
-        echo '<p><b> You Forgot to Enter Your Name! </b></p>';
-    }
+    require_once "../inc/connect.php";
+    
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        //set post values to vars
+        $appname = $_POST["appName"];
+        $startDate = $_POST["startDate"];
+        $endDate = $_POST["endDate"];
+        $time = $_POST["time"];
+        $proposalUrl = $_POST["proposalUrl"];
 
-    if (isset($_POST["gender"])) {
-        if($_POST["gender"] == 'M'){
-            $message ='<b><p>Good Day, Boy </b></p>';
+        //set session values to vars
+        $studentId = $_SESSION["student_id"];
+
+        //get date and time
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+        $dateNow = date('Y-m-d');
+        $timeNow = date('H:i:s');
+
+        //add into applications table
+        $addApplicationSQL = "INSERT INTO applications (app_name, app_startDate, app_endDate, app_time, app_files_link, student_id) VALUES (?, ?, ?, ?, ?, ?)";
+        if ($stmt=mysqli_prepare($conn, $signUpSQL)){
+            mysqli_stmt_bind_param($stmt, "sssssi", $db_appname, $db_startdate, $db_enddate, $db_time, $db_filesurl, $db_studentid);
+
+            $db_appname = $appname;
+            $db_startdate = $startDate;
+            $db_enddate = $endDate;
+            $db_time = $time;
+            $db_filesurl = $proposalUrl;
+            $db_studentid = $studentId;
+
+            if(mysqli_stmt_execute($stmt)){
+                echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
+            } else {
+                echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                header("refresh:5;url=/student/formApplication.php");
+                die('<script>alert("ERROR ADDING APPLICATIONS. Please contact the admin for further help.")</script>');
+            }
+
+            mysqli_stmt_close($stmt);
         }
-        if($_POST["gender"] == 'F'){
-            $message ='<b><p>Good Day, Girl </b></p>';
+
+        //get app_id from table
+        $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?)";
+        if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
+            mysqli_stmt_bind_param($stmt, "s", $ap_studentid);
+
+            $ap_studentid = $studentId;
+
+            if(mysqli_stmt_execute($stmt)){
+                $appArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                $appId = $appArray["application_id"];
+                echo "SUCCESS QUERY USERS TABLE!\n";
+            } else {
+                echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                header("refresh:5;url=/student/formApplication.php");
+                die('<script>alert("ERROR GETTING APPID. Please contact the admin for further help.")</script>');
+            }
+
+            mysqli_stmt_close($stmt);
         }
-    }else{
-        $_POST["gender"]= null;
-        echo '<p><b> You Forgot to Choose Your Gender! </b></p>';
-    }
 
-    if (!(strlen($_POST["email"]) >0)) {
-        $_POST["email"]= null; 
-        echo '<p><b> You Forgot to Enter Your Emails! </b></p>';
-    }
+        //add into trackings table
+        $addApplicationSQL = "INSERT INTO trackings (tracking_status, tracking_date, tracking_time, application_id) VALUES (?, ?, ?, ?)";
+        if ($stmt=mysqli_prepare($conn, $signUpSQL)){
+            mysqli_stmt_bind_param($stmt, "sssi", $tr_stat, $tr_date, $tr_time, $app_id);
 
-    if (strlen($_POST["numphone"]) >0) {
-        $_POST["numphone"] = $_POST["numphone"];
-    }else{
-        $_POST["numphone"]= null;
-        
-        echo '<p><b> You Forgot to Enter Your Number Phone! </b></p>';
-    }
+            $tr_stat = "Application received by System";
+            $tr_date = $dateNow;
+            $tr_time = $timeNow;
+            $app_id = $appId;
 
-    if (strlen($_POST["clubname"]) >0) {
-        $_POST["clubname"] = $_POST["clubname"];
-    }else{
-        $_POST["clubname"]= null;
-        
-        echo '<p><b> You Forgot to Enter Your Club Name! </b></p>';
-    }
+            if(mysqli_stmt_execute($stmt)){
+                echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
+            } else {
+                echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                header("refresh:5;url=/student/formApplication.php");
+                die('<script>alert("ERROR ADDING TRACKING. Please contact the admin for further help.")</script>');
+            }
 
-    if (strlen($_POST["proptitle"]) >0) {
-        $_POST["proptitle"] = $_POST["proptitle"];
-    }else{
-        $_POST["proptitle"]= null;
-        
-        echo '<p><b> You Forgot to Enter Your Proposal Title! </b></p>';
-    }
+            mysqli_stmt_close($stmt);
+        }
 
 
-    if (strlen($_POST["filename"]) >0) {
-        $_POST["filename"] = $_POST["filename"];
-    }else{
-        $_POST["filename"]= null;
-        
-        echo '<p><b> You Forgot to Upload Your File! </b></p>';
+        echo '<script>alert("Add application SUCCESS.")</script>';
+        header("refresh:2;url=/student/index.php");
+    } else {
+        echo '<script>alert("INVALID METHOD. REDIRECTING TO STUDENT INDEX.")</script>';
+        header("refresh:2;url=/student/index.php");
     }
-  
 ?>
