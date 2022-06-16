@@ -32,7 +32,7 @@
         </div>
         <div>
             <?php
-                require_once "../public/inc/connect.php";
+                require_once "../inc/connect.php";
 
                 //get clublist
                 $getClubSQL = "SELECT club_name, club_id FROM clubs";
