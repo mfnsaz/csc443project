@@ -41,12 +41,12 @@
                     $clubArr = mysqli_fetch_all($clubRes);
                     //echo "\"".implode("\", \"",$clubArr[0])."\"";
                     //echo implode(", ",$clubArr[1]);
-                    print_r($clubArr[1]);
+                    print_r($clubArr);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     for($i = 0; $i <= sizeof($clubArr); $i++){
                         $tableIndex = $i+1;
                         echo "<tr><td>$tableIndex</td>";
-                        $currClubArr = array();
+                        $clubArr = array_values($clubArr);
                         $currClubArr = $clubArr[$i];
                         foreach($currClubArr as $v){
                             echo "<td>$v</td>";
