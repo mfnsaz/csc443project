@@ -81,24 +81,20 @@
                             <label for="name">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
+                            <input class="form-control" name="telephone" type="tel" placeholder="Telephone" required/>
                             <label for="telephone">Telephone</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
-                            <label for="clubid">Club ID</label>
-                        </div>
-                        <div>
-                            <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" name="role" aria-label="Role" required>
+                            <select class="form-select" name="clubid" aria-label="Role" required>
                                 <option value=""></option>
                                 <option value="0">Student</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Officer</option>
                             </select>
-                            <label for="role">Role</label>
+                            <label for="clubid">Role</label>
+                            <div>
+                                <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
+                            </div>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signUpButton" type="submit">Sign Up</button>
