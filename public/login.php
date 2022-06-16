@@ -87,11 +87,24 @@
                         <div class="form-floating mb-3">
                             <select class="form-select" name="clubid" aria-label="Role" required>
                                 <option value=""></option>
-                                <option value="0">Student</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Officer</option>
+                                <?php
+                                    require_once "../inc/connect.php";
+
+                                    //get clublist
+                                    $getClubSQL = "SELECT club_id, club_name FROM clubs";
+                                    $clubRes = mysqli_query($conn, $getClubSQL);
+                                    if(!is_bool($clubRes)){
+                                        $clubArr = mysqli_fetch_all($clubRes);
+                                        $clubArr = array_values($clubArr);
+                                        foreach($clubArr as $currClub){
+                                            echo "<option value=\"$currClub[0]\">$currClub[1]</td>";
+                                        }
+                                    } else {
+                                        echo "ERROR";
+                                    }
+                                ?>
                             </select>
-                            <label for="clubid">Role</label>
+                            <label for="clubid">Club ID</label>
                             <div>
                                 <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
                             </div>
