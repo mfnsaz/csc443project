@@ -161,12 +161,13 @@
                 //prepare mysql statements for role-specific stuff
                 if ($role == 0){
                     //students
-                    $studentSignUpSQL = "INSERT INTO students (student_name, student_telno, user_id) VALUES (?, ?, ?)";
+                    $studentSignUpSQL = "INSERT INTO students (student_name, student_telno, club_id, user_id) VALUES (?, ?, ?, ?)";
                     if ($stmt=mysqli_prepare($conn, $studentSignUpSQL)){
-                        mysqli_stmt_bind_param($stmt, "ssi", $stu_name, $stu_telno, $u_id);
+                        mysqli_stmt_bind_param($stmt, "ssi", $stu_name, $stu_telno, $club_id, $u_id);
 
                         $stu_name = $name;
                         $stu_telno = $tel;
+                        $club_id = $clubid;
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
