@@ -29,17 +29,19 @@
                 </div>
             </header>
         </div>
+        <?php
+            if (isset($_SESSION["student_id"])){
+                header("refresh:5;url=login.html");
+                die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+            }
+        ?>
         <div class="px-5 text-center">
             <h1>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h1>
         </div>
         <div class="px-5">
             <h1>Available actions:</h1>
             <?php
-                require_once "/inc/connect.php";
-                if (isset($_SESSION["student_id"])){
-                    header("refresh:5;url=login.html");
-                    die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
-                }
+                require_once "../inc/connect.php";
 
                 $studentId = $_SESSION["student_id"];
 
