@@ -47,6 +47,7 @@
                             $currClubId = $clubId[$i];
                             echo "<tr><td>$i</td><td>$currClubName</td><td>$currClubId</td></tr>";
                         }
+                        echo "</table>";
                     } else {
                         echo "MYSQL ERROR QUERY CLUBS TABLE! ".mysqli_error($conn);
                     }
