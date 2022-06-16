@@ -40,6 +40,7 @@
                 if(!is_bool($clubRes)){
                     $clubRowNum = mysqli_num_rows($clubRes);
                     $clubArr = mysqli_fetch_array($clubRes);
+                    echo $clubArr;
                     $clubName = $clubArr["club_name"];
                     $clubId = $clubArr["club_id"];
                     echo "<table><tr><th>No</th><th>Club Name</th><th>Club ID</th></tr>";
