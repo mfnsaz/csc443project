@@ -39,7 +39,7 @@
                 $clubRes = mysqli_query($conn, $getClubSQL);
                 if(!is_bool($clubRes)){
                     $clubArr = mysqli_fetch_all($clubRes);
-                    echo implode(", ",$clubArr[0]);
+                    echo "\"".implode("\", \"",$clubArr[0])."\"";
                     echo implode(", ",$clubArr[1]);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
                     for($i = 0; $i <= sizeof($clubArr); $i++){
