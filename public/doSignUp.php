@@ -67,14 +67,28 @@
                 //MYSQL STATEMENTS BELOW
 
                 //check for duplicate email
-                $sql = "SELECT count(user_email) FROM users WHERE user_email='$email'" ;
+                $emailsql = "SELECT count(user_email) FROM users WHERE user_email = (?)" ;
+                if ($stmt=mysqli_prepare($conn, $emailsql)){
+                    mysqli_stmt_bind_param($stmt, "s", $user_email);
 
-                $result = mysqli_fetch_row(mysqli_query($conn, $sql));
+                    $user_email = $email;
 
-                if($result[0] > 0 || $result != NULL){
-                    header("refresh:5;url=login.html");
-                    die( '<script>alert("There is already a user with that email!")</script>' ) ;
-                }//end if
+                    if(mysqli_stmt_execute($stmt)){
+                        $emailArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $userEmail = $emailArray["count(user_email)"];
+                        if($userEmail > 0 || $userEmail != NULL){
+                            header("refresh:5;url=login.html");
+                            die( '<script>alert("There is already a user with that email!")</script>' ) ;
+                        }//end if
+                        echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
+                    } else {
+                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
 
                 //prepare mysql statements for user
                 $signUpSQL = "INSERT INTO users (user_email, user_pass, user_type) VALUES (?, ?, ?)";
@@ -86,9 +100,11 @@
                     $db_type = $role;
 
                     if(mysqli_stmt_execute($stmt)){
-                        echo "SUCCESS ADD TO USERS TABLE!\n";
+                        echo "SUCCESS ADD TO USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
                     mysqli_stmt_close($stmt);
@@ -104,9 +120,11 @@
                     if(mysqli_stmt_execute($stmt)){
                         $usersArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $userId = $usersArray["user_id"];
-                        echo "SUCCESS QUERY USERS TABLE!\n";
+                        echo "SUCCESS QUERY USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                        header("refresh:5;url=login.html");
+                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
                     mysqli_stmt_close($stmt);
@@ -124,9 +142,11 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO STUDENTS TABLE!\n";
+                            echo "SUCCESS ADD TO STUDENTS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
@@ -142,9 +162,11 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO ADMINS TABLE!\n";
+                            echo "SUCCESS ADD TO ADMINS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
@@ -160,9 +182,11 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO OFFICERS TABLE!\n";
+                            echo "SUCCESS ADD TO OFFICERS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
+                            header("refresh:5;url=login.html");
+                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
                         mysqli_stmt_close($stmt);
