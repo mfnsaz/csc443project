@@ -1,4 +1,5 @@
 <?php
+    session_start();
     echo "<p>Processing your sign in request...</p>";
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -22,7 +23,7 @@
 
         //add into applications table
         $addApplicationSQL = "INSERT INTO applications (app_name, app_startDate, app_endDate, app_time, app_files_link, student_id) VALUES (?, ?, ?, ?, ?, ?)";
-        if ($stmt=mysqli_prepare($conn, $signUpSQL)){
+        if ($stmt=mysqli_prepare($conn, $addApplicationSQL)){
             mysqli_stmt_bind_param($stmt, "sssssi", $db_appname, $db_startdate, $db_enddate, $db_time, $db_filesurl, $db_studentid);
 
             $db_appname = $appname;
@@ -64,8 +65,8 @@
         }
 
         //add into trackings table
-        $addApplicationSQL = "INSERT INTO trackings (tracking_status, tracking_date, tracking_time, application_id) VALUES (?, ?, ?, ?)";
-        if ($stmt=mysqli_prepare($conn, $signUpSQL)){
+        $addTrackingSQL = "INSERT INTO trackings (tracking_status, tracking_date, tracking_time, application_id) VALUES (?, ?, ?, ?)";
+        if ($stmt=mysqli_prepare($conn, $addTrackingSQL)){
             mysqli_stmt_bind_param($stmt, "sssi", $tr_stat, $tr_date, $tr_time, $app_id);
 
             $tr_stat = "Application received by System";
