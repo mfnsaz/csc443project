@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if (!isset($_SESSION["officer_id"])){
+        header("refresh:5;url=login.html");
+        die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
+    }
 ?>
 
 <!DOCTYPE html>
