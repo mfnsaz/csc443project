@@ -30,7 +30,7 @@
             </header>
         </div>
         <?php
-            if (isset($_SESSION["student_id"])){
+            if (isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
                 header("refresh:5;url=login.html");
                 die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
             }
