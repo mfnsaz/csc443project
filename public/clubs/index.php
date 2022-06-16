@@ -45,14 +45,14 @@
                     $clubArr = array_values($clubArr);
                     print_r($clubArr);
                     echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
-                    for($i = 0; $i <= sizeof($clubArr); $i++){
-                        $tableIndex = $i+1;
+                    $tableIndex = 1;
+                    foreach($clubArr as $currClub){
                         echo "<tr><td>$tableIndex</td>";
-                        $currClubArr = $clubArr[$i];
-                        foreach($currClubArr as $v){
-                            echo "<td>$v</td>";
+                        $tableIndex++;
+                        foreach($currClub as $currField){
+                            echo "<td>$currField</td>";
+                            echo "</tr>";
                         }
-                        echo "</tr>";
                     }
                     echo "</table>";
                 } else {
