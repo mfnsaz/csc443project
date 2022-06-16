@@ -26,7 +26,8 @@
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "Invalid email format";
-                    die($emailErr);
+                    header("refresh:5;url=login.html");
+                    die("<script>alert($emailErr)</script>");
                 }
 
                 // Validate password
@@ -36,7 +37,7 @@
                 } elseif(strlen(trim($_POST["password"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the signup page.";
                     header("refresh:5;url=login.html");
-                    die($password_err);
+                    die("<script>alert($password_err)</script>");
                 } else{
                     $password = trim($_POST["password"]);
                 }
@@ -50,7 +51,7 @@
                     if(empty($password_err) && ($password != $confirm_password)){
                         $confirm_password_err = "ERROR: Password did not match. Redirecting back to the signup page.";
                         header("refresh:5;url=login.html");
-                        die($confirm_password_err);
+                        die("<script>alert($confirm_password_err)</script>");
                     }
                 }
 
