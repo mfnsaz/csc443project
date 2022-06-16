@@ -39,7 +39,7 @@
                 $clubRes = mysqli_query($conn, $getClubSQL);
                 if(!is_bool($clubRes)){
                     $clubRowNum = mysqli_num_rows($clubRes);
-                    $clubArr = mysqli_fetch_array($clubRes);
+                    $clubArr = mysqli_fetch_all($clubRes);
                     echo implode(", ",$clubArr);
                     $clubName = $clubArr["club_name"];
                     $clubId = $clubArr["club_id"];
