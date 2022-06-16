@@ -30,7 +30,8 @@
         <div class="px-5 text-center">
             <h1>Club Listing</h1>
         </div>
-        <div>
+        <div class="px-5">
+            <p>Here, you can find the list of clubs available.</p>
             <?php
                 require_once "../inc/connect.php";
 
