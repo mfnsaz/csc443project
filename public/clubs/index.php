@@ -39,13 +39,14 @@
                 if ($stmt=mysqli_prepare($conn, $getClubSQL)){
                     if(mysqli_stmt_execute($stmt)){
                         $clubsArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $clubsArrayRowCount = mysqli_num_rows(mysqli_stmt_get_result($stmt));
                         $clubName = $clubsArray["club_name"];
                         $clubId = $clubsArray["club_id"];
                         echo "<table><tr><th>No</th><th>Club Name</th><th>Club ID</th></tr>";
-                        for($i = 0; $i <= sizeof($clubName); $i++){
+                        for($i = 0; $i <= $clubsArrayRowCount; $i++){
                             $currClubName = $clubName[$i];
                             $currClubId = $clubId[$i];
-                            echo "<tr><td>$i</td><td>$currClubName</td><td>$currClubId</td></tr>";
+                            echo "<tr><td>".$i++."</td><td>$currClubName</td><td>$currClubId</td></tr>";
                         }
                         echo "</table>";
                     } else {
