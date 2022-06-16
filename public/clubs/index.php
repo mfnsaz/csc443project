@@ -45,7 +45,7 @@
                     echo "<table class=\"table\"><tr><th scope=\"col\">#</th><th scope=\"col\">Club ID</th><th scope=\"col\">Club Name</th><th scope=\"col\">Club Type</th></tr>";
                     $tableIndex = 1;
                     foreach($clubArr as $currClub){
-                        echo "<tr><td scope=\"row\">$tableIndex</td>";
+                        echo "<tr><th scope=\"row\">$tableIndex</th>";
                         $tableIndex++;
                         foreach($currClub as $currField){
                             echo "<td>$currField</td>";
