@@ -17,10 +17,10 @@
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+                    <li><a href="/login.html" class="nav-link px-2 link-dark">Login</a></li>
+                    <li><a href="/contact.html" class="nav-link px-2 link-dark">Contact</a></li>
+                    <li><a href="/faq.html" class="nav-link px-2 link-dark">FAQs</a></li>
+                    <li><a href="/about.html" class="nav-link px-2 link-dark">About</a></li>
                 </ul>
 
                 <div class="col-md-3 text-end">
@@ -61,8 +61,8 @@
             </div>
             <div class="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab" tabindex="0">
                 <div class="container px-5 my-4">
-                    <h3>Sign Up</h3>
-                    <p>Please fill in this form to continue.</p>
+                    <h3>Sign Up (Students Only)</h3>
+                    <p>This form is for students only. Officers and Admins can contact the faculty for help. Please fill in this form to continue.</p>
                     <form id="signupForm" action="doSignUp.php" method="post">
                         <div class="form-floating mb-3">
                             <input class="form-control" name="email" type="email" placeholder="Email Address" required/>
@@ -83,6 +83,13 @@
                         <div class="form-floating mb-3">
                             <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
                             <label for="telephone">Telephone</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
+                            <label for="clubid">Club ID</label>
+                        </div>
+                        <div>
+                            <p>Club list can be found <a>here</a>.</p>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" name="role" aria-label="Role" required>
