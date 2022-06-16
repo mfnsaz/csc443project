@@ -85,11 +85,15 @@
                             <label for="telephone">Telephone</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control number" name="clubid" type="number" placeholder="Telephone" onkeydown='{(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}'' required/>
+                            <input class="form-control number" name="clubid" type="number" placeholder="Club ID" onkeydown='{(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}'' required/>
                             <label for="clubid">Club ID</label>
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
+                        </div>
+                        <div class="form-floating mb-3" hidden>
+                            <input class="form-control number" name="role" value="1" type="number" placeholder="1" onkeydown='{(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}'' required/>
+                            <label for="role">Role</label>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" id="signUpButton" type="submit">Sign Up</button>

@@ -19,6 +19,12 @@
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $clubid = $_POST["clubid"];
+                $role = $_POST["role"];
+
+                if($role > 0 && $club_id != null){
+                    header("refresh:5;url=login.html");
+                    die('<script>alert("ClubID should only be present if role is student!")</script>');
+                }
 
                 //get clublist
                 //check if clublist exists
@@ -85,7 +91,6 @@
                 $password = password_hash($password, PASSWORD_DEFAULT);
                 $name = $_POST["name"];
                 $tel = $_POST["telephone"];
-                $role = 0;
 
                 if ($role < 0 || $role > 2){
                     header("refresh:5;url=login.html");
