@@ -42,10 +42,10 @@
                 if(!is_bool($clubRes)){
                     $clubArr = mysqli_fetch_all($clubRes);
                     $clubArr = array_values($clubArr);
-                    echo "<table><tr><th>No</th><th>Club ID</th><th>Club Name</th><th>Club Type</th></tr>";
+                    echo "<table class=\"table\"><tr><th scope=\"col\">#</th><th scope=\"col\">Club ID</th><th scope=\"col\">Club Name</th><th scope=\"col\">Club Type</th></tr>";
                     $tableIndex = 1;
                     foreach($clubArr as $currClub){
-                        echo "<tr><td>$tableIndex</td>";
+                        echo "<tr><th scope=\"row\">$tableIndex</th>";
                         $tableIndex++;
                         foreach($currClub as $currField){
                             echo "<td>$currField</td>";
