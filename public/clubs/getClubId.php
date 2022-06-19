@@ -1,7 +1,7 @@
 <?php
     require_once "../inc/connect.php";
 
-    if($_SERVER["REQUEST_METHOD"] == "GET"){
+    //if($_SERVER["REQUEST_METHOD"] == "GET"){
         //get clublist
         $getClubSQL = "SELECT club_id, club_name FROM clubs";
         $clubRes = mysqli_query($conn, $getClubSQL);
@@ -18,8 +18,9 @@
         header("Content-Type: application/json");
         echo json_encode($clubArr);
         die();
-    } else {
+    //}
+    /*else {
         header('X-PHP-Response-Code: 500', true, 500);
         die();
-    }
+    }*/
 ?>
