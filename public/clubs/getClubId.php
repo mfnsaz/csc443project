@@ -3,11 +3,12 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         //get clublist
-        $getClubSQL = "SELECT * FROM clubs";
+        $getClubSQL = "SELECT club_id, club_name FROM clubs";
         $clubRes = mysqli_query($conn, $getClubSQL);
         if(!is_bool($clubRes)){
             $clubArr = mysqli_fetch_all($clubRes);
             $clubArr = array_values($clubArr);
+            print_r($clubArr);
         } else {
             $clubArr = array("0" => "Error");
             header('X-PHP-Response-Code: 500', true, 500);
