@@ -6,9 +6,20 @@
         $getClubSQL = "SELECT club_id, club_name FROM clubs";
         $clubRes = mysqli_query($conn, $getClubSQL);
         if(!is_bool($clubRes)){
+            $outputClubId = array();
+            $outputClubName = array();
+            $outputClubArr = array();
             $clubArr = mysqli_fetch_all($clubRes);
             $clubArr = array_values($clubArr);
             print_r($clubArr);
+            foreach($clubArr as $currClub){
+                array_push($outputClubId, $currClub[0]);
+                array_push($outputClubName, $currClub[1]);
+            }
+            $outputClubArr = array(
+                "clubId" => $outputClubId,
+                "clubName" => $outputClubName,
+            );
         } else {
             $clubArr = array("0" => "Error");
             header('X-PHP-Response-Code: 500', true, 500);
@@ -16,7 +27,7 @@
         }
 
         header("Content-Type: application/json");
-        echo json_encode($clubArr);
+        echo json_encode($outputClubArr);
         die();
     }
     else {
