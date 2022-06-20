@@ -82,7 +82,7 @@
                             <label for="name">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" name="telephone" type="text" placeholder="Telephone" required/>
+                            <input class="form-control number" name="telephone" type="text" placeholder="Telephone" onkeydown='{(evt) => ["e", "E", "-"].includes(evt.key) && evt.preventDefault()}' required/>
                             <label for="telephone">Telephone</label>
                         </div>
                         <div class="form-floating mb-3">
