@@ -144,7 +144,7 @@
                     for(let i = 0; i < data.clubId.length; i++){
                         htmlData = htmlData.concat("\n", "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>\n");
                     }
-                    document.getElementById("subjectList").innerHTML = htmlData;
+                    document.getElementById("clublist").innerHTML = htmlData;
                 }
             }
             xmlhttp.open("GET", url, true);
