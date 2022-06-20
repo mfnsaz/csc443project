@@ -1,0 +1,58 @@
+<html>
+    <head>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      counter-reset: row-num -1;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  table tr{
+    counter-increment: row-num;
+  }
+  table tr td:first-child::before {
+    content: counter(row-num) ". ";
+}
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .button {
+  background-color: #0096FF;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+  </style>
+  </head>
+  <body>
+  
+  <h2>UiTM Club Application List</h2>
+  <!-- Nanti kena buat if else rasanya so dia auto generated--> 
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Club Name</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>*</td>
+     <!-- Rasanya sini kena buat condition juga -->
+        <td><a href="#" ><button class="button button">Application Details</button></td></a>
+      </tr>
+  </table>
+  </body>
+  </html>
