@@ -140,7 +140,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
                     for(let i = 0; i < data.clubId.length; i++){
-                        let htmlData = "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>";
+                        var htmlData = "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>";
                         document.getElementById("subjectList").innerHTML = htmlData;
                     }
                 }
