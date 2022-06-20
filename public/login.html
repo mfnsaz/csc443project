@@ -86,21 +86,19 @@
                             <label for="telephone">Telephone</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control number" name="clubid" type="number" placeholder="Club ID" onkeydown='{(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}'' required/>
-                            <label for="clubid">Club ID</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" name="clubid" id="clublist" aria-label="Club ID" required>
+                            <select class="form-select" name="clubid" id="clublist" aria-label="Club" required>
                                 <option value=""></option>
                                 <!--Code here-->
                             </select>
-                            <label for="clubid">Club ID</label>
-                        </div>
-                        <div class="mb-3">
-                            <p>Club list can be found <a href="/clubs/index.php">here</a>.</p>
+                            <label for="clubid">Club</label>
                         </div>
                         <div class="form-floating mb-3" hidden>
-                            <input class="form-control number" name="role" type="hidden" value="0" onkeydown='{(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}'' required/>
+                            <select class="form-select" name="role" aria-label="Role" required>
+                                <option value=""></option>
+                                <option value="0">Student</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Officer</option>
+                            </select>
                             <label for="role">Role</label>
                         </div>
                         <div class="d-grid">
