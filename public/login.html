@@ -91,6 +91,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" name="clubid" id="clublist" aria-label="Club ID" required>
+                                <option value=""></option>
                                 <!--Code here-->
                             </select>
                             <label for="clubid">Club ID</label>
@@ -139,10 +140,11 @@
             xmlhttp.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
+                    var htmlData = "<option value=\"\"></option>";
                     for(let i = 0; i < data.clubId.length; i++){
-                        var htmlData = "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>";
-                        document.getElementById("subjectList").innerHTML = htmlData;
+                        htmlData = htmlData.concat("\n", "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>\n");
                     }
+                    document.getElementById("subjectList").innerHTML = htmlData;
                 }
             }
             xmlhttp.open("GET", url, true);
