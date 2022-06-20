@@ -11,7 +11,6 @@
             $outputClubArr = array();
             $clubArr = mysqli_fetch_all($clubRes);
             $clubArr = array_values($clubArr);
-            print_r($clubArr);
             foreach($clubArr as $currClub){
                 array_push($outputClubId, $currClub[0]);
                 array_push($outputClubName, $currClub[1]);
