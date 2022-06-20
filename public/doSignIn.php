@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Processing request...</title>
+        <title>UiTM Club Activities Approval System - Processing request...</title>
     </head>
     <body>
         <h1>Authenticating...</h1>
@@ -128,7 +128,7 @@
 
                             if(mysqli_stmt_execute($stmt)){
                                 $officerArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                                $officertId = $officerArray["officer_id"];
+                                $officerId = $officerArray["officer_id"];
                                 $officerName = $officerArray["officer_name"];
                                 $officerTel = $officerArray["officer_telno"];
                                 echo "SUCCESS QUERY USERS TABLE!<br>";
