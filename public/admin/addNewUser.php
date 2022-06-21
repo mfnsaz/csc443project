@@ -7,7 +7,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>UiTM Club Activities Approval System - Sign In/Sign Up</title>
+        <title>UiTM Club Activities Approval System - Create New User</title>
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     </head>
@@ -45,7 +45,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
         ?>
         <div class="container px-5 my-4">
             <h3>New User</h3>
-            <p>This form is for students only. Officers and Admins can contact the faculty for help. Please fill in this form to continue.</p>
+            <p>Please fill in this form to continue.</p>
             <form id="signupForm" action="doSignUp.php" method="post">
                 <div class="form-floating mb-3">
                     <input class="form-control" name="email" type="email" placeholder="Email Address" required/>
