@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,7 +27,12 @@
                 </ul>
 
                 <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-primary" onclick="location.href='/login.php';">Login</button>
+                    <?php
+                        if(isset($_SESSION["uid"])){
+                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
+                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
+                        }
+                    ?>
                 </div>
             </header>
         </div>
