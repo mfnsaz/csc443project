@@ -23,26 +23,34 @@
 </head>
 <body>
     <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <!--svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg-->
-                <img src="https://korporat.uitm.edu.my/images/download/2019/LogoUiTM.png" class="" height="50px" alt="alzhahir Logo">
-                <p class="h6 ps-3">Club Activities Approval System</p>
-            </a>
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <!--svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg-->
+                    <img src="https://korporat.uitm.edu.my/images/download/2019/LogoUiTM.png" class="" height="50px" alt="alzhahir Logo">
+                    <p class="h6 ps-3">Club Activities Approval System</p>
+                </a>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="/login.php" class="nav-link px-2 link-dark">Login</a></li>
-                <li><a href="/contact.html" class="nav-link px-2 link-dark">Contact</a></li>
-                <li><a href="/faq.html" class="nav-link px-2 link-dark">FAQs</a></li>
-                <li><a href="/about.html" class="nav-link px-2 link-dark">About</a></li>
-            </ul>
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="/login.php" class="nav-link px-2 link-dark">Login</a></li>
+                    <li><a href="/contact.php" class="nav-link px-2 link-dark">Contact</a></li>
+                    <li><a href="/faq.php" class="nav-link px-2 link-dark">FAQs</a></li>
+                    <li><a href="/about.php" class="nav-link px-2 link-dark">About</a></li>
+                </ul>
 
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-primary" onclick="location.href='/doSignOut.php';">Logout</button>
-            </div>
-        </header>
-    </div>
+                <div class="col-md-3 text-end">
+                    <?php
+                        if(isset($_SESSION["uid"])){
+                            $shortName = strtok($_SESSION["name"], " ");
+                            echo "<label class=\"px-2\">Welcome, ".$shortName."!</label>";
+                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
+                        } else {
+                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
+                        }
+                    ?>
+                </div>
+            </header>
+        </div>
     <div class="container px-5 my-5">
         <h1 class="pb-4">New Activity Application</h1>
         <p>Please fill in the form below.</p>
