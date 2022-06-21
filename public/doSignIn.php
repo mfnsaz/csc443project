@@ -4,13 +4,13 @@
         <title>UiTM Club Activities Approval System - Processing request...</title>
     </head>
     <body>
-        <h1>Authenticating...</h1>
+        <!--h1>Authenticating...</h1-->
         <?php
             session_start();
             if(isset($_SESSION["uid"])){
                 //user is logged in already
             }
-            echo "<p>Processing your sign in request...</p>";
+            //echo "<p>Processing your sign in request...</p>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
             // Include config file
@@ -22,7 +22,7 @@
         
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
-                echo "<p>Please wait for a few seconds.</p>";
+                //echo "<p>Please wait for a few seconds.</p>";
                 $email = $_POST["signInEmail"];
                 if(empty(trim($_POST["signInEmail"]))){
                     $_SESSION["userErrCode"] = "INVALID_EMAIL";
