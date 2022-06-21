@@ -46,7 +46,7 @@
                             header("refresh:2;url=login.php?error=true");
                             die() ;
                         }//end if
-                        echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
+                        //echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
                     } else {
                         //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                         $_SESSION["userErrCode"] = "MYSQL_ERROR";
@@ -263,7 +263,7 @@
             mysqli_close($conn);
             $_SESSION["userErrCode"] = "SIGNUP_SUCCESS";
             $_SESSION["userErrMsg"] = "Sign up success. You may login now.";
-            header("refresh:1;url=login.php?confirm=true");
+            header("refresh:1;url=login.php?signup=success");
         ?>
     </body>
 </html>
