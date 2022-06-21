@@ -30,7 +30,7 @@
                     <?php
                         if(isset($_SESSION["uid"])){
                             $shortName = strtok($_SESSION["name"], " ");
-                            echo "<label class=\"px-2\">".$shortName."</label>";
+                            echo "<label class=\"px-2\">Welcome, ".$shortName."!</label>";
                             echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
                         } else {
                             echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
