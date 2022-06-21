@@ -32,40 +32,42 @@
                 $clubid = $_POST["clubid"];
                 $role = $_POST["role"];
 
-                if($role > 0 && ($clubid != null || $clubid == "")){
+                if($role != 0 && !($clubid == null || $clubid == "")){
                     $_SESSION["userErrCode"] = "CLUBID_ROLE_MISMATCH";
                     $_SESSION["userErrMsg"] = "Club ID should only be present if role is student. Please contact the administrator if you believe that this should not happen.";
                     header("refresh:0;url=$backPage?error=true");
                     die();
                 }
 
-                //get clublist
-                //check if clublist exists
-                $clublistsql = "SELECT club_id FROM clubs WHERE club_id = (?)" ;
-                if ($stmt=mysqli_prepare($conn, $clublistsql)){
-                    mysqli_stmt_bind_param($stmt, "i", $club_id);
+                if($role == 0){
+                    //get clublist
+                    //check if clublist exists
+                    $clublistsql = "SELECT club_id FROM clubs WHERE club_id = (?)" ;
+                    if ($stmt=mysqli_prepare($conn, $clublistsql)){
+                        mysqli_stmt_bind_param($stmt, "i", $club_id);
 
-                    $club_id = $clubid;
+                        $club_id = $clubid;
 
-                    if(mysqli_stmt_execute($stmt)){
-                        $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                        $clubIdRes = $clubidArray["club_id"];
-                        if($clubIdRes == 0 || $clubIdRes == NULL){
-                            $_SESSION["userErrCode"] = "INVALID_CLUB_ID";
-                            $_SESSION["userErrMsg"] = "Club ID is invalid. Please view the club list or contact the administrator if you believe that this should not happen.";
+                        if(mysqli_stmt_execute($stmt)){
+                            $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                            $clubIdRes = $clubidArray["club_id"];
+                            if($clubIdRes == 0 || $clubIdRes == NULL){
+                                $_SESSION["userErrCode"] = "INVALID_CLUB_ID";
+                                $_SESSION["userErrMsg"] = "Club ID is invalid. Please view the club list or contact the administrator if you believe that this should not happen.";
+                                header("refresh:0;url=$backPage?error=true");
+                                die() ;
+                            }//end if
+                            //echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
+                        } else {
+                            //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
                             header("refresh:0;url=$backPage?error=true");
-                            die() ;
-                        }//end if
-                        //echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
-                    } else {
-                        //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        $_SESSION["userErrCode"] = "MYSQL_ERROR";
-                        $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                        header("refresh:0;url=$backPage?error=true");
-                        die();
-                    }
+                            die();
+                        }
 
-                    mysqli_stmt_close($stmt);
+                        mysqli_stmt_close($stmt);
+                    }
                 }
 
                 //echo "<p>Please wait for a few seconds.</p>";
