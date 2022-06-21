@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+session_start();
+$_SESSION["backPage"] = __FILE__;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

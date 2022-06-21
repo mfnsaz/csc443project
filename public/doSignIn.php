@@ -7,14 +7,21 @@
         <!--h1>Authenticating...</h1-->
         <?php
             session_start();
-            if(isset($_SESSION["uid"])){
-                //user is logged in already
-            }
             //echo "<p>Processing your sign in request...</p>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
             // Include config file
             require_once "inc/connect.php";
+
+            $backPage = $_SESSION["backPage"];
+
+            if(isset($_SESSION["uid"])){
+                //user is logged in already
+                $_SESSION["userErrCode"] = "SESSION_EXISTS";
+                $_SESSION["userErrMsg"] = "You are already logged in. Please log out to log in as another user.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
@@ -27,13 +34,13 @@
                 if(empty(trim($_POST["signInEmail"]))){
                     $_SESSION["userErrCode"] = "INVALID_EMAIL";
                     $_SESSION["userErrMsg"] = "Email is invalid. Please make sure that your email is valid.";
-                    header("refresh:0;url=login.php?error=true");
+                    header("refresh:0;url=$backPage?error=true");
                     die();
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $_SESSION["userErrCode"] = "INVALID_EMAIL";
                     $_SESSION["userErrMsg"] = "Email is invalid. Please make sure that your email is valid.";
-                    header("refresh:0;url=login.php?error=true");
+                    header("refresh:0;url=$backPage?error=true");
                     die();
                 }
 
@@ -50,14 +57,14 @@
                         if($userEmail == 0 || $userEmail == NULL){
                             $_SESSION["userErrCode"] = "WRONG_CREDS";
                             $_SESSION["userErrMsg"] = "Invalid username or password. Please re-enter the credentials";
-                            header("refresh:0;url=login.php?error=true");
+                            header("refresh:0;url=$backPage?error=true");
                             die();
                         }//end if
                         //echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
                     } else {
                         $_SESSION["userErrCode"] = "MYSQL_ERROR";
                         $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                        header("refresh:0;url=/error/index.php?error=true");
+                        header("refresh:0;url=$backPage?error=true");
                     }
 
                     mysqli_stmt_close($stmt);
@@ -70,7 +77,7 @@
                 } elseif(strlen(trim($_POST["signInPassword"])) < 8){
                     $_SESSION["userErrCode"] = "INVALID_PASSWORD";
                     $_SESSION["userErrMsg"] = "Password is invalid. Password must have at least 8 characters.";
-                    header("refresh:0;url=login.php?error=true");
+                    header("refresh:0;url=$backPage?error=true");
                     die();
                 } else{
                     $password = trim($_POST["signInPassword"]);
@@ -92,7 +99,7 @@
                     } else {
                         $_SESSION["userErrCode"] = "MYSQL_ERROR";
                         $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                        header("refresh:0;url=/error/index.php?error=true");
+                        header("refresh:0;url=$backPage?error=true");
                         //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
 
                     }
@@ -120,7 +127,7 @@
                             } else {
                                 $_SESSION["userErrCode"] = "MYSQL_ERROR";
                                 $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                                header("refresh:0;url=/error/index.php?error=true");
+                                header("refresh:0;url=$backPage?error=true");
                                 //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
 
@@ -151,7 +158,7 @@
                             } else {
                                 $_SESSION["userErrCode"] = "MYSQL_ERROR";
                                 $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                                header("refresh:0;url=/error/index.php?error=true");
+                                header("refresh:0;url=$backPage?error=true");
                                 //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
 
@@ -181,7 +188,7 @@
                             } else {
                                 $_SESSION["userErrCode"] = "MYSQL_ERROR";
                                 $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                                header("refresh:0;url=/error/index.php?error=true");
+                                header("refresh:0;url=$backPage?error=true");
                                 //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
                             }
 
@@ -198,9 +205,9 @@
                 } else {
                     $_SESSION["userErrCode"] = "WRONG_CREDS";
                     $_SESSION["userErrMsg"] = "Invalid username or password. Please re-enter the credentials";
-                    header("refresh:0;url=login.php?error=true");
+                    header("refresh:0;url=$backPage?error=true");
                     //echo '<script>alert("Wrong password. Returning to login page...")</script>';
-                    //header("refresh:0;url=login.php");
+                    //header("refresh:0;url=$backPage");
                 }
             } else {
                 mysqli_close($conn);
