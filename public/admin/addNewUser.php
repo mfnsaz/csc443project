@@ -130,12 +130,17 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
 
-            if(document.getElementById('userRole').value != "0") {
-                document.getElementById('clubField').style.display = "none";
-                document.getElementById('clublist').required = false;
-            } else {
-                document.getElementById('clubField').style.display = "block";
-                document.getElementById('clublist').required = true;
+            document.getElementById('userRole').onchange = dynamicChangeClubField();
+
+            function dynamicChangeClubField(){
+                var value = this.value
+                if(value != "0") {
+                    document.getElementById('clubField').style.display = "none";
+                    document.getElementById('clublist').required = false;
+                } else {
+                    document.getElementById('clubField').style.display = "block";
+                    document.getElementById('clublist').required = true;
+                }
             }
         </script>
     </body>
