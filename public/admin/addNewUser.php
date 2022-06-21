@@ -78,7 +78,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                     </select>
                     <label for="role">Role</label>
                 </div>
-                <div class="form-floating mb-3" id="clubField">
+                <div class="form-floating mb-3" id="clubField" style="display: none;">
                     <select class="form-select" name="clubid" id="clublist" aria-label="Club" required>
                         <option value=""></option>
                         <!--Code here-->
