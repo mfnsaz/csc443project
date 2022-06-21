@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
+$_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +120,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
             xmlhttp.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
-                    var htmlData = "<option value=\"\"></option>";
+                    var htmlData = "<option value=\"null\"></option>";
                     for(let i = 0; i < data.clubId.length; i++){
                         htmlData = htmlData.concat("\n", "<option value=\""+data.clubId[i]+"\">"+data.clubName[i]+"</option>\n");
                     }
