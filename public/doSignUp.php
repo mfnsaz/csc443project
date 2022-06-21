@@ -34,7 +34,7 @@
 
                 if($role != 0 && !($clubid == null || $clubid == "")){
                     $_SESSION["userErrCode"] = "CLUBID_ROLE_MISMATCH";
-                    $_SESSION["userErrMsg"] = "Club ID should only be present if role is student. Please contact the administrator if you believe that this should not happen.";
+                    $_SESSION["userErrMsg"] = "Club ID should only be present if role is student. Please contact the administrator if you believe that this should not happen. The club ID entered was: $clubid";
                     header("refresh:0;url=$backPage?error=true");
                     die();
                 }
