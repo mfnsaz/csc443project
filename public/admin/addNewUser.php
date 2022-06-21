@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
+$_SESSION["backPage"] = basename(__DIR__).basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
