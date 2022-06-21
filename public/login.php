@@ -38,6 +38,16 @@
                     }
                     echo "</div>";
                 }
+                if(isset($_GET["signup"])){
+                    echo "<div class=\"alert alert-success my-4\" style=\"margin-left: 150px; margin-right: 150px;\">";
+                    if(isset($_SESSION["userErrMsg"])){
+                        //get err msg
+                        $errMsg = $_SESSION["userErrMsg"];
+                        $errCode = $_SESSION["userErrCode"];
+                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                    }
+                    echo "</div>";
+                }
             ?>
             <div class="tab-pane fade show active" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab" tabindex="0">
                 <div class="container px-5 my-4">
