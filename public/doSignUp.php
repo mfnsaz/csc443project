@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Processing request...</title>
+        <title>UiTM Club Activities Approval System - Processing request...</title>
     </head>
     <body>
         <h1>Authenticating...</h1>
@@ -22,7 +22,7 @@
                 $role = $_POST["role"];
 
                 if($role > 0 && ($club_id != null || $club_id == "")){
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.php");
                     die('<script>alert("ClubID should only be present if role is student!")</script>');
                 }
 
@@ -38,13 +38,13 @@
                         $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $clubIdRes = $clubidArray["club_id"];
                         if($clubIdRes == 0 || $clubIdRes == NULL){
-                            header("refresh:5;url=login.html");
+                            header("refresh:2;url=login.php");
                             die( '<script>alert("Invalid Club ID!")</script>' ) ;
                         }//end if
                         echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
+                        header("refresh:2;url=login.php");
                         die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
@@ -59,7 +59,7 @@
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "Invalid email format";
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.php");
                     die('<script>alert("'.$emailErr.'")</script>');
                 }
 
@@ -69,7 +69,7 @@
                     die($password_err);
                 } elseif(strlen(trim($_POST["password"])) < 8){
                     $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the signup page.";
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.php");
                     die('<script>alert("'.$password_err.'")</script>');
                 } else{
                     $password = trim($_POST["password"]);
@@ -83,7 +83,7 @@
                     $confirm_password = trim($_POST["confirmPassword"]);
                     if(empty($password_err) && ($password != $confirm_password)){
                         $confirm_password_err = "ERROR: Password did not match. Redirecting back to the signup page.";
-                        header("refresh:5;url=login.html");
+                        header("refresh:2;url=login.php");
                         die('<script>alert("'.$confirm_password_err.'")</script>');
                     }
                 }
@@ -93,7 +93,7 @@
                 $tel = $_POST["telephone"];
 
                 if ($role < 0 || $role > 2){
-                    header("refresh:5;url=login.html");
+                    header("refresh:2;url=login.php");
                     die("ERROR: Invalid role. Redirecting back to the signup page.");
                 }
 
@@ -110,13 +110,13 @@
                         $emailArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $userEmail = $emailArray["count(user_email)"];
                         if($userEmail > 0 || $userEmail != NULL){
-                            header("refresh:5;url=login.html");
+                            header("refresh:2;url=login.php");
                             die( '<script>alert("There is already a user with that email!")</script>' ) ;
                         }//end if
                         echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
+                        header("refresh:2;url=login.php");
                         die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
@@ -136,7 +136,7 @@
                         echo "SUCCESS ADD TO USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
+                        header("refresh:2;url=login.php");
                         die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
@@ -156,7 +156,7 @@
                         echo "SUCCESS QUERY USERS TABLE!<br>";
                     } else {
                         echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
+                        header("refresh:2;url=login.php");
                         die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                     }
 
@@ -179,7 +179,7 @@
                             echo "SUCCESS ADD TO STUDENTS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
+                            header("refresh:2;url=login.php");
                             die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
@@ -199,7 +199,7 @@
                             echo "SUCCESS ADD TO ADMINS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
+                            header("refresh:2;url=login.php");
                             die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
@@ -219,7 +219,7 @@
                             echo "SUCCESS ADD TO OFFICERS TABLE!<br>";
                         } else {
                             echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
+                            header("refresh:2;url=login.php");
                             die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
                         }
 
@@ -235,7 +235,7 @@
             }
             mysqli_close($conn);
             echo '<script>alert("You may login now.")</script>';
-            header("refresh:5;url=login.html");
+            header("refresh:2;url=login.php");
         ?>
     </body>
 </html>
