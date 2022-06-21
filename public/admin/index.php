@@ -14,7 +14,7 @@
     </head>
     <body>
         <?php
-            include("../header/header.php");
+            include("../../header/header.php");
         ?>
         <div class="px-5 text-center">
             <h1>Welcome, <?php echo $_SESSION["name"] ?> to the admin panel</h1>

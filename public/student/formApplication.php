@@ -23,7 +23,7 @@
 </head>
 <body>
     <?php
-        include("../header/header.php");
+        include("../../header/header.php");
     ?>
     <div class="container px-5 my-5">
         <h1 class="pb-4">New Activity Application</h1>
