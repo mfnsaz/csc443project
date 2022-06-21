@@ -170,7 +170,7 @@
                         $_SESSION["name"] = $adminName;
                         $_SESSION["tel"] = $adminTel;
                         $_SESSION["admin_id"] = $adminId;
-                        header("refresh:5;url=/admin/index.php");
+                        header("refresh:0;url=/admin/index.php");
                     } else if ($userType == 2){
                         //officer
                         $getOfficerInfoSQL = "SELECT officer_id, officer_name, officer_telno FROM officers WHERE user_id = (?)";
