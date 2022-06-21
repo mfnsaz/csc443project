@@ -130,11 +130,9 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
 
-            document.getElementById('userRole').onchange = dynamicChangeClubField();
-
-            function dynamicChangeClubField(){
-                var value = this.value
-                if(value == "0") {
+            var roleSelection = document.getElementById('userRole');
+            roleSelection.onchange = function(){
+                if(roleSelection.selectedIndex === 1) {
                     document.getElementById('clubField').style.display = "block";
                     document.getElementById('clublist').required = true;
                 } else {
