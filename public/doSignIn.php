@@ -37,6 +37,32 @@
                     die();
                 }
 
+                //check if email exists
+                $emailsql = "SELECT count(user_email) FROM users WHERE user_email = (?)" ;
+                if ($stmt=mysqli_prepare($conn, $emailsql)){
+                    mysqli_stmt_bind_param($stmt, "s", $user_email);
+
+                    $user_email = $email;
+
+                    if(mysqli_stmt_execute($stmt)){
+                        $emailArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                        $userEmail = $emailArray["count(user_email)"];
+                        if($userEmail == 0 || $userEmail == NULL){
+                            $_SESSION["userErrCode"] = "WRONG_CREDS";
+                            $_SESSION["userErrMsg"] = "Invalid username or password. Please re-enter the credentials";
+                            header("refresh:1;url=login.php?error=true");
+                            die();
+                        }//end if
+                        //echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
+                    } else {
+                        $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                        $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                        header("refresh:1;url=/error/index.php?error=true");
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
                 // Validate password
                 if(empty(trim($_POST["signInPassword"]))){
                     $password_err = "Please enter a password.";
