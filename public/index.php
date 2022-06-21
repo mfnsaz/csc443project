@@ -29,8 +29,8 @@
                 <div class="col-md-3 text-end">
                     <?php
                         if(isset($_SESSION["uid"])){
-                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
                             echo "<label class=\"px-2\">".$_SESSION["email"]."</label>";
+                            echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
                         } else {
                             echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
                         }
