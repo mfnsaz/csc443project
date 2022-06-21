@@ -50,21 +50,21 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="alert alert-danger my-4" style="margin-left: 150px; margin-right: 150px;">
-                <?php 
-                    //check if $_GET isset
-                    if(isset($_GET["error"])){
-                        //error exists
-                        if(isset($_SESSION["userErrMsg"])){
-                            //get err msg
-                            $errMsg = $_SESSION["userErrMsg"];
-                            $errCode = $_SESSION["userErrCode"];
-                            echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
-                            echo "<br><p>Error code: $errCode</p>";
-                        }
+            <?php 
+                //check if $_GET isset
+                if(isset($_GET["error"])){
+                    //error exists
+                    echo "<div class=\"alert alert-danger my-4\" style=\"margin-left: 150px; margin-right: 150px;\">";
+                    if(isset($_SESSION["userErrMsg"])){
+                        //get err msg
+                        $errMsg = $_SESSION["userErrMsg"];
+                        $errCode = $_SESSION["userErrCode"];
+                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                        echo "<br><p>Error code: $errCode</p>";
                     }
-                ?>
-            </div>
+                    echo "</div>";
+                }
+            ?>
             <div class="tab-pane fade show active" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab" tabindex="0">
                 <div class="container px-5 my-4">
                     <h3>Sign In</h3>
