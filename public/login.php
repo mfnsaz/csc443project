@@ -31,7 +31,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                 //check if $_GET isset
                 if(isset($_GET["error"])){
                     //error exists
-                    echo "<div class=\"alert alert-danger my-4\" style=\"margin-left: 20%; margin-right: 20%;\">";
+                    echo "<div class=\"alert alert-danger my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
                     if(isset($_SESSION["userErrMsg"])){
                         //get err msg
                         $errMsg = $_SESSION["userErrMsg"];
@@ -42,7 +42,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                     echo "</div>";
                 }
                 if(isset($_GET["signup"])){
-                    echo "<div class=\"alert alert-success my-4\" style=\"margin-left: 20%; margin-right: 20%;\">";
+                    echo "<div class=\"alert alert-success my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
                     if(isset($_SESSION["userErrMsg"])){
                         //get err msg
                         $errMsg = $_SESSION["userErrMsg"];
