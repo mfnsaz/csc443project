@@ -49,23 +49,23 @@
                 <button class="nav-link" id="pills-signup-tab" data-bs-toggle="pill" data-bs-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false">Sign Up</button>
             </li>
         </ul>
-        <div class="px-5">
-            <?php 
-                //check if $_GET isset
-                if(isset($_GET["error"])){
-                    //error exists
-                    if(isset($_SESSION["userErrMsg"])){
-                        //get err msg
-                        $errMsg = $_SESSION["userErrMsg"];
-                        $errCode = $_SESSION["userErrCode"];
-                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
-                        echo "<br><p>Error code:</p>";
-                        echo "<p>$errCode</p>";
-                    }
-                }
-            ?>
-        </div>
         <div class="tab-content" id="pills-tabContent">
+            <div class="container border rounded border-danger px-5 py-4 my-4">
+                <?php 
+                    //check if $_GET isset
+                    if(isset($_GET["error"])){
+                        //error exists
+                        if(isset($_SESSION["userErrMsg"])){
+                            //get err msg
+                            $errMsg = $_SESSION["userErrMsg"];
+                            $errCode = $_SESSION["userErrCode"];
+                            echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                            echo "<br><p>Error code:</p>";
+                            echo "<p>$errCode</p>";
+                        }
+                    }
+                ?>
+            </div>
             <div class="tab-pane fade show active" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab" tabindex="0">
                 <div class="container px-5 my-4">
                     <h3>Sign In</h3>
