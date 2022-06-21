@@ -46,7 +46,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
         <div class="container px-5 my-4">
             <h3>New User</h3>
             <p>Please fill in this form to continue.</p>
-            <form id="signupForm" action="doSignUp.php" method="post">
+            <form id="signupForm" action="../doSignUp.php" method="post">
                 <div class="form-floating mb-3">
                     <input class="form-control" name="email" type="email" placeholder="Email Address" required/>
                     <label for="emailAddress">Email Address</label>
@@ -67,23 +67,23 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                     <input class="form-control number" name="telephone" type="text" placeholder="Telephone" onkeydown='{(evt) => ["e", "E", "-"].includes(evt.key) && evt.preventDefault()}' required/>
                     <label for="telephone">Telephone</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="clubid" id="clublist" aria-label="Club" required>
-                        <option value=""></option>
-                        <!--Code here-->
-                    </select>
-                    <label for="clubid">Club</label>
-                </div>
                 <!--The code below is left as is to enable the usage of doSignUp.php as a some sort of an API to allow other
                 forms to reuse the same code. (cant leave the role POST as null)-->
                 <div class="form-floating mb-3">
-                    <select class="form-select" name="role" aria-label="Role" required>
+                    <select class="form-select" name="role" id="userRole" aria-label="Role" required>
                         <option value=""></option>
                         <option value="0">Student</option>
                         <option value="1">Admin</option>
                         <option value="2">Officer</option>
                     </select>
                     <label for="role">Role</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="clubid" id="clublist" aria-label="Club" required>
+                        <option value=""></option>
+                        <!--Code here-->
+                    </select>
+                    <label for="clubid">Club</label>
                 </div>
                 <div class="d-grid">
                     <button class="btn btn-primary btn-lg" id="signUpButton" type="submit">Sign Up</button>
@@ -116,6 +116,14 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                     evt.preventDefault();
                 }
             });
+
+            if(document.getElementById('userRole').value != "0") {
+                document.getElementById('clublist').style.display = "none";
+                document.getElementById('clublist').required = "false";
+            } else {
+                document.getElementById('clublist').style.display = "block";
+                document.getElementById('clublist').required = "true";
+            }
 
             xmlhttp.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) {
