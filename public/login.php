@@ -41,24 +41,6 @@
         <div class="bg-warning p-3">
             <p class="text-center fw-bolder h5">Authenticate to access UiTM Club Activities Approval System</p>
         </div>
-        <div class="bg-warning p-5">
-            <?php 
-                //check if $_GET isset
-                if(isset($_GET["error"])){
-                    //error exists
-                    echo "<div class=\"px-5\">";
-                    if(isset($_SESSION["userErrMsg"])){
-                        //get err msg
-                        $errMsg = $_SESSION["userErrMsg"];
-                        $errCode = $_SESSION["userErrCode"];
-                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
-                        echo "<br><p>Error code:</p>";
-                        echo "<p>$errCode</p>";
-                    }
-                    echo "<div>";
-                }
-            ?>
-        </div>
         <ul class="container px-4 nav nav-pills mt-4" id="pills-tab" role="tablist">
             <li class="nav-item px-2" role="presentation">
                 <button class="nav-link active" id="pills-signin-tab" data-bs-toggle="pill" data-bs-target="#pills-signin" type="button" role="tab" aria-controls="pills-signin" aria-selected="true">Sign In</button>
@@ -67,6 +49,22 @@
                 <button class="nav-link" id="pills-signup-tab" data-bs-toggle="pill" data-bs-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false">Sign Up</button>
             </li>
         </ul>
+        <div class="px-5">
+            <?php 
+                //check if $_GET isset
+                if(isset($_GET["error"])){
+                    //error exists
+                    if(isset($_SESSION["userErrMsg"])){
+                        //get err msg
+                        $errMsg = $_SESSION["userErrMsg"];
+                        $errCode = $_SESSION["userErrCode"];
+                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                        echo "<br><p>Error code:</p>";
+                        echo "<p>$errCode</p>";
+                    }
+                }
+            ?>
+        </div>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab" tabindex="0">
                 <div class="container px-5 my-4">
