@@ -60,8 +60,7 @@
                             $errMsg = $_SESSION["userErrMsg"];
                             $errCode = $_SESSION["userErrCode"];
                             echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
-                            echo "<br><p>Error code:</p>";
-                            echo "<p>$errCode</p>";
+                            echo "<br><p>Error code: $errCode</p>";
                         }
                     }
                 ?>
