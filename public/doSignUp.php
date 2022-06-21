@@ -15,6 +15,14 @@
 
             $backPage = $_SESSION["backPage"];
 
+            if(isset($_SESSION["uid"])){
+                //user is logged in already
+                $_SESSION["userErrCode"] = "SESSION_EXISTS";
+                $_SESSION["userErrMsg"] = "You are already logged in. Please log out to sign up as another user.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
+
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
             //$username_err = $password_err = $confirm_password_err = "";
