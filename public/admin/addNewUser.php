@@ -78,7 +78,7 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                     </select>
                     <label for="role">Role</label>
                 </div>
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3" id="clubField">
                     <select class="form-select" name="clubid" id="clublist" aria-label="Club" required>
                         <option value=""></option>
                         <!--Code here-->
@@ -117,14 +117,6 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                 }
             });
 
-            if(document.getElementById('userRole').value != "0") {
-                document.getElementById('clublist').style.display = "none";
-                document.getElementById('clublist').required = "false";
-            } else {
-                document.getElementById('clublist').style.display = "block";
-                document.getElementById('clublist').required = "true";
-            }
-
             xmlhttp.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
@@ -137,6 +129,14 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
             }
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
+
+            if(document.getElementById('userRole').value != "0") {
+                document.getElementById('clubField').style.display = "none";
+                document.getElementById('clublist').required = false;
+            } else {
+                document.getElementById('clubField').style.display = "block";
+                document.getElementById('clublist').required = true;
+            }
         </script>
     </body>
 </html>
