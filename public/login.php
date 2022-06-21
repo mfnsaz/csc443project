@@ -50,7 +50,7 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger my-4" style="margin-left: 150px; margin-right: 150px;">
                 <?php 
                     //check if $_GET isset
                     if(isset($_GET["error"])){
