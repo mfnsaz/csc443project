@@ -15,7 +15,7 @@
 
             $backPage = $_SESSION["backPage"];
 
-            if(isset($_SESSION["uid"]) && !str_contains($backPage, "addNewUser.php")){
+            if(isset($_SESSION["uid"]) && strpos($backPage, 'addNewUser.php') === false){
                 //user is logged in already
                 $_SESSION["userErrCode"] = "SESSION_EXISTS";
                 $_SESSION["userErrMsg"] = "You are already logged in. Please log out to sign up as another user.";
