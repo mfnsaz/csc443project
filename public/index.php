@@ -30,6 +30,7 @@
                     <?php
                         if(isset($_SESSION["uid"])){
                             echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
+                        } else {
                             echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
                         }
                     ?>
