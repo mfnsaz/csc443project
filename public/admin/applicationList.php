@@ -35,7 +35,7 @@
                                     }
                                 });
                                 
-                $("#appTable tbody").on('click', button, function() {
+                $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
                     window.location.href = "applicationDetails.php?app_id="+data[0];
                 })
