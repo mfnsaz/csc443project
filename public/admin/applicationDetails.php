@@ -29,6 +29,8 @@
           <div class="container px-5 my-5">
               <h1 class="pb-4">Club Application Details</h1>
               <?php
+                error_reporting(E_ALL);
+                ini_set('display_errors', 1);
                 require_once "../inc/connect.php";
 
                 $appId = $_GET["app_id"];
