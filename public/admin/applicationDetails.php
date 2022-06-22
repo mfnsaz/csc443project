@@ -38,17 +38,16 @@
                 //get applist
                 $getAppSQL = "SELECT app_name, app_startDate, app_endDate, app_time, app_files_link FROM applications WHERE application_id = $appId";
                 $appRes = mysqli_query($conn, $getAppSQL);
-                echo "Listing application for application ID ".$appId;
                 if(!is_bool($appRes)){
                     $appArr = mysqli_fetch_all($appRes);
                     //$appArr = array_values($appArr);
                     foreach($appArr as $currApp){
                         echo "<div class=\"\">";
-                        echo "<p><b>Application Name</b>".$currApp[0]."</p>";
-                        echo "<p><b>Application Start Date</b>".$currApp[1]."</p>";
-                        echo "<p><b>Application End Date</b>".$currApp[2]."</p>";
-                        echo "<p><b>Application Time</b>".$currApp[3]."</p>";
-                        echo "<p><b>Application Proposals Link</b>".$currApp[4]."</p>";
+                        echo "<p><b>Application Name: </b>".$currApp[0]."</p>";
+                        echo "<p><b>Application Start Date: </b>".$currApp[1]."</p>";
+                        echo "<p><b>Application End Date: </b>".$currApp[2]."</p>";
+                        echo "<p><b>Application Time: </b>".$currApp[3]."</p>";
+                        echo "<p><b>Application Proposals Link: </b>".$currApp[4]."</p>";
                     }
                 } else {
                     echo "what";
