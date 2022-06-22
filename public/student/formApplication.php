@@ -8,6 +8,7 @@
         header("refresh:5;url=/login.php");
         die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
     }
+    $_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
 ?>
 
 <!DOCTYPE html>
