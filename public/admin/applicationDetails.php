@@ -41,11 +41,11 @@
                 echo "Listing application for application ID ".$appId;
                 if(!is_bool($appRes)){
                     $appArr = mysqli_fetch_all($appRes);
-                    print_r($appArr);
                     $appArr = array_values($appArr);
-                    print_r($appArr);
-                    for($i = 0; $i < sizeof($appArr); $i++){
-                        echo "<div class=\"px-5 my-5\">".$appArr[$i]."</div>";
+                    foreach($appArr as $currApp){
+                        for($i = 0; $i < sizeof($appArr); $i++){
+                            echo "<div class=\"px-5 my-5\">".$appArr[$i]."</div>";
+                        }
                     }
                 } else {
                     echo "what";
