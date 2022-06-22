@@ -43,8 +43,8 @@
                     $appArr = mysqli_fetch_all($appRes);
                     $appArr = array_values($appArr);
                     foreach($appArr as $currApp){
-                        for($i = 0; $i < sizeof($appArr); $i++){
-                            echo "<div class=\"px-5 my-5\">".$appArr[$i]."</div>";
+                        for($i = 0; $i < sizeof($currApp); $i++){
+                            echo "<div class=\"px-5 my-5\">".$currApp[$i]."</div>";
                         }
                     }
                 } else {
