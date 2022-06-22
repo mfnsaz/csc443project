@@ -34,6 +34,9 @@
                                         ],
                                     }
                                 });
+                $("#appTable").on('click', button, function() {
+                    window.location.href = "applicationDetails.php";
+                })
             } );
         </script>
         <?php
