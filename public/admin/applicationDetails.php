@@ -36,16 +36,16 @@
                 //get applist
                 $getAppSQL = "SELECT app_name, app_startDate, app_endDate, app_time, app_files_link FROM applications WHERE application_id = $appId";
                 $appRes = mysqli_query($conn, $getAppSQL);
+                echo "Listing application for application ID ".$appID;
                 if(!is_bool($appRes)){
-                    $outputAppId = array();
-                    $outputAppName = array();
                     $appArr = mysqli_fetch_all($officerRes);
                     $appArr = array_values($appArr);
+                    print_r($appArr);
                     for($i = 0; $i < sizeof($appArr); $i++){
                         echo "<div class=\"px-5 my-5\">".$appArr[$i]."</div>";
                     }
                 } else {
-                    $appArr = array("0" => "Error");
+                    echo "what";
                     header('X-PHP-Response-Code: 500', true, 500);
                     die();
                 }
