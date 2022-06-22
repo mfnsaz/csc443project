@@ -34,8 +34,10 @@
                                         ],
                                     }
                                 });
-                $("#appTable").on('click', button, function() {
-                    window.location.href = "applicationDetails.php";
+                                
+                $("#appTable tbody").on('click', button, function() {
+                    var data = mainTable.row($(this).parents('tr')).data();
+                    window.location.href = "applicationDetails.php?app_id="+data[0];
                 })
             } );
         </script>
