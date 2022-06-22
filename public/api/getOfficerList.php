@@ -16,8 +16,8 @@
                 array_push($outputOfficerName, $currOfficer[1]);
             }
             $outputOfficerArr = array(
-                "clubId" => $outputOfficerId,
-                "clubName" => $outputOfficerName,
+                "officerId" => $outputOfficerId,
+                "officerName" => $outputOfficerName,
             );
         } else {
             $officerArr = array("0" => "Error");
