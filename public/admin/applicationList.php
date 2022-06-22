@@ -21,12 +21,19 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready( function () {
-                $('#appTable').DataTable({
-                    ajax: {
-                        url: '/api/getApplicationList.php',
-                        dataSrc: 'data'
-                    }
-                });
+                var mainTable = $('#appTable').DataTable({
+                                    ajax: {
+                                        url: '/api/getApplicationList.php',
+                                        dataSrc: 'data',
+                                        columnDefs: [
+                                            {
+                                                targets: -1,
+                                                data: null,
+                                                defaultContent: '<button class="btn btn-primary btn-lg">View Application</button>',
+                                            },
+                                        ],
+                                    }
+                                });
             } );
         </script>
         <?php
@@ -44,6 +51,7 @@
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
+                        <th>View Application</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -52,6 +60,7 @@
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
+                        <th>View Application</th>
                     </tr>
                 </tfoot>
             </table>
