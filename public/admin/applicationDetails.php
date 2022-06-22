@@ -26,14 +26,39 @@
             include("../../header/header.php");
         ?>
         <!--Nanti kena automatically tarik from database untuk application name, club name, date, time and proposal-->
-          <div class="container px-5 my-5">
-              <h1 class="pb-4">Club Application Details</h1>
-              <?php
+        <div class="container px-5 my-5">
+            <h1 class="pb-4">Club Application Details</h1>
+            <?php
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
                 require_once "../inc/connect.php";
 
                 $appId = $_GET["app_id"];
+                $_SESSION["app_id"] = $appId;
+
+                //check if $_GET isset
+                if(isset($_GET["error"])){
+                    //error exists
+                    echo "<div class=\"alert alert-danger my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
+                    if(isset($_SESSION["userErrMsg"])){
+                        //get err msg
+                        $errMsg = $_SESSION["userErrMsg"];
+                        $errCode = $_SESSION["userErrCode"];
+                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                        echo "<br><p>Error code: $errCode</p>";
+                    }
+                    echo "</div>";
+                }
+                if(isset($_GET["signup"])){
+                    echo "<div class=\"alert alert-success my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
+                    if(isset($_SESSION["userErrMsg"])){
+                        //get err msg
+                        $errMsg = $_SESSION["userErrMsg"];
+                        $errCode = $_SESSION["userErrCode"];
+                        echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                    }
+                    echo "</div>";
+                }
 
                 //get applist
                 $getAppSQL = "SELECT app_name, app_startDate, app_endDate, app_time, app_files_link FROM applications WHERE application_id = $appId";
@@ -55,37 +80,32 @@
                     header('X-PHP-Response-Code: 500', true, 500);
                     die();
                 }
-              ?>
-              <form id="contactForm" action="#" method="post">
-                  <div class="form-floating mb-3">
+            ?>
+            <form id="contactForm" action="doUpdateApplication.php" method="post">
+                <div class="form-floating mb-3">
                     <select class="form-select" name="appStatus" id="status" aria-label="appStat" required>
                         <option value=""></option>
-                        <option value="0">Accepted</option>
-                        <option value="1">Rejected</option>
+                        <option value="true">Forward to Officer</option>
+                        <option value="false">Return to Student</option>
                     </select>
                     <label for="appStatus">Status</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input class="form-control" name="remarks" type="comment" placeholder="remarks" required/>
-                  <label for="remarks">Remarks</label>
-              </div>
-                 <div class="form-floating mb-3" id="offSelect" style="display: none;">
+                    <input class="form-control" name="remarks" type="comment" placeholder="remarks" required/>
+                    <label for="remarks">Remarks</label>
+                </div>
+                <div class="form-floating mb-3" id="offSelect" style="display: none;">
                     <select class="form-select" name="assignOfficer" id="officerList" aria-label="assoff" required>
-                        <option value="0">Officer 1-Encik Nuh Hakimi Mohd Yassin</option>
-                        <option value="1">Officer 2- Puan Mariya Mohamad</option>
-                        <option value="2">Officer 3- Encik Fuad Ibrahim</option>
+                        <option value=""></option>
                     </select>
                     <label for="assignOfficer">Assign Officer</label>
                 </div>
-              
-                
-                    <div class="d-grid">
-                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
-                    </div>
-
-                </form>
-          </div>
-          <script type="text/javascript">
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
             var xmlhttp = new XMLHttpRequest();
             var url = "/api/getOfficerList.php";
             xmlhttp.onreadystatechange = function(){
