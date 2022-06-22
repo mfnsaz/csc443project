@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["admin_id"])){
+        header("refresh:0;url=/login.php");
+        die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
+    }
+    if (!isset($_GET["app_id"])){
+        header("refresh:0;url=/admin/index.php");
+        die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

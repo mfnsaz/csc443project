@@ -1,6 +1,10 @@
 <?php
-session_start();
-$_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
+    session_start();
+    if (!isset($_SESSION["admin_id"])){
+        header("refresh:0;url=/login.php");
+        die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
+    }
+    $_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
