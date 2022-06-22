@@ -74,5 +74,8 @@
 
             mysqli_stmt_close($stmt);
         }
+        $_SESSION["userErrCode"] = "UPDATE_APPLICATION_SUCCESS";
+        $_SESSION["userErrMsg"] = "Application updated. Please wait for the officer to approve or reject the application.";
+        header("refresh:0;url=$backPage?signup=success");
     }
 ?>
