@@ -47,6 +47,7 @@
             <table id="appTable" class="table table-bordered table-hover dt-responsive">
                 <thead>
                     <tr>
+                        <th>Application ID</th>
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
@@ -55,6 +56,7 @@
                 </thead>
                 <tfoot>
                     <tr>
+                        <th>Application ID</th>
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
