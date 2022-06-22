@@ -3,7 +3,7 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         //get clublist
-        $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
+        $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
         $appRes = mysqli_query($conn, $getAppSQL);
         if(!is_bool($appRes)){
             $outputTableData = array();
@@ -16,7 +16,17 @@
                 array_push($outputRowData, $currApp[1]);
                 array_push($outputRowData, $currApp[2]);
                 array_push($outputRowData, $currApp[3]);
-                array_push($outputRowData, '<button class="btn btn-primary" id="viewAppButton">View Application</button>');
+                if($currApp[4] == NULL){
+                    array_push($outputRowData, "Not reviewed");
+                    array_push($outputRowData, '<button class="btn btn-primary" id="viewAppButton">View Application</button>');
+                } else {
+                    if($currApp[4]){
+                        array_push($outputRowData, "Reviewed, forwarded to Officer");
+                    } else {
+                        array_push($outputRowData, "Reviewed, returned to Student");
+                    }
+                    array_push($outputRowData, '<button class="btn btn-primary" id="viewAppButton" disabled>View Application</button>');
+                }
                 array_push($outputTableData, $outputRowData);
             }
             $outputAppArr = array(

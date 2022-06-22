@@ -48,6 +48,31 @@
             <h4>View Applications</h4>
         </div>
         <br>
+        <?php
+            //check if $_GET isset
+            if(isset($_GET["error"])){
+                //error exists
+                echo "<div class=\"alert alert-danger my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
+                if(isset($_SESSION["userErrMsg"])){
+                    //get err msg
+                    $errMsg = $_SESSION["userErrMsg"];
+                    $errCode = $_SESSION["userErrCode"];
+                    echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                    echo "<br><p>Error code: $errCode</p>";
+                }
+                echo "</div>";
+            }
+            if(isset($_GET["signup"])){
+                echo "<div class=\"alert alert-success my-4\" style=\"margin-left: 13%; margin-right: 13%;\">";
+                if(isset($_SESSION["userErrMsg"])){
+                    //get err msg
+                    $errMsg = $_SESSION["userErrMsg"];
+                    $errCode = $_SESSION["userErrCode"];
+                    echo "<h5 style=\"text-align: justify; text-justify: inter-word;\">$errMsg</h5>";
+                }
+                echo "</div>";
+            }
+        ?>
         <div class="px-5">
             <table id="appTable" class="table table-bordered table-hover dt-responsive">
                 <thead>
@@ -56,6 +81,7 @@
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
+                        <th>Application Status</th>
                         <th>View Application</th>
                     </tr>
                 </thead>
@@ -65,6 +91,7 @@
                         <th>Application Name</th>
                         <th>Student Name</th>
                         <th>Club Name</th>
+                        <th>Application Status</th>
                         <th>View Application</th>
                     </tr>
                 </tfoot>
