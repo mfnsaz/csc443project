@@ -18,14 +18,14 @@
                 array_push($outputRowData, $currApp[3]);
                 if($currApp[4] == NULL){
                     array_push($outputRowData, "Not reviewed");
-                    array_push($outputRowData, '<div class="d-grid mx-auto"><button class="btn btn-primary" style="display: block;" id="viewAppButton">Review Application</button></div>');
+                    array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton">Review Application</button>');
                 } else {
                     if($currApp[4]){
                         array_push($outputRowData, "Reviewed, forwarded to Officer");
                     } else {
                         array_push($outputRowData, "Reviewed, returned to Student");
                     }
-                    array_push($outputRowData, '<div class="d-grid mx-auto"><button class="btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Reviewed</button></div>');
+                    array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Reviewed</button>');
                 }
                 array_push($outputTableData, $outputRowData);
             }
