@@ -13,6 +13,11 @@
             // Include config file
             require_once "inc/connect.php";
 
+            if(!isset($_SESSION["backPage"])){
+                //backPage is not set, defaulting to login.php
+                $backPage = "/login.php";
+            }
+
             $backPage = $_SESSION["backPage"];
 
             if(isset($_SESSION["uid"]) && strpos($backPage, 'addNewUser.php') === false){
