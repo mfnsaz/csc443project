@@ -28,31 +28,26 @@
         <!--Nanti kena automatically tarik from database untuk application name, club name, date, time and proposal-->
           <div class="container px-5 my-5">
               <h1 class="pb-4">Club Application Details</h1>
+              <?php
+                require_once "../inc/connect.php";
+
+                $appId = $_GET["app_id"];
+
+                //get applist
+                $getAppSQL = "SELECT app_name, app_startDate, app_endDate, app_time, app_files_link FROM applications WHERE application_id = $appId";
+                $appRes = mysqli_query($conn, $getAppSQL);
+                if(!is_bool($appRes)){
+                    $outputAppId = array();
+                    $outputAppName = array();
+                    $appArr = mysqli_fetch_all($officerRes);
+                    print_r($appArr);
+                } else {
+                    $appArr = array("0" => "Error");
+                    header('X-PHP-Response-Code: 500', true, 500);
+                    die();
+                }
+              ?>
               <form id="contactForm" action="#" method="post">
-                  <div class="form-floating mb-3">
-                      <input class="form-control" name="appName" type="text" placeholder="Application Name" required/>
-                      <label for="applicationName">Application Name</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" name="clubName" type="text" placeholder="Club Name" required/>
-                    <label for="ClubName">Club Name</label>
-                </div>
-                  <div class="form-floating mb-3">
-                      <input class="form-control" name="startDate" type="date" placeholder="Start Date" required/>
-                      <label for="startDate">Start Date</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                      <input class="form-control" name="endDate" type="date" placeholder="End Date" required/>
-                      <label for="endDate">End Date</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                      <input class="form-control" name="time" type="time" placeholder="Time" required/>
-                      <label for="time">Time</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                      <input class="form-control" name="proposalUrl" type="url" placeholder="Proposal Files Link" required/>
-                      <label for="proposalFilesLink">Proposal Files Link</label>
-                  </div>
                   <div class="form-floating mb-3">
                     <select class="form-select" name="appStatus" id="status" aria-label="appStat" required>
                         <option value=""></option>
