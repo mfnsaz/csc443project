@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,20 +22,20 @@
             <table id="appTable" class="table table-bordered table-hover dt-responsive">
                 <thead>
                     <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
+                        <th>Application ID</th>
+                        <th>Application Name</th>
+                        <th>Student Name</th>
+                        <th>Club Name</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tfoot>
                     <tr>
-                        <td>Row 1 Data 1</td>
-                        <td>Row 1 Data 2</td>
+                        <th>Application ID</th>
+                        <th>Application Name</th>
+                        <th>Student Name</th>
+                        <th>Club Name</th>
                     </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                    </tr>
-                </tbody>
+                </tfoot>
             </table>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -41,7 +44,11 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready( function () {
-                $('table').DataTable();
+                $('#appTable').DataTable({
+                    processing: true,
+                    serverside: true,
+                    ajax: '../api/getApplicationList.php',
+                });
             } );
         </script>
     </body>
