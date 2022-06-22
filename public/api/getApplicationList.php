@@ -26,8 +26,8 @@
                 "clubName" => $outputClubName,
             );
         } else {
-            $appArr = array("0" => "Error");
-            header('X-PHP-Response-Code: 500', true, 500);
+            echo mysqli_error($conn);
+            //header('X-PHP-Response-Code: 500', true, 500);
             die();
         }
 
