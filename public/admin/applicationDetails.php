@@ -41,11 +41,14 @@
                 echo "Listing application for application ID ".$appId;
                 if(!is_bool($appRes)){
                     $appArr = mysqli_fetch_all($appRes);
-                    $appArr = array_values($appArr);
+                    //$appArr = array_values($appArr);
                     foreach($appArr as $currApp){
-                        for($i = 0; $i < sizeof($currApp); $i++){
-                            echo "<div class=\"px-5 my-5\">".$currApp[$i]."</div>";
-                        }
+                        echo "<div class=\"\">";
+                        echo "<p><b>Application Name</b>".$currApp[0]."</p>";
+                        echo "<p><b>Application Start Date</b>".$currApp[1]."</p>";
+                        echo "<p><b>Application End Date</b>".$currApp[2]."</p>";
+                        echo "<p><b>Application Time</b>".$currApp[3]."</p>";
+                        echo "<p><b>Application Proposals Link</b>".$currApp[4]."</p>";
                     }
                 } else {
                     echo "what";
