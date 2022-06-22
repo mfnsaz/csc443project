@@ -16,7 +16,7 @@
                 array_push($outputRowData, $currApp[1]);
                 array_push($outputRowData, $currApp[2]);
                 array_push($outputRowData, $currApp[3]);
-                array_push($outputRowData, null);
+                array_push($outputRowData, '<button class="btn btn-primary btn-lg">View Application</button>');
                 array_push($outputTableData, $outputRowData);
             }
             $outputAppArr = array(
