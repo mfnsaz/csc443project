@@ -48,6 +48,7 @@
                         echo "<p><b>Application End Date: </b>".$currApp[2]."</p>";
                         echo "<p><b>Application Time: </b>".$currApp[3]."</p>";
                         echo "<p><b>Application Proposals Link: </b>".$currApp[4]."</p>";
+                        echo "</div>";
                     }
                 } else {
                     echo "what";
