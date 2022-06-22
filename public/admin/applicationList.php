@@ -45,9 +45,7 @@
         <script>
             $(document).ready( function () {
                 $('#appTable').DataTable({
-                    processing: true,
-                    serverside: true,
-                    ajax: '../api/getApplicationList.php',
+                    "ajax": '../api/getApplicationList.php',
                 });
             } );
         </script>
