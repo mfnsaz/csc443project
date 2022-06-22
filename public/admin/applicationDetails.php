@@ -40,7 +40,7 @@
                 $appRes = mysqli_query($conn, $getAppSQL);
                 echo "Listing application for application ID ".$appId;
                 if(!is_bool($appRes)){
-                    $appArr = mysqli_fetch_all($officerRes);
+                    $appArr = mysqli_fetch_all($appRes);
                     $appArr = array_values($appArr);
                     print_r($appArr);
                     for($i = 0; $i < sizeof($appArr); $i++){
