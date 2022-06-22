@@ -45,7 +45,7 @@
         <script>
             $(document).ready( function () {
                 $('#appTable').DataTable({
-                    "ajax": '../api/getApplicationList.php',
+                    ajax: '/api/getApplicationList.php',
                 });
             } );
         </script>
