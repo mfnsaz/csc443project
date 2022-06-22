@@ -40,7 +40,10 @@
                     $outputAppId = array();
                     $outputAppName = array();
                     $appArr = mysqli_fetch_all($officerRes);
-                    print_r($appArr);
+                    $appArr = array_values($appArr);
+                    for($i = 0; $i < sizeof($appArr); $i++){
+                        echo "<div class=\"px-5 my-5\">".$appArr[$i]."</div>";
+                    }
                 } else {
                     $appArr = array("0" => "Error");
                     header('X-PHP-Response-Code: 500', true, 500);
