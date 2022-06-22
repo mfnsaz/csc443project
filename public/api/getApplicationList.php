@@ -25,7 +25,7 @@
                     } else {
                         array_push($outputRowData, "Reviewed, returned to Student");
                     }
-                    array_push($outputRowData, '<button class="btn btn-primary" id="viewAppButton" disabled>View Application</button>');
+                    array_push($outputRowData, '<button class="btn btn-primary" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>View Application</button>');
                 }
                 array_push($outputTableData, $outputRowData);
             }
