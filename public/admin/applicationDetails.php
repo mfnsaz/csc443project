@@ -36,7 +36,7 @@
                 //get applist
                 $getAppSQL = "SELECT app_name, app_startDate, app_endDate, app_time, app_files_link FROM applications WHERE application_id = $appId";
                 $appRes = mysqli_query($conn, $getAppSQL);
-                echo "Listing application for application ID ".$appID;
+                echo "Listing application for application ID ".$appId;
                 if(!is_bool($appRes)){
                     $appArr = mysqli_fetch_all($officerRes);
                     $appArr = array_values($appArr);
