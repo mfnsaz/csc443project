@@ -6,12 +6,12 @@
         $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
         $appRes = mysqli_query($conn, $getAppSQL);
         if(!is_bool($appRes)){
-            $outputRowData = array();
             $outputTableData = array();
             $outputAppArr = array();
             $appArr = mysqli_fetch_all($appRes);
             $appArr = array_values($appArr);
             foreach($appArr as $currApp){
+                $outputRowData = array();
                 array_push($outputRowData, $currApp[0]);
                 array_push($outputRowData, $currApp[1]);
                 array_push($outputRowData, $currApp[2]);
