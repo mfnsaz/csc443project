@@ -26,6 +26,7 @@
                 var mainTable = $('#appTable').DataTable({
                                     ajax: {
                                         url: '/api/getApplicationList.php',
+                                        responsive: true,
                                         dataSrc: 'data',
                                         columnDefs: [
                                             {
