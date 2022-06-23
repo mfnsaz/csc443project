@@ -20,7 +20,7 @@
                     array_push($outputRowData, "Not reviewed");
                     array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton">Review Application</button>');
                 } else {
-                    if($currApp[4]){
+                    if($currApp[4] == 1){
                         array_push($outputRowData, "Reviewed, forwarded to Officer");
                     } else {
                         array_push($outputRowData, "Reviewed, returned to Student");

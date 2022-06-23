@@ -38,7 +38,7 @@
         $officerId = $_POST["assignOfficer"];
         $adminId = $_SESSION["admin_id"];
 
-        if($appStatus){
+        if($appStatus == 1){
             $trackingSystemComment = "Application was forwarded to Officer by Admin. Comment by admin: ".$comments;
         } else {
             $trackingSystemComment = "Application was rejected by Admin. Comment by admin: ".$comments;

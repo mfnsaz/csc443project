@@ -88,8 +88,8 @@
                 <div class="form-floating mb-3">
                     <select class="form-select" name="appStatus" id="status" aria-label="appStat" required>
                         <option value=""></option>
-                        <option value="true">Forward to Officer</option>
-                        <option value="false">Return to Student</option>
+                        <option value="1">Forward to Officer</option>
+                        <option value="0">Return to Student</option>
                     </select>
                     <label for="appStatus">Status</label>
                 </div>
