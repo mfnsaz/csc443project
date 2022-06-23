@@ -35,6 +35,7 @@
                 require_once "../inc/connect.php";
 
                 $_SESSION["app_id"] = $_GET["app_id"];
+                $appId = $_SESSION["app_id"];
                 echo "Get ".$_GET["app_id"];
                 echo "Session ".$_SESSION["app_id"];
 
