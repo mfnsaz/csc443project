@@ -12,6 +12,13 @@
         die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
     }
 
+    $backPage = $_SESSION["backPage"];
+
+    if(!isset($_SESSION["backPage"])){
+        //backPage is not set, defaulting to applicationDetails.php
+        $backPage = "applicationDetails.php";
+    }
+
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     // Include config file
@@ -28,6 +35,7 @@
         $appStatus = $_POST["appStatus"];
         $comments = $_POST["remarks"];
         $officerId = $_POST["assignOfficer"];
+        $adminId = $_SESSION["admin_id"];
 
         if($appStatus){
             $trackingSystemComment = "Application was forwarded to Officer by Admin. Comment by admin: ".$comments;
@@ -36,7 +44,7 @@
         }
 
         //mysql code here
-        $updateApplicationsSQL = "UPDATE applications SET forwarded = $appStatus, officer_id = $officerId WHERE application_id = $appId";
+        $updateApplicationsSQL = "UPDATE applications SET forwarded = $appStatus, officer_id = $officerId, admin_id = $adminId WHERE application_id = $appId";
         $appRes = mysqli_query($conn, $updateApplicationsSQL);
         if(is_bool($appRes)){
             if($appRes){
