@@ -34,8 +34,9 @@
                 ini_set('display_errors', 1);
                 require_once "../inc/connect.php";
 
-                $appId = $_GET["app_id"];
-                $_SESSION["app_id"] = $appId;
+                $_SESSION["app_id"] = $_GET["app_id"];
+                echo "Get ".$_GET["app_id"];
+                echo "Session ".$_SESSION["app_id"];
 
                 //check if $_GET isset
                 if(isset($_GET["error"])){

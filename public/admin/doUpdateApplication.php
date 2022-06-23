@@ -3,6 +3,7 @@
     //REMARKS GOES TO TRACKING (COMBINE WITH STATUS AS WELL AS OFFICER IF APPLICABLE)
     //OFFICER GOES TO APPLICATIONS
     session_start();
+    echo $_SESSION["app_id"];
     if (!isset($_SESSION["admin_id"])){
         header("refresh:0;url=/login.php");
         die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
