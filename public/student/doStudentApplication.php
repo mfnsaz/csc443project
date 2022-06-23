@@ -107,6 +107,6 @@
         header("refresh:0;url=$backPage?signup=success");
     } else {
         echo '<script>alert("INVALID METHOD. REDIRECTING TO STUDENT INDEX.")</script>';
-        header("refresh:2;url=/student/index.php");
+        header("refresh:2;url=/index.php");
     }
 ?>
