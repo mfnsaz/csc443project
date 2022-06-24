@@ -13,7 +13,6 @@
 
     body {
         margin: 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
         height: 100%;
         display: grid;
         grid-template-rows: 1fr auto;

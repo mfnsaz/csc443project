@@ -16,13 +16,15 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="px-5 text-center">
-            <h1>Welcome, <?php echo $_SESSION["name"] ?> to the admin panel</h1>
-        </div>
-        <div class="px-5">
-            <h4 class="py-4">Available actions:</h4>
-            <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
+        <div>
+            <div class="px-5 text-center">
+                <h1>Welcome, <?php echo $_SESSION["name"] ?> to the admin panel</h1>
+            </div>
+            <div class="px-5">
+                <h4 class="py-4">Available actions:</h4>
+                <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
+            </div>
         </div>
         <?php
             include("../header/footer.php");
