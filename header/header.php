@@ -1,16 +1,5 @@
 <?php session_start() ?>
 <style>
-    html {
-        height: 100%;
-        box-sizing: border-box;
-    }
-
-    *,
-    *:before,
-    *:after {
-        box-sizing: inherit;
-    }
-
     body {
         margin: 0;
         height: 100%;
