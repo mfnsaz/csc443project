@@ -51,14 +51,16 @@
                 header("refresh:0;url=$backPage?error=true");
                 die();
             }
+            $updateApplicationsSQL = "UPDATE applications SET officer_id = $officerId, admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
         } else {
             $trackingSystemComment = "Application was rejected by Admin. Comment by admin: ".$comments;
             //forcing value to null
             $officerId = NULL;
+            $updateApplicationsSQL = "UPDATE applications SET admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
         }
 
         //mysql code here
-        $updateApplicationsSQL = "UPDATE applications SET officer_id = $officerId, admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
+        //$updateApplicationsSQL = "UPDATE applications SET officer_id = $officerId, admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
         $appRes = mysqli_query($conn, $updateApplicationsSQL);
         if(is_bool($appRes)){
             if($appRes){
