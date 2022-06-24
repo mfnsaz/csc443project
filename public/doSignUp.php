@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Processing request...</title>
+        <title>UiTM Club Activities Approval System - Processing request...</title>
     </head>
     <body>
-        <h1>Authenticating...</h1>
+        <!--h1>Authenticating...</h1-->
         <?php
-            echo "<p>Processing your sign up request...</p>";
+            session_start();
+            //echo "<p>Processing your sign up request...</p>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
             // Include config file
             require_once "inc/connect.php";
+
+            if(!isset($_SESSION["backPage"])){
+                //backPage is not set, defaulting to login.php
+                $backPage = "/login.php";
+            }
+
+            $backPage = $_SESSION["backPage"];
+
+            if(isset($_SESSION["uid"]) && strpos($backPage, 'addNewUser.php') === false){
+                //user is logged in already
+                $_SESSION["userErrCode"] = "SESSION_EXISTS";
+                $_SESSION["userErrMsg"] = "You are already logged in. Please log out to sign up as another user.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
 
             // Define variables and initialize with empty values
             //$username = $password = $confirm_password = "";
@@ -21,46 +37,57 @@
                 $clubid = $_POST["clubid"];
                 $role = $_POST["role"];
 
-                if($role > 0 && ($club_id != null || $club_id == "")){
-                    header("refresh:5;url=login.html");
-                    die('<script>alert("ClubID should only be present if role is student!")</script>');
+                if($role != 0 && !($clubid == null || $clubid == "")){
+                    $_SESSION["userErrCode"] = "CLUBID_ROLE_MISMATCH";
+                    $_SESSION["userErrMsg"] = "Club ID should only be present if role is student. Please contact the administrator if you believe that this should not happen.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 }
 
-                //get clublist
-                //check if clublist exists
-                $clublistsql = "SELECT club_id FROM clubs WHERE club_id = (?)" ;
-                if ($stmt=mysqli_prepare($conn, $clublistsql)){
-                    mysqli_stmt_bind_param($stmt, "i", $club_id);
+                if($role == 0){
+                    //get clublist
+                    //check if clublist exists
+                    $clublistsql = "SELECT club_id FROM clubs WHERE club_id = (?)" ;
+                    if ($stmt=mysqli_prepare($conn, $clublistsql)){
+                        mysqli_stmt_bind_param($stmt, "i", $club_id);
 
-                    $club_id = $clubid;
+                        $club_id = $clubid;
 
-                    if(mysqli_stmt_execute($stmt)){
-                        $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                        $clubIdRes = $clubidArray["club_id"];
-                        if($clubIdRes == 0 || $clubIdRes == NULL){
-                            header("refresh:5;url=login.html");
-                            die( '<script>alert("Invalid Club ID!")</script>' ) ;
-                        }//end if
-                        echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
-                    } else {
-                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
-                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                        if(mysqli_stmt_execute($stmt)){
+                            $clubidArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
+                            $clubIdRes = $clubidArray["club_id"];
+                            if($clubIdRes == 0 || $clubIdRes == NULL){
+                                $_SESSION["userErrCode"] = "INVALID_CLUB_ID";
+                                $_SESSION["userErrMsg"] = "Club ID is invalid. Please view the club list or contact the administrator if you believe that this should not happen.";
+                                header("refresh:0;url=$backPage?error=true");
+                                die() ;
+                            }//end if
+                            //echo "SUCCESS QUERY USERS TABLE FOR CLUB_ID!<br>";
+                        } else {
+                            //echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
+                            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                            header("refresh:0;url=$backPage?error=true");
+                            die();
+                        }
+
+                        mysqli_stmt_close($stmt);
                     }
-
-                    mysqli_stmt_close($stmt);
                 }
 
-                echo "<p>Please wait for a few seconds.</p>";
+                //echo "<p>Please wait for a few seconds.</p>";
                 $email = $_POST["email"];
                 if(empty(trim($_POST["email"]))){
-                    $email_err = "Please enter an email.";
-                    die($email_err);
+                    $_SESSION["userErrCode"] = "INVALID_EMAIL";
+                    $_SESSION["userErrMsg"] = "Email is invalid. Please make sure that your email is valid.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 }
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $emailErr = "Invalid email format";
-                    header("refresh:5;url=login.html");
-                    die('<script>alert("'.$emailErr.'")</script>');
+                    $_SESSION["userErrCode"] = "INVALID_EMAIL";
+                    $_SESSION["userErrMsg"] = "Email is invalid. Please make sure that your email is valid.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 }
 
                 // Validate password
@@ -68,23 +95,27 @@
                     $password_err = "Please enter a password.";
                     die($password_err);
                 } elseif(strlen(trim($_POST["password"])) < 8){
-                    $password_err = "ERROR: Password must have atleast 8 characters. Redirecting back to the signup page.";
-                    header("refresh:5;url=login.html");
-                    die('<script>alert("'.$password_err.'")</script>');
+                    $_SESSION["userErrCode"] = "INVALID_PASSWORD";
+                    $_SESSION["userErrMsg"] = "Password is invalid. Password must have at least 8 characters.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 } else{
                     $password = trim($_POST["password"]);
                 }
 
                 // Validate confirm password
                 if(empty(trim($_POST["confirmPassword"]))){
-                    $confirm_password_err = "Please confirm password.";
-                    die($confirm_password_err);
+                    $_SESSION["userErrCode"] = "CONFIRM_PASSWORD_NONEXISTANT";
+                    $_SESSION["userErrMsg"] = "Please enter the password confirmation.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 } else{
                     $confirm_password = trim($_POST["confirmPassword"]);
                     if(empty($password_err) && ($password != $confirm_password)){
-                        $confirm_password_err = "ERROR: Password did not match. Redirecting back to the signup page.";
-                        header("refresh:5;url=login.html");
-                        die('<script>alert("'.$confirm_password_err.'")</script>');
+                        $_SESSION["userErrCode"] = "CONFIRM_PASSWORD_MISMATCH";
+                        $_SESSION["userErrMsg"] = "Confirmation password does not match with the password.";
+                        header("refresh:0;url=$backPage?error=true");
+                        die();
                     }
                 }
 
@@ -93,8 +124,10 @@
                 $tel = $_POST["telephone"];
 
                 if ($role < 0 || $role > 2){
-                    header("refresh:5;url=login.html");
-                    die("ERROR: Invalid role. Redirecting back to the signup page.");
+                    $_SESSION["userErrCode"] = "INVALID_ROLE";
+                    $_SESSION["userErrMsg"] = "User role is invalid. Please contact the administrator for further assistance.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 }
 
                 //MYSQL STATEMENTS BELOW
@@ -110,14 +143,17 @@
                         $emailArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $userEmail = $emailArray["count(user_email)"];
                         if($userEmail > 0 || $userEmail != NULL){
-                            header("refresh:5;url=login.html");
-                            die( '<script>alert("There is already a user with that email!")</script>' ) ;
+                            $_SESSION["userErrCode"] = "EMAIL_EXISTS";
+                            $_SESSION["userErrMsg"] = "The account for this email already exists. Please log in instead.";
+                            header("refresh:0;url=$backPage?error=true");
+                            die();
                         }//end if
-                        echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
+                        //echo "SUCCESS QUERY USERS TABLE FOR EMAIL!<br>";
                     } else {
-                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
-                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                        $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                        $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                        header("refresh:0;url=$backPage?error=true");
+                        die();
                     }
 
                     mysqli_stmt_close($stmt);
@@ -133,11 +169,12 @@
                     $db_type = $role;
 
                     if(mysqli_stmt_execute($stmt)){
-                        echo "SUCCESS ADD TO USERS TABLE!<br>";
+                        //echo "SUCCESS ADD TO USERS TABLE!<br>";
                     } else {
-                        echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
-                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                        $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                        $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                        header("refresh:0;url=$backPage?error=true");
+                        die();
                     }
 
                     mysqli_stmt_close($stmt);
@@ -153,11 +190,12 @@
                     if(mysqli_stmt_execute($stmt)){
                         $usersArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                         $userId = $usersArray["user_id"];
-                        echo "SUCCESS QUERY USERS TABLE!<br>";
+                        //echo "SUCCESS QUERY USERS TABLE!<br>";
                     } else {
-                        echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                        header("refresh:5;url=login.html");
-                        die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                        $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                        $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                        header("refresh:0;url=$backPage?error=true");
+                        die();
                     }
 
                     mysqli_stmt_close($stmt);
@@ -176,11 +214,12 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO STUDENTS TABLE!<br>";
+                            //echo "SUCCESS ADD TO STUDENTS TABLE!<br>";
                         } else {
-                            echo "MYSQL ERROR ADD TO STUDENTS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
-                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                            header("refresh:0;url=$backPage?error=true");
+                            die();
                         }
 
                         mysqli_stmt_close($stmt);
@@ -196,11 +235,12 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO ADMINS TABLE!<br>";
+                            //echo "SUCCESS ADD TO ADMINS TABLE!<br>";
                         } else {
-                            echo "MYSQL ERROR ADD TO ADMINS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
-                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                            header("refresh:0;url=$backPage?error=true");
+                            die();
                         }
 
                         mysqli_stmt_close($stmt);
@@ -216,17 +256,21 @@
                         $u_id = $userId;
 
                         if(mysqli_stmt_execute($stmt)){
-                            echo "SUCCESS ADD TO OFFICERS TABLE!<br>";
+                            //echo "SUCCESS ADD TO OFFICERS TABLE!<br>";
                         } else {
-                            echo "MYSQL ERROR ADD TO OFFICERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                            header("refresh:5;url=login.html");
-                            die('<script>alert("ERROR. Please contact the admin for further help.")</script>');
+                            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                            header("refresh:0;url=$backPage?error=true");
+                            die();
                         }
 
                         mysqli_stmt_close($stmt);
                     }
                 } else {
-                    die("Invalid Role when adding to database! DATABASE MIGHT BE CORRUPT. PLEASE CONTACT ADMINISTRATOR.");
+                    $_SESSION["userErrCode"] = "INVALID_ROLE_DB";
+                    $_SESSION["userErrMsg"] = "Role is invalid when adding to database. CONTACT THE ADMINSTRATOR.";
+                    header("refresh:0;url=$backPage?error=true");
+                    die();
                 }
                 
             } else {
@@ -234,8 +278,9 @@
                 die("<p>Invalid method.</p>");
             }
             mysqli_close($conn);
-            echo '<script>alert("You may login now.")</script>';
-            header("refresh:5;url=login.html");
+            $_SESSION["userErrCode"] = "SIGNUP_SUCCESS";
+            $_SESSION["userErrMsg"] = "Sign up success. You may login now.";
+            header("refresh:0;url=$backPage?signup=success");
         ?>
     </body>
 </html>

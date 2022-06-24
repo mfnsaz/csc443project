@@ -1,17 +1,24 @@
 <?php
     session_start();
     if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
-        header("refresh:5;url=/login.html");
+        header("refresh:0;url=/login.php");
         die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
     if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
-        header("refresh:5;url=/login.html");
+        header("refresh:0;url=/login.php");
         die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
     }
-    echo "<p>Processing your sign in request...</p>";
+    //echo "<p>Processing your sign in request...</p>";
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     require_once "../inc/connect.php";
+
+    $backPage = $_SESSION["backPage"];
+
+    if(!isset($_SESSION["backPage"])){
+        //backPage is not set, defaulting to index.php
+        $backPage = "index.php";
+    }
     
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         //set post values to vars
@@ -42,11 +49,12 @@
             $db_studentid = $studentId;
 
             if(mysqli_stmt_execute($stmt)){
-                echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
+                //echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
             } else {
-                echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                header("refresh:5;url=/student/formApplication.php");
-                die('<script>alert("ERROR ADDING APPLICATIONS. Please contact the admin for further help.")</script>');
+                $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
             }
 
             mysqli_stmt_close($stmt);
@@ -62,11 +70,12 @@
             if(mysqli_stmt_execute($stmt)){
                 $appArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
                 $appId = $appArray["application_id"];
-                echo "SUCCESS QUERY USERS TABLE!\n";
+                //echo "SUCCESS QUERY USERS TABLE!\n";
             } else {
-                echo "MYSQL ERROR QUERY USERS TABLE! ".mysqli_error($conn);
-                header("refresh:5;url=/student/formApplication.php");
-                die('<script>alert("ERROR GETTING APPID. Please contact the admin for further help.")</script>');
+                $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
             }
 
             mysqli_stmt_close($stmt);
@@ -83,17 +92,19 @@
             $app_id = $appId;
 
             if(mysqli_stmt_execute($stmt)){
-                echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
+                //echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
             } else {
-                echo "MYSQL ERROR ADD TO USERS TABLE! PLEASE CHECK DATABASE! ".mysqli_error($conn);
-                header("refresh:5;url=/student/formApplication.php");
-                die('<script>alert("ERROR ADDING TRACKING. Please contact the admin for further help.")</script>');
+                $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
             }
 
             mysqli_stmt_close($stmt);
         }
-        echo '<script>alert("Add application SUCCESS.")</script>';
-        header("refresh:2;url=/student/index.php");
+        $_SESSION["userErrCode"] = "ADD_APPLICATION_SUCCESS";
+        $_SESSION["userErrMsg"] = "Application submitted. Please wait for the officer to approve or reject the application.";
+        header("refresh:0;url=$backPage?signup=success");
     } else {
         echo '<script>alert("INVALID METHOD. REDIRECTING TO STUDENT INDEX.")</script>';
         header("refresh:2;url=/student/index.php");
