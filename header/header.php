@@ -4,12 +4,16 @@
         height: 100%;
     }
     body {
+        position: relative;
         margin: 0;
-        height: 100%;
-        display: grid;
-        grid-template-rows: 1fr auto;
+        padding-bottom: 6rem;
+        min-height: 100%;
     }
     .footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
         padding: 1rem;
         background-color: #efefef;
         text-align: center;
