@@ -108,6 +108,9 @@
                 </div>
             </form>
         </div>
+        <?php
+            include("../header/footer.php");
+        ?>
         <script type="text/javascript">
             var xmlhttp = new XMLHttpRequest();
             var url = "/api/getOfficerList.php";

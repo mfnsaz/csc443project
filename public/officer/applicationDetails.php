@@ -100,7 +100,8 @@
                 </div>
             </form>
         </div>
-            }
-        </script>
+        <?php
+            include("../header/footer.php");
+        ?>
     </body>
 </html>

@@ -120,6 +120,9 @@ $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
                 </div>
             </div>
         </div>
+        <?php
+            include("../header/footer.php");
+        ?>
         <style>
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,

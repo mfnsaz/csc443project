@@ -94,6 +94,9 @@
                 </div>
             </form>
         </div>
+        <?php
+            include("../header/footer.php");
+        ?>
         <style>
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,

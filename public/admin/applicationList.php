@@ -105,5 +105,8 @@
                 </tfoot>
             </table>
         </div>
+        <?php
+            include("../header/footer.php");
+        ?>
     </body>
 </html>
