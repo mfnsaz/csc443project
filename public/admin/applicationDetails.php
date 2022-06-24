@@ -99,7 +99,7 @@
                 </div>
                 <div class="form-floating mb-3" id="offSelect" style="display: none;">
                     <select class="form-select" name="assignOfficer" id="officerList" aria-label="assoff" required>
-                        <option value=""></option>
+                        <option value="NULL"></option>
                     </select>
                     <label for="assignOfficer">Assign Officer</label>
                 </div>
