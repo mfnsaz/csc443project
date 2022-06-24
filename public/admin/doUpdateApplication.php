@@ -45,7 +45,7 @@
         }
 
         //mysql code here
-        $updateApplicationsSQL = "UPDATE applications SET forwarded = $appStatus, officer_id = $officerId, admin_id = $adminId WHERE application_id = $appId";
+        $updateApplicationsSQL = "UPDATE applications SET officer_id = $officerId, admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
         $appRes = mysqli_query($conn, $updateApplicationsSQL);
         if(is_bool($appRes)){
             if($appRes){
