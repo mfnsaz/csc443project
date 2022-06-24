@@ -1,15 +1,15 @@
 <?php session_start() ?>
 <style>
     .carousel .carousel-item {
-        height: 500px;
+        width: 500px;
     }
 
     .carousel-item img {
         position: absolute;
-        object-fit:cover;
+        object-fit: cover;
         top: 0;
         left: 0;
-        min-height: 500px;
+        min-width: 500px;
     }
     html {
         height: 100%;
