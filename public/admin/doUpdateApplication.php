@@ -42,6 +42,12 @@
             $trackingSystemComment = "Application was forwarded to Officer by Admin. Comment by admin: ".$comments;
         } else {
             $trackingSystemComment = "Application was rejected by Admin. Comment by admin: ".$comments;
+            $officerId = NULL;
+        }
+
+        if(!ctype_digit($officerId)){
+            //officerId is not an integer, redundant code
+            $officerId = NULL;
         }
 
         //mysql code here
