@@ -38,15 +38,22 @@
         $officerId = $_POST["assignOfficer"];
         $adminId = $_SESSION["admin_id"];
 
-        if($appStatus == 1){
-            $trackingSystemComment = "Application was forwarded to Officer by Admin. Comment by admin: ".$comments;
-        } else {
-            $trackingSystemComment = "Application was rejected by Admin. Comment by admin: ".$comments;
+        if(!isset($_POST["assignOfficer"]) || $_POST["assignOfficer"] == "" || $_POST["assignOfficer"] == "null"){
             $officerId = NULL;
         }
 
-        if(!ctype_digit($officerId)){
-            //officerId is not an integer, redundant code
+        if($appStatus == 1){
+            $trackingSystemComment = "Application was forwarded to Officer by Admin. Comment by admin: ".$comments;
+            if(!ctype_digit($officerId)){
+                //appStatus is 1, but officer ID is not int
+                $_SESSION["userErrCode"] = "INVALID_OFFICER_ID";
+                $_SESSION["userErrMsg"] = "Invalid officer ID provided. Please contact the administrator if you believe that this should not happen.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
+        } else {
+            $trackingSystemComment = "Application was rejected by Admin. Comment by admin: ".$comments;
+            //forcing value to null
             $officerId = NULL;
         }
 
