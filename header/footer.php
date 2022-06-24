@@ -1,6 +1,7 @@
 <?php
     //footer code
+    require "globalVariables.php";
 ?>
 <div class="footer">
-    <p>UiTM Activities Application System.</p>
+    <b>©️ <?php $yearNow ?> MFNSAZ. UiTM Activities Application System</b>
 </div>
