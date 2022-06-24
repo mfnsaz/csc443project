@@ -95,7 +95,7 @@
             </form>
         </div>
         <?php
-            include("../header/footer.php");
+            include("../../header/footer.php");
         ?>
         <style>
             /* Chrome, Safari, Edge, Opera */

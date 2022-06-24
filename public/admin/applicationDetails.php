@@ -109,7 +109,7 @@
             </form>
         </div>
         <?php
-            include("../header/footer.php");
+            include("../../header/footer.php");
         ?>
         <script type="text/javascript">
             var xmlhttp = new XMLHttpRequest();
