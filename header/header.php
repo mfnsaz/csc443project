@@ -1,4 +1,29 @@
 <?php session_start() ?>
+<style>
+    html {
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr auto;
+    }
+    .footer {
+        padding: 1rem;
+        background-color: #efefef;
+        text-align: center;
+    }
+</style>
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
