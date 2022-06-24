@@ -11,8 +11,8 @@
             $outputOfficerArr = array();
             $officerArr = mysqli_fetch_all($officerRes);
             $officerArr = array_values($officerArr);
-            array_push($outputOfficerId, NULL);
-            array_push($outputOfficerName, "");
+            //array_push($outputOfficerId, NULL);
+            //array_push($outputOfficerName, "");
             foreach($officerArr as $currOfficer){
                 array_push($outputOfficerId, $currOfficer[0]);
                 array_push($outputOfficerName, $currOfficer[1]);
