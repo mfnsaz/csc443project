@@ -52,7 +52,7 @@
                 //success update
             } else {
                 $_SESSION["userErrCode"] = "MYSQL_ERROR";
-                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn).". Please contact the administrator if you believe that this should not happen.";
                 header("refresh:0;url=$backPage?error=true");
                 die();
             }
