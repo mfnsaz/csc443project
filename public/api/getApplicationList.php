@@ -39,7 +39,7 @@
         }
 
         header("Content-Type: application/json");
-        echo json_encode($outputAppArr);
+        echo json_encode($outputAppArr, JSON_PRETTY_PRINT);
         die();
     }
     else {
