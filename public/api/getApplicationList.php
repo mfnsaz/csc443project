@@ -84,9 +84,9 @@
         header("Content-Type: application/json");
         echo json_encode($outputAppArr, JSON_PRETTY_PRINT);
         die();
-    }
-    else {
-        header('X-PHP-Response-Code: 500', true, 500);
+    } else {
+        echo "did not use get method";
+        //header('X-PHP-Response-Code: 500', true, 500);
         die();
     }
 ?>
