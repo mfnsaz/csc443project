@@ -86,7 +86,7 @@
             ?>
             <form id="contactForm" action="doUpdateApplication.php" method="post">
                 <div class="form-floating mb-3">
-                    <select class="form-select" name="appStatus" id="status" aria-label="appStat" required>
+                    <select class="form-select" name="appApproval" id="status" aria-label="appStat" required>
                         <option value=""></option>
                         <option value="1">Approve Application</option>
                         <option value="0">Reject Application</option>
