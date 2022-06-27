@@ -118,7 +118,7 @@
                 });
 
                 $('#appName').on('keyup',function() {
-                    if( $(this).val() == <?php echo $thisApp[0] ?> ) {
+                    if( $(this).val() == "<?php echo $thisApp[0] ?>" ) {
                         $('#submitButton').attr('disabled', false);
                     }
                     else {
@@ -127,7 +127,7 @@
                 });
 
                 $('#startDate').on('keyup',function() {
-                    if( $(this).val() == <?php echo $thisApp[1] ?> ) {
+                    if( $(this).val() == "<?php echo $thisApp[1] ?>" ) {
                         $('#submitButton').attr('disabled', false);
                     }
                     else {
@@ -136,7 +136,7 @@
                 });
 
                 $('#endDate').on('keyup',function() {
-                    if( $(this).val() == <?php echo $thisApp[2] ?> ) {
+                    if( $(this).val() == "<?php echo $thisApp[2] ?>" ) {
                         $('#submitButton').attr('disabled', false);
                     }
                     else {
@@ -145,7 +145,7 @@
                 });
 
                 $('#time').on('keyup',function() {
-                    if( $(this).val() == <?php echo $thisApp[3] ?> ) {
+                    if( $(this).val() == "<?php echo $thisApp[3] ?>" ) {
                         $('#submitButton').attr('disabled', false);
                     }
                     else {
@@ -154,7 +154,7 @@
                 });
 
                 $('#proposalUrl').on('keyup',function() {
-                    if( $(this).val() == <?php echo $thisApp[4] ?> ) {
+                    if( $(this).val() == "<?php echo $thisApp[4] ?>" ) {
                         $('#submitButton').attr('disabled', false);
                     }
                     else {
