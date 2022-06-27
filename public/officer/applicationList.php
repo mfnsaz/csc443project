@@ -1,9 +1,10 @@
 <?php
     session_start();
-    if (!isset($_SESSION["admin_id"])){
+    if (!isset($_SESSION["officer_id"])){
         header("refresh:0;url=/login.php");
         die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
     }
+    $officerId = $_SESSION["officer_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
             $(document).ready( function () {
                 var mainTable = $('#appTable').DataTable({
                                     ajax: {
-                                        url: '/api/getApplicationList.php',
+                                        url: '/api/getApplicationList.php?officer_id=<?php echo $officerId ?>',
                                         responsive: true,
                                         dataSrc: 'data',
                                         columnDefs: [
