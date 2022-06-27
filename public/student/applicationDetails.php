@@ -84,23 +84,23 @@
             ?>
             <form id="updateForm" action="./doUpdateApplication.php" method="post">
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="appName" type="text" value="<?php echo $thisApp[0] ?>" placeholder="Application Name" required/>
+                    <input class="form-control" name="appName" id="appName" type="text" value="<?php echo $thisApp[0] ?>" placeholder="Application Name" required/>
                     <label for="applicationName">Application Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="startDate" type="date" value="<?php echo $thisApp[1] ?>"  placeholder="Start Date" required/>
+                    <input class="form-control" name="startDate" id="startDate" type="date" value="<?php echo $thisApp[1] ?>"  placeholder="Start Date" required/>
                     <label for="startDate">Start Date</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="endDate" type="date" value="<?php echo $thisApp[2] ?>"  placeholder="End Date" required/>
+                    <input class="form-control" name="endDate" id="endDate" type="date" value="<?php echo $thisApp[2] ?>"  placeholder="End Date" required/>
                     <label for="endDate">End Date</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="time" type="time" value="<?php echo $thisApp[3] ?>"  placeholder="Time" required/>
+                    <input class="form-control" name="time" id="time" type="time" value="<?php echo $thisApp[3] ?>"  placeholder="Time" required/>
                     <label for="time">Time</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="proposalUrl" type="url" value="<?php echo $thisApp[4] ?>"  placeholder="Proposal Files Link" required/>
+                    <input class="form-control" name="proposalUrl" id="proposalUrl" type="url" value="<?php echo $thisApp[4] ?>"  placeholder="Proposal Files Link" required/>
                     <label for="proposalFilesLink">Proposal Files Link</label>
                 </div>
                 <div class="d-grid">
@@ -115,6 +115,51 @@
             $(document).ready(function() {
                 $('#updateForm').on('input change', function() {
                     $('#submitButton').attr('disabled', false);
+                });
+
+                $('#appName').on('keyup',function() {
+                    if( $(this).val() == <?php echo $thisApp[0] ?> ) {
+                        $('.someButton').attr('disabled', false);
+                    }
+                    else {
+                        $('.someButton').attr('disabled', true);
+                    }
+                });
+
+                $('#startDate').on('keyup',function() {
+                    if( $(this).val() == <?php echo $thisApp[1] ?> ) {
+                        $('.someButton').attr('disabled', false);
+                    }
+                    else {
+                        $('.someButton').attr('disabled', true);
+                    }
+                });
+
+                $('#endDate').on('keyup',function() {
+                    if( $(this).val() == <?php echo $thisApp[2] ?> ) {
+                        $('.someButton').attr('disabled', false);
+                    }
+                    else {
+                        $('.someButton').attr('disabled', true);
+                    }
+                });
+
+                $('#time').on('keyup',function() {
+                    if( $(this).val() == <?php echo $thisApp[3] ?> ) {
+                        $('.someButton').attr('disabled', false);
+                    }
+                    else {
+                        $('.someButton').attr('disabled', true);
+                    }
+                });
+
+                $('#proposalUrl').on('keyup',function() {
+                    if( $(this).val() == <?php echo $thisApp[4] ?> ) {
+                        $('.someButton').attr('disabled', false);
+                    }
+                    else {
+                        $('.someButton').attr('disabled', true);
+                    }
                 });
             })
         </script>
