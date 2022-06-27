@@ -28,8 +28,14 @@
                 array_push($outputRowData, $currApp[2]);
                 array_push($outputRowData, $currApp[3]);
                 if($currApp[4] == NULL){
-                    array_push($outputRowData, "Not reviewed");
-                    array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton">Review Application</button>');
+                    if(isset($_GET["student_id"])){
+                        array_push($outputRowData, "Edit Application");
+                        array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton">Edit Application</button>');
+                    } else {
+                        //
+                        array_push($outputRowData, "Not reviewed");
+                        array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton">Review Application</button>');
+                    }
                 } else {
                     if($currApp[4] == 1){
                         if(isset($_GET["officer_id"]) && $currApp[5] == NULL){
