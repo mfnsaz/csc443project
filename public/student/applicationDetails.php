@@ -119,43 +119,35 @@
 
                 $('#appName').on('keyup',function() {
                     if( $(this).val() == "<?php echo $thisApp[0] ?>" ) {
-                        $('#submitButton').attr('disabled', false);
-                    }
-                    else {
-                        $('#submitButton').attr('disabled', true);
-                    }
-                });
-
-                $('#startDate').on('keyup',function() {
-                    if( $(this).val() == "<?php echo $thisApp[1] ?>" ) {
-                        $('#submitButton').attr('disabled', false);
-                    }
-                    else {
-                        $('#submitButton').attr('disabled', true);
-                    }
-                });
-
-                $('#endDate').on('keyup',function() {
-                    if( $(this).val() == "<?php echo $thisApp[2] ?>" ) {
-                        $('#submitButton').attr('disabled', false);
-                    }
-                    else {
-                        $('#submitButton').attr('disabled', true);
-                    }
-                });
-
-                $('#time').on('keyup',function() {
-                    if( $(this).val() == "<?php echo $thisApp[3] ?>" ) {
-                        $('#submitButton').attr('disabled', false);
-                    }
-                    else {
-                        $('#submitButton').attr('disabled', true);
-                    }
-                });
-
-                $('#proposalUrl').on('keyup',function() {
-                    if( $(this).val() == "<?php echo $thisApp[4] ?>" ) {
-                        $('#submitButton').attr('disabled', false);
+                        $('#startDate').on('keyup',function() {
+                            if( $(this).val() == "<?php echo $thisApp[1] ?>" ) {
+                                $('#endDate').on('keyup',function() {
+                                    if( $(this).val() == "<?php echo $thisApp[2] ?>" ) {
+                                        $('#time').on('keyup',function() {
+                                            if( $(this).val() == "<?php echo $thisApp[3] ?>" ) {
+                                                $('#proposalUrl').on('keyup',function() {
+                                                    if( $(this).val() == "<?php echo $thisApp[4] ?>" ) {
+                                                        $('#submitButton').attr('disabled', false);
+                                                    }
+                                                    else {
+                                                        $('#submitButton').attr('disabled', true);
+                                                    }
+                                                });
+                                            }
+                                            else {
+                                                $('#submitButton').attr('disabled', true);
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        $('#submitButton').attr('disabled', true);
+                                    }
+                                });
+                            }
+                            else {
+                                $('#submitButton').attr('disabled', true);
+                            }
+                        });
                     }
                     else {
                         $('#submitButton').attr('disabled', true);
