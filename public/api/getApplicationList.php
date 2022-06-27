@@ -6,6 +6,9 @@
         if(isset($_GET["officer_id"])){
             $officerId = $_GET["officer_id"];
             $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id WHERE a.officer_id = $officerId";
+        } else if(isset($_GET["student_id"])) {
+            $studentId = $_GET["student_id"];
+            $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id WHERE a.student_id = $studentId";
         } else {
             $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
         }
