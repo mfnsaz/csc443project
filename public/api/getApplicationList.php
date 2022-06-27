@@ -47,11 +47,24 @@
                         } else if(isset($_GET["officer_id"]) && $currApp[5] == 1){
                             array_push($outputRowData, "Reviewed, Approved");
                             array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Approved</button>');
+                        } else if(isset($_GET["student_id"]) && $currApp[5] == NULL){
+                            array_push($outputRowData, "Pending officer approval");
+                            array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Approval Pending</button>');
+                        } else if(isset($_GET["student_id"]) && $currApp[5] == 0) {
+                            array_push($outputRowData, "Application rejected");
+                            array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Rejected</button>');
+                        } else if(isset($_GET["student_id"]) && $currApp[5] == 1){
+                            array_push($outputRowData, "Application approved");
+                            array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Approved</button>');
                         } else {
                             array_push($outputRowData, "Reviewed, forwarded to Officer");
                             array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Reviewed</button>');
                         }
                     } else {
+                        if(isset("student_id")){
+                            array_push($outputRowData, "Application rejected");
+                        array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Rejected</button>');
+                        }
                         array_push($outputRowData, "Reviewed, returned to Student");
                         array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Reviewed</button>');
                     }
