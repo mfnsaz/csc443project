@@ -114,15 +114,15 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#updateForm').on('input change', function() {
-                    if($('#appName').val() == "<?php $thisApp[0] ?>"){
+                    if($('#appName').val() == "<?php echo $thisApp[0] ?>"){
                         $('#submitButton').attr('disabled', true);
-                    } else if($('#startDate').val() == "<?php $thisApp[1] ?>"){
+                    } else if($('#startDate').val() == "<?php echo $thisApp[1] ?>"){
                         $('#submitButton').attr('disabled', true);
-                    } else if($('#endDate').val() == "<?php $thisApp[2] ?>"){
+                    } else if($('#endDate').val() == "<?php echo $thisApp[2] ?>"){
                         $('#submitButton').attr('disabled', true);
-                    } else if($('#time').val() == "<?php $thisApp[3] ?>"){
+                    } else if($('#time').val() == "<?php echo $thisApp[3] ?>"){
                         $('#submitButton').attr('disabled', true);
-                    } else if($('#proposalUrl').val() == "<?php $thisApp[4] ?>"){
+                    } else if($('#proposalUrl').val() == "<?php echo $thisApp[4] ?>"){
                         $('#submitButton').attr('disabled', true);
                     } else {
                         $('#submitButton').attr('disabled', false);
