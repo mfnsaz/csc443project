@@ -119,46 +119,46 @@
 
                 $('#appName').on('keyup',function() {
                     if( $(this).val() == <?php echo $thisApp[0] ?> ) {
-                        $('.someButton').attr('disabled', false);
+                        $('#submitButton').attr('disabled', false);
                     }
                     else {
-                        $('.someButton').attr('disabled', true);
+                        $('#submitButton').attr('disabled', true);
                     }
                 });
 
                 $('#startDate').on('keyup',function() {
                     if( $(this).val() == <?php echo $thisApp[1] ?> ) {
-                        $('.someButton').attr('disabled', false);
+                        $('#submitButton').attr('disabled', false);
                     }
                     else {
-                        $('.someButton').attr('disabled', true);
+                        $('#submitButton').attr('disabled', true);
                     }
                 });
 
                 $('#endDate').on('keyup',function() {
                     if( $(this).val() == <?php echo $thisApp[2] ?> ) {
-                        $('.someButton').attr('disabled', false);
+                        $('#submitButton').attr('disabled', false);
                     }
                     else {
-                        $('.someButton').attr('disabled', true);
+                        $('#submitButton').attr('disabled', true);
                     }
                 });
 
                 $('#time').on('keyup',function() {
                     if( $(this).val() == <?php echo $thisApp[3] ?> ) {
-                        $('.someButton').attr('disabled', false);
+                        $('#submitButton').attr('disabled', false);
                     }
                     else {
-                        $('.someButton').attr('disabled', true);
+                        $('#submitButton').attr('disabled', true);
                     }
                 });
 
                 $('#proposalUrl').on('keyup',function() {
                     if( $(this).val() == <?php echo $thisApp[4] ?> ) {
-                        $('.someButton').attr('disabled', false);
+                        $('#submitButton').attr('disabled', false);
                     }
                     else {
-                        $('.someButton').attr('disabled', true);
+                        $('#submitButton').attr('disabled', true);
                     }
                 });
             })
