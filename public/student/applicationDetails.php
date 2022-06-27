@@ -104,12 +104,19 @@
                     <label for="proposalFilesLink">Proposal Files Link</label>
                 </div>
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit" disabled>Submit</button>
                 </div>
             </form>
         </div>
         <?php
             include("../../header/footer.php");
         ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#form').on('input change', function() {
+                    $('#submitButton').attr('disabled', false);
+                });
+            })
+        </script>
     </body>
 </html>
