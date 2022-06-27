@@ -3,7 +3,12 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         //get clublist
-        $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
+        if(isset($_GET["officer_id"])){
+            $officerId = $_GET["officer_id"];
+            $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id WHERE a.officer_id = $officerId";
+        } else {
+            $getAppSQL = "SELECT a.application_id, a.app_name, s.student_name, c.club_name, a.forwarded FROM applications AS a JOIN students AS s ON a.student_id = s.student_id JOIN clubs AS c ON s.club_id = c.club_id";
+        }
         $appRes = mysqli_query($conn, $getAppSQL);
         if(!is_bool($appRes)){
             $outputTableData = array();
