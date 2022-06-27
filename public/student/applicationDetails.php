@@ -8,7 +8,7 @@
         header("refresh:0;url=/officer/index.php");
         die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
     }
-    $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
+    $_SESSION["backPage"] = "applicationList.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
