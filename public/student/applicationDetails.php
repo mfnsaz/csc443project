@@ -114,43 +114,18 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#updateForm').on('input change', function() {
-                    $('#submitButton').attr('disabled', false);
-                });
-
-                $('#appName').on('keyup',function() {
-                    if( $(this).val() == "<?php echo $thisApp[0] ?>" ) {
-                        $('#startDate').on('keyup',function() {
-                            if( $(this).val() == "<?php echo $thisApp[1] ?>" ) {
-                                $('#endDate').on('keyup',function() {
-                                    if( $(this).val() == "<?php echo $thisApp[2] ?>" ) {
-                                        $('#time').on('keyup',function() {
-                                            if( $(this).val() == "<?php echo $thisApp[3] ?>" ) {
-                                                $('#proposalUrl').on('keyup',function() {
-                                                    if( $(this).val() == "<?php echo $thisApp[4] ?>" ) {
-                                                        $('#submitButton').attr('disabled', false);
-                                                    }
-                                                    else {
-                                                        $('#submitButton').attr('disabled', true);
-                                                    }
-                                                });
-                                            }
-                                            else {
-                                                $('#submitButton').attr('disabled', true);
-                                            }
-                                        });
-                                    }
-                                    else {
-                                        $('#submitButton').attr('disabled', true);
-                                    }
-                                });
-                            }
-                            else {
-                                $('#submitButton').attr('disabled', true);
-                            }
-                        });
-                    }
-                    else {
+                    if($('#appName').val() != $thisApp[0]){
                         $('#submitButton').attr('disabled', true);
+                    } else if($('#startDate').val() != $thisApp[1]){
+                        $('#submitButton').attr('disabled', true);
+                    } else if($('#endDate').val() != $thisApp[2]){
+                        $('#submitButton').attr('disabled', true);
+                    } else if($('#time').val() != $thisApp[3]){
+                        $('#submitButton').attr('disabled', true);
+                    } else if($('#proposalUrl').val() != $thisApp[4]){
+                        $('#submitButton').attr('disabled', true);
+                    } else {
+                        $('#submitButton').attr('disabled', false);
                     }
                 });
             })
