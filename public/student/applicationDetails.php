@@ -82,7 +82,7 @@
                     die();
                 }
             ?>
-            <form id="contactForm" action="./doUpdateApplication.php" method="post">
+            <form id="updateForm" action="./doUpdateApplication.php" method="post">
                 <div class="form-floating mb-3">
                     <input class="form-control" name="appName" type="text" value="<?php echo $thisApp[0] ?>" placeholder="Application Name" required/>
                     <label for="applicationName">Application Name</label>
@@ -113,7 +113,7 @@
         ?>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#form').on('input change', function() {
+                $('#updateForm').on('input change', function() {
                     $('#submitButton').attr('disabled', false);
                 });
             })
