@@ -5,7 +5,7 @@
         die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
     }
     if (!isset($_GET["app_id"])){
-        header("refresh:0;url=/admin/index.php");
+        header("refresh:0;url=/officer/index.php");
         die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
     }
     $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
