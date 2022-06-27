@@ -2,7 +2,7 @@
     session_start();
     if (!isset($_SESSION["student_id"])){
         header("refresh:0;url=/login.php");
-        die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
     if (!isset($_GET["app_id"])){
         header("refresh:0;url=/officer/index.php");
