@@ -76,8 +76,8 @@
                 "data" => $outputTableData
             );
         } else {
-            //echo mysqli_error($conn);
-            header('X-PHP-Response-Code: 500', true, 500);
+            echo mysqli_error($conn);
+            //header('X-PHP-Response-Code: 500', true, 500);
             die();
         }
 
