@@ -41,7 +41,7 @@
                     return false;
                 }
 
-                return json_encode($outputArray);
+                return json_encode($outputArray, JSON_PRETTY_PRINT);
             }
         }
         if(isset($_GET["app_id"])){
