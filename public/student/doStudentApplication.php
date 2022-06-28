@@ -44,7 +44,7 @@
             $nextId = $getIdRes[0];
             if(!is_int($nextId)){
                 $_SESSION["userErrCode"] = "NOT_AN_INT";
-                $_SESSION["userErrMsg"] = "Auto Increment value not an integer. Please contact the administrator for more details.";
+                $_SESSION["userErrMsg"] = "Auto Increment value not an integer. Please contact the administrator for more details. Value received: ".print_r($nextId, true);
                 header("refresh:0;url=$backPage?error=true");
                 die();
             }
