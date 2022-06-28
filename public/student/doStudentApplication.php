@@ -82,7 +82,7 @@
         //get app_id from table
         $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?) AND app_startDate = (?) AND app_endDate = (?) AND app_time = (?)";
         if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
-            mysqli_stmt_bind_param($stmt, "ssss", $app_studId, $app_startdate, $app_endDate, $app_time);
+            mysqli_stmt_bind_param($stmt, "isss", $app_studId, $app_startdate, $app_endDate, $app_time);
 
             $app_stuId = $studentId;
             $app_startdate = $startDate;
