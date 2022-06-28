@@ -41,12 +41,14 @@
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
-                })
-                $("#viewAppButton").on('click', 'button', function() {
-                    window.location.href = "applicationDetails.php?app_id="+data[0];
-                })
-                $("#viewTrkButton").on('click', 'button', function() {
-                    window.location.href = "viewTracking.php?app_id="+data[0];
+
+                    var button = this.id;
+                    if(button == "viewAppButton"){
+                        window.location.href = "applicationDetails.php?app_id="+data[0];
+                    }
+                    if(button == "viewTrkButton"){
+                        window.location.href = "viewTracking.php?app_id="+data[0];
+                    }
                 })
             } );
         </script>
