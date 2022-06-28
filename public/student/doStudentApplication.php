@@ -27,7 +27,6 @@
         $endDate = $_POST["endDate"];
         $time = $_POST["time"];
         $proposalUrl = $_POST["proposalUrl"];
-        $appId = null;
 
         //set session values to vars
         $studentId = $_SESSION["student_id"];
@@ -37,7 +36,7 @@
         $dateNow = date('Y-m-d');
         $timeNow = date('H:i:s');
 
-        //get next id
+        //get next id (what we are using for this application)
         $getIdSQL = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'applications'";
         $getIdRes = mysqli_fetch_array(mysqli_query($conn, $getIdSQL));
         if(is_array($getIdRes)){
@@ -69,30 +68,6 @@
 
             if(mysqli_stmt_execute($stmt)){
                 //echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
-            } else {
-                $_SESSION["userErrCode"] = "MYSQL_ERROR";
-                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                header("refresh:0;url=$backPage?error=true");
-                die();
-            }
-
-            mysqli_stmt_close($stmt);
-        }
-
-        //get app_id from table
-        $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?) AND app_startDate = (?) AND app_endDate = (?) AND app_time = (?)";
-        if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
-            mysqli_stmt_bind_param($stmt, "isss", $app_studId, $app_startdate, $app_endDate, $app_time);
-
-            $app_stuId = $studentId;
-            $app_startdate = $startDate;
-            $app_enddate = $endDate;
-            $app_time = $time;
-
-            if(mysqli_stmt_execute($stmt)){
-                $appArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                $appId = $appArray["application_id"];
-                //echo "SUCCESS QUERY USERS TABLE!\n";
             } else {
                 $_SESSION["userErrCode"] = "MYSQL_ERROR";
                 $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
