@@ -38,7 +38,7 @@
         $timeNow = date('H:i:s');
 
         //get next id
-        $getIdSQL = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'applications';";
+        $getIdSQL = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'applications'";
         $getIdRes = mysqli_fetch_array(mysqli_query($conn, $getIdSQL));
         if(is_array($getIdRes)){
             $nextId = $getIdRes[0];
