@@ -33,9 +33,8 @@
                         array_push($columnArray, $currRowColumn[4]);
                         array_push($rowArray, $columnArray);
                     }
-                    array_push($tableArray, $rowArray);
                     $outputArray = array(
-                        "data" => $tableArray
+                        "data" => $rowArray
                     );
                 } else {
                     return false;
