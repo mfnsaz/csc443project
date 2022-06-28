@@ -111,7 +111,7 @@
             $tr_stat = "Application received by System";
             $tr_date = $dateNow;
             $tr_time = $timeNow;
-            $app_id = $appId;
+            $app_id = $nextId;
 
             if(mysqli_stmt_execute($stmt)){
                 //echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";
