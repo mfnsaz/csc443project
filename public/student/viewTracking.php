@@ -38,7 +38,7 @@
             $(document).ready( function () {
                 var mainTable = $('#appTable').DataTable({
                                     ajax: {
-                                        url: '/api/getApplicationList.php?app_id=<?php echo $appId ?>',
+                                        url: '/api/getTrackingList.php?app_id=<?php echo $appId ?>',
                                         responsive: true,
                                         dataSrc: 'data'
                                     },
