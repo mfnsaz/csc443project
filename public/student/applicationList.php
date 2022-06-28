@@ -36,7 +36,8 @@
                                         url: '/api/getApplicationList.php?student_id=<?php echo $studentId ?>',
                                         responsive: true,
                                         dataSrc: 'data',
-                                    }
+                                    },
+                                    fixedHeader: true
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
@@ -47,7 +48,6 @@
                 $("#viewTrkButton").on('click', 'button', function() {
                     window.location.href = "viewTracking.php?app_id="+data[0];
                 })
-                new $.fn.dataTable.FixedHeader(mainTable);
             } );
         </script>
         <?php
