@@ -27,6 +27,7 @@
         $endDate = $_POST["endDate"];
         $time = $_POST["time"];
         $proposalUrl = $_POST["proposalUrl"];
+        $appId = null;
 
         //set session values to vars
         $studentId = $_SESSION["student_id"];
@@ -61,11 +62,15 @@
         }
 
         //get app_id from table
-        $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?)";
+        $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?) AND app_startDate = (?) AND app_endDate = (?) AND app_time = (?)";
         if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
-            mysqli_stmt_bind_param($stmt, "s", $ap_studentid);
+            mysqli_stmt_bind_param($stmt, "ss", $app_studId, $app_startdate, $app_endDate, $app_time);
 
-            $ap_studentid = $studentId;
+            $app_stuId = $studentId;
+            $app_name = $appname;
+            $app_startdate = $startDate;
+            $app_enddate = $endDate;
+            $app_time = $time;
 
             if(mysqli_stmt_execute($stmt)){
                 $appArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
