@@ -40,12 +40,12 @@
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
-                    $("#viewAppButton").on('click', 'button', function() {
-                        window.location.href = "applicationDetails.php?app_id="+data[0];
-                    })
-                    $("#viewTrkButton").on('click', 'button', function() {
-                        window.location.href = "viewTracking.php?app_id="+data[0];
-                    })
+                })
+                $("#viewAppButton").on('click', 'button', function() {
+                    window.location.href = "applicationDetails.php?app_id="+data[0];
+                })
+                $("#viewTrkButton").on('click', 'button', function() {
+                    window.location.href = "viewTracking.php?app_id="+data[0];
                 })
                 new $.fn.dataTable.FixedHeader(mainTable);
             } );
