@@ -37,6 +37,24 @@
         $dateNow = date('Y-m-d');
         $timeNow = date('H:i:s');
 
+        //get next id
+        $getIdSQL = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'applications';";
+        $getIdRes = mysqli_fetch_array(mysqli_query($conn, $getIdSQL));
+        if(is_array($getIdRes)){
+            $nextId = $getIdRes[0];
+            if(!is_int($nextId)){
+                $_SESSION["userErrCode"] = "MYSQL_ERROR";
+                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
+        } else {
+            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+            header("refresh:0;url=$backPage?error=true");
+            die();
+        }
+
         //add into applications table
         $addApplicationSQL = "INSERT INTO applications (app_name, app_startDate, app_endDate, app_time, app_files_link, student_id) VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt=mysqli_prepare($conn, $addApplicationSQL)){
@@ -64,10 +82,9 @@
         //get app_id from table
         $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?) AND app_startDate = (?) AND app_endDate = (?) AND app_time = (?)";
         if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
-            mysqli_stmt_bind_param($stmt, "ss", $app_studId, $app_startdate, $app_endDate, $app_time);
+            mysqli_stmt_bind_param($stmt, "ssss", $app_studId, $app_startdate, $app_endDate, $app_time);
 
             $app_stuId = $studentId;
-            $app_name = $appname;
             $app_startdate = $startDate;
             $app_enddate = $endDate;
             $app_time = $time;
