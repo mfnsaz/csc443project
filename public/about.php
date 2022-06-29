@@ -23,6 +23,12 @@
         <div class="px-5 py-4">
             <h5>This system was created by: </h5>
             <p>MEGAT AL ZHAHIR DANIEL BIN MEGAT NOR MAZLAN (2020878518)</p>
+            <p>FARAH NATASHA BINTI MUHAMAD HAZRIN (2020898386)</p>
+            <p>NUR NABILAH BINTI SHAARI (2020489836)</p>
+            <p>SITI SYAHIRAH BINTI AHMADLKUSHAIRY (2020819788)</p>
+            <p>NUR ASNA BINTI FADZIL (2021857372)</p>
+            <p>AZIZAH BINTI AZAHAR (2021620258)</p>
+
             <h5>and is licensed under the:</h5>
             <p>GNU General Public License v3.0</p>
         </div>
