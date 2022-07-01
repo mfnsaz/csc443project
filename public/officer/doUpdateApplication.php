@@ -37,10 +37,10 @@
         $comments = $_POST["remarks"];
         $officerId = $_SESSION["officer_id"];
 
-        if($appApproval == 1){
-            $trackingSystemComment = "Application was approved by officer. Comment by officer: ".$comments;
-        } else {
+        if($appApproval < 1){
             $trackingSystemComment = "Application was rejected by officer. Comment by officer: ".$comments;
+        } else {
+            $trackingSystemComment = "Application was approved by officer. Comment by officer: ".$comments;
         }
         $updateApplicationsSQL = "UPDATE applications SET approved = $appApproval WHERE application_id = $appId";
         //mysql code here
