@@ -1,10 +1,15 @@
 <?php
     session_start();
-    if (!isset($_SESSION["officer_id"])){
+    if (!isset($_SESSION["student_id"])){
         header("refresh:0;url=/login.php");
-        die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
-    $officerId = $_SESSION["officer_id"];
+    if (!isset($_GET["app_id"])){
+        header("refresh:0;url=/officer/index.php");
+        die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
+    }
+    $appId = $_GET["app_id"];
+    $_SESSION["backPage"] = "applicationList.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +19,9 @@
         <title>UiTM Club Activities Approval System - Application List</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/fixedHeader.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.bootstrap.css">
         <link rel="icon" type="image/x-icon" href="https://saringc19.uitm.edu.my/statics/icons/favicon.ico">
     </head>
     <body>
@@ -23,7 +29,7 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.fixedHeader.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedheader/3.2.4/js/fixedHeader.bootstrap.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
         <script type="text/javascript">
@@ -32,30 +38,19 @@
             $(document).ready( function () {
                 var mainTable = $('#appTable').DataTable({
                                     ajax: {
-                                        url: '/api/getApplicationList.php?officer_id=<?php echo $officerId ?>',
+                                        url: '/api/getTrackingList.php?app_id=<?php echo $appId ?>',
                                         responsive: true,
-                                        dataSrc: 'data',
-                                        columnDefs: [
-                                            {
-                                                targets: -1,
-                                                data: null,
-                                                defaultContent: '<button class="btn btn-primary btn-lg">View Application</button>',
-                                            },
-                                        ],
-                                    }
+                                        dataSrc: 'data'
+                                    },
+                                    fixedHeader: true
                                 });
-                $("#appTable tbody").on('click', 'button', function() {
-                    var data = mainTable.row($(this).parents('tr')).data();
-                    window.location.href = "applicationDetails.php?app_id="+data[0];
-                })
-                new $.fn.dataTable.FixedHeader( table );
-            } );
+            });
         </script>
         <?php
             include("../../header/header.php");
         ?>
         <div class="px-5">
-            <h4>View Applications</h4>
+            <h4>View Tracking</h4>
         </div>
         <br>
         <?php
@@ -87,22 +82,20 @@
             <table id="appTable" class="table table-bordered table-hover dt-responsive">
                 <thead>
                     <tr>
-                        <th>Application ID</th>
+                        <th>Tracking ID</th>
                         <th>Application Name</th>
-                        <th>Student Name</th>
-                        <th>Club Name</th>
-                        <th>Application Status</th>
-                        <th>View Application</th>
+                        <th>Tracking Date</th>
+                        <th>Tracking Time</th>
+                        <th>Tracking Status</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Application ID</th>
+                        <th>Tracking ID</th>
                         <th>Application Name</th>
-                        <th>Student Name</th>
-                        <th>Club Name</th>
-                        <th>Application Status</th>
-                        <th>View Application</th>
+                        <th>Tracking Date</th>
+                        <th>Tracking Time</th>
+                        <th>Tracking Status</th>
                     </tr>
                 </tfoot>
             </table>

@@ -28,7 +28,7 @@
         }
 
         header("Content-Type: application/json");
-        echo json_encode($outputOfficerArr);
+        echo json_encode($outputOfficerArr, JSON_PRETTY_PRINT);
         die();
     }
     else {

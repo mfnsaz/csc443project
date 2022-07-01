@@ -36,6 +36,24 @@
         $dateNow = date('Y-m-d');
         $timeNow = date('H:i:s');
 
+        //get next id (what we are using for this application)
+        $getIdSQL = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'applications'";
+        $getIdRes = mysqli_fetch_array(mysqli_query($conn, $getIdSQL));
+        if(is_array($getIdRes)){
+            $nextId = $getIdRes[0];
+            if(!is_numeric($nextId)){
+                $_SESSION["userErrCode"] = "NOT_A_NUMBER";
+                $_SESSION["userErrMsg"] = "Auto Increment value not a number. Please contact the administrator for more details. Value received: ".print_r($nextId, true);
+                header("refresh:0;url=$backPage?error=true");
+                die();
+            }
+        } else {
+            $_SESSION["userErrCode"] = "MYSQL_ERROR";
+            $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
+            header("refresh:0;url=$backPage?error=true");
+            die();
+        }
+
         //add into applications table
         $addApplicationSQL = "INSERT INTO applications (app_name, app_startDate, app_endDate, app_time, app_files_link, student_id) VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt=mysqli_prepare($conn, $addApplicationSQL)){
@@ -60,27 +78,6 @@
             mysqli_stmt_close($stmt);
         }
 
-        //get app_id from table
-        $getUserCredsSQL = "SELECT application_id FROM applications WHERE student_id = (?)";
-        if ($stmt=mysqli_prepare($conn, $getUserCredsSQL)){
-            mysqli_stmt_bind_param($stmt, "s", $ap_studentid);
-
-            $ap_studentid = $studentId;
-
-            if(mysqli_stmt_execute($stmt)){
-                $appArray = mysqli_fetch_array(mysqli_stmt_get_result($stmt));
-                $appId = $appArray["application_id"];
-                //echo "SUCCESS QUERY USERS TABLE!\n";
-            } else {
-                $_SESSION["userErrCode"] = "MYSQL_ERROR";
-                $_SESSION["userErrMsg"] = "MySQL error encountered: ".mysqli_error($conn)." Please contact the administrator if you believe that this should not happen.";
-                header("refresh:0;url=$backPage?error=true");
-                die();
-            }
-
-            mysqli_stmt_close($stmt);
-        }
-
         //add into trackings table
         $addTrackingSQL = "INSERT INTO trackings (tracking_status, tracking_date, tracking_time, application_id) VALUES (?, ?, ?, ?)";
         if ($stmt=mysqli_prepare($conn, $addTrackingSQL)){
@@ -89,7 +86,7 @@
             $tr_stat = "Application received by System";
             $tr_date = $dateNow;
             $tr_time = $timeNow;
-            $app_id = $appId;
+            $app_id = $nextId;
 
             if(mysqli_stmt_execute($stmt)){
                 //echo "SUCCESS ADD TO APPLICATIONS TABLE!<br>";

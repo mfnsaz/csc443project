@@ -1,8 +1,8 @@
 <?php
     session_start();
-    if (!isset($_SESSION["officer_id"])){
+    if (!isset($_SESSION["student_id"])){
         header("refresh:0;url=/login.php");
-        die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
+        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
     }
     if (!isset($_GET["app_id"])){
         header("refresh:0;url=/officer/index.php");
@@ -30,7 +30,7 @@
         ?>
         <!--Nanti kena automatically tarik from database untuk application name, club name, date, time and proposal-->
         <div class="container px-5 my-5">
-            <h1 class="pb-4">Club Application Details</h1>
+            <h1 class="pb-4">Edit Application</h1>
             <?php
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
@@ -38,6 +38,8 @@
 
                 $appId = $_GET["app_id"];
                 $_SESSION["app_id"] = $appId;
+
+                $thisApp = array();
 
                 //check if $_GET isset
                 if(isset($_GET["error"])){
@@ -70,13 +72,9 @@
                     $appArr = mysqli_fetch_all($appRes);
                     //$appArr = array_values($appArr);
                     foreach($appArr as $currApp){
-                        echo "<div class=\"\">";
-                        echo "<p><b>Application Name: </b>".$currApp[0]."</p>";
-                        echo "<p><b>Application Start Date: </b>".$currApp[1]."</p>";
-                        echo "<p><b>Application End Date: </b>".$currApp[2]."</p>";
-                        echo "<p><b>Application Time: </b>".$currApp[3]."</p>";
-                        echo "<p><b>Application Proposal Files URL: </b><a href=\"".$currApp[4]."\">".$currApp[4]."</a></p>";
-                        echo "</div>";
+                        for($i = 0; $i < sizeof($currApp); $i++){
+                            array_push($thisApp, $currApp[$i]);
+                        }
                     }
                 } else {
                     echo "what";
@@ -84,26 +82,45 @@
                     die();
                 }
             ?>
-            <form id="contactForm" action="doUpdateApplication.php" method="post">
+            <form id="updateForm" action="./doUpdateApplication.php" method="post">
                 <div class="form-floating mb-3">
-                    <select class="form-select" name="appApproval" id="status" aria-label="appStat" required>
-                        <option value=""></option>
-                        <option value="1">Approve Application</option>
-                        <option value="0">Reject Application</option>
-                    </select>
-                    <label for="appStatus">Status</label>
+                    <input class="form-control" name="appName" id="appName" type="text" value="<?php echo $thisApp[0] ?>" placeholder="Application Name" required/>
+                    <label for="applicationName">Application Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="remarks" type="comment" placeholder="remarks" required/>
-                    <label for="remarks">Remarks</label>
+                    <input class="form-control" name="startDate" id="startDate" type="date" value="<?php echo $thisApp[1] ?>"  placeholder="Start Date" required/>
+                    <label for="startDate">Start Date</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="endDate" id="endDate" type="date" value="<?php echo $thisApp[2] ?>"  placeholder="End Date" required/>
+                    <label for="endDate">End Date</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="time" id="time" type="time" value="<?php echo $thisApp[3] ?>"  placeholder="Time" required/>
+                    <label for="time">Time</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="proposalUrl" id="proposalUrl" type="url" value="<?php echo $thisApp[4] ?>"  placeholder="Proposal Files Link" required/>
+                    <label for="proposalFilesLink">Proposal Files Link</label>
                 </div>
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit" disabled>Submit</button>
                 </div>
             </form>
         </div>
         <?php
             include("../../header/footer.php");
         ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#updateForm').on('input change', function() {
+                    if(($('#appName').val() != "<?php echo $thisApp[0] ?>") || ($('#startDate').val() != "<?php echo $thisApp[1] ?>") || ($('#endDate').val() != "<?php echo $thisApp[2] ?>") || ($('#time').val() != "<?php echo $thisApp[3] ?>") || ($('#proposalUrl').val() != "<?php echo $thisApp[4] ?>")){
+                        $('#submitButton').attr('disabled', false);
+                    } else {
+                        $('#submitButton').attr('disabled', true);
+                    }
+                });
+            })
+        </script>
     </body>
 </html>

@@ -27,6 +27,7 @@
         <div class="px-5">
             <h4 class="py-4">Available actions:</h4>
             <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.php';">New Activity Application</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/student/applicationList.php';">View Application List</button>
         </div>
         <?php
             include("../../header/footer.php");
