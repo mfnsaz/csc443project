@@ -37,14 +37,14 @@
         $comments = $_POST["remarks"];
         $officerId = $_SESSION["officer_id"];
 
-        print_r($appApproval);
-        die();
-
         if($appApproval == 0){
             $trackingSystemComment = "Application was rejected by officer. Comment by officer: ".$comments;
         } else {
             $trackingSystemComment = "Application was approved by officer. Comment by officer: ".$comments;
         }
+
+        print_r("Approval Value: ".$appApproval."\n Tracking comment:".$trackingSystemComment);
+        die();
         $updateApplicationsSQL = "UPDATE applications SET approved = $appApproval WHERE application_id = $appId";
         //mysql code here
         //$updateApplicationsSQL = "UPDATE applications SET officer_id = $officerId, admin_id = $adminId, forwarded = $appStatus WHERE application_id = $appId";
