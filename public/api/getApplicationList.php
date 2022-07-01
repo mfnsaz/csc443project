@@ -57,11 +57,11 @@
                                 array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewTrkButton">View Tracking</button>');
                             } else if($currApp[5] == 1){
                                 array_push($outputRowData, "Application approved");
-                                array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Rejected</button>');
+                                array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Approved</button>');
                                 array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewTrkButton">View Tracking</button>');
                             } else if($currApp[5] == 0){
                                 array_push($outputRowData, "Application rejected");
-                                array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Approved</button>');
+                                array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewAppButton" data-bs-toggle="tooltip" data-bs-placement="top" title="Already Reviewed" disabled>Application Rejected</button>');
                                 array_push($outputRowData, '<button class="d-grid mx-auto btn btn-primary" style="display: block;" id="viewTrkButton">View Tracking</button>');
                             }
                         } else {
