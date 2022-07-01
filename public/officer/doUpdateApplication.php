@@ -37,7 +37,7 @@
         $comments = $_POST["remarks"];
         $officerId = $_SESSION["officer_id"];
 
-        if($appApproval < 1){
+        if($appApproval == "0"){
             $trackingSystemComment = "Application was rejected by officer. Comment by officer: ".$comments;
         } else {
             $trackingSystemComment = "Application was approved by officer. Comment by officer: ".$comments;
