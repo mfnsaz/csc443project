@@ -24,6 +24,9 @@
     }
     if(isset($currDir) && isset($pageTitle)){
         $bcmb = new Breadcrumb($currDir, $pageTitle);
-        echo $bcmb->getFullCrumb();
+        $breadOut = $bcmb->getFullCrumb();
+        echo $breadOut;
+    } else {
+        echo "Failed to get breadcrumb";
     }
 ?>
