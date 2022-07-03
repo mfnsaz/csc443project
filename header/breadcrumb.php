@@ -66,7 +66,7 @@
 
         function getCurrentUrl(){
             $elementArr = $this->getPageArray();
-            $i = 0;
+            $i = 1;
             $urlArr = array();
             foreach($elementArr as $currPage){
                 if($currPage == ""){
