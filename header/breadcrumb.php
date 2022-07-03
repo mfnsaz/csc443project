@@ -15,6 +15,7 @@
 
         function getDirectoryArray(){
             $dirArr = explode("/", $this->currdir);
+            array_shift($dirArr);
             array_unshift($dirArr, "home");
             return $dirArr;
         }
