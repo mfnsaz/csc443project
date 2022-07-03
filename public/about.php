@@ -15,6 +15,11 @@
         <div class="px-5 text-center">
             <h1>About the UiTM Club Activities Approval System</h1>
         </div>
+        <div class="px-5">
+            <?php
+                include('../header/breadcrumb.php');
+            ?>
+        </div>
         <div class="px-5 py-4">
             <h4 style="text-align: justify; text-justify: inter-word;">The UiTM Club Activities Approval System aims to help streamline club activities application process.
             This system was created to ease the process of club activity proposal. The system features tracking, which would enable the users to learn about the
