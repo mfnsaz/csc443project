@@ -70,23 +70,23 @@
             $i = 0;
             $urlArr = array();
             foreach($elementArr as $currPage){
-                switch($currPage){
-                    case "":
-                        $i++;
-                        break;
-                    case "home":
-                        array_push($urlArr, "/");
-                        $i++;
-                        break;
-                    default:
-                        if($i > 2) {
-                            array_push($urlArr, $urlArr[$i-1]."/".$currPage);
-                            $i++;
-                        } else {
-                            array_push($urlArr, $currPage);
-                            $i++;
-                        }
-                        break;
+                if($currPage == ""){
+                    $i++;
+                    continue;
+                }
+                if($currPage == "home" || $currPage == "Home"){
+                    array_push($urlArr, "/");
+                    $i++;
+                    continue;
+                }
+                if($i > 2) {
+                    array_push($urlArr, $urlArr[$i-1]."/".$currPage);
+                    $i++;
+                    continue;
+                } else {
+                    array_push($urlArr, $currPage);
+                    $i++;
+                    continue;
                 }
             }
             return $urlArr;
