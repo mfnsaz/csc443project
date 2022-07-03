@@ -12,6 +12,7 @@
                 $this->currtitle = $pageTitle;
             }
             $this->dirarray = explode("/",$this->currdir);
+            array_push($this->disarray, $this->currtitle);
             foreach($this->dirarray as $crumb){
                 $this->crumbhtml = ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
             }
