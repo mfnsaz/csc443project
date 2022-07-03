@@ -20,7 +20,7 @@
                     $currDir = $_SERVER['PHP_SELF'];
                     $currUrl = $_SERVER['PHP_HOST'];
                     $pageTitle = "About";
-                    include('../header/breadcrumb.php');
+                    include('../../header/breadcrumb.php');
                 ?>
             </ol>
         </nav>
