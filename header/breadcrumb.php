@@ -42,6 +42,9 @@
             $currDir = $this->getDirectoryArray();
             $crumbArr = array();
             foreach($currDir as $currPage){
+                if($currPage == ""){
+                    continue;
+                }
                 array_push($crumbArr, ucfirst(str_replace(".php", "", $currPage)));
             }
             return $crumbArr;
@@ -51,6 +54,9 @@
             $currDir = $this->getDirectoryArray();
             $crumbArr = array();
             foreach($currDir as $currPage){
+                if($currPage == ""){
+                    continue;
+                }
                 array_push($crumbArr, $currPage);
             }
             return $crumbArr;
@@ -61,7 +67,9 @@
             $i = 0;
             $urlArr = array();
             foreach($elementArr as $currPage){
-                if(++$i == 0){
+                if($currPage == ""){
+                    continue;
+                } else if(++$i == 0){
                     array_push($urlArr, "/".$currPage);
                 } else {
                     array_push($urlArr, $urlArr[$i-1]."/".$currPage);
