@@ -77,6 +77,7 @@
                     $i++;
                 } else {
                     array_push($urlArr, $urlArr[$i]."/".$currPage);
+                    $i++;
                 }
             }
             return $urlArr;
