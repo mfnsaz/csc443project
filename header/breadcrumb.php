@@ -105,7 +105,7 @@
         $crumbStrC = count($crumbStr);
         foreach($crumbStr as $currPage){
             if(++$i != $crumbStrC){
-                echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
+                echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i-1]."\">".$currPage."</a></li>";
             } else {
                 echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
             }
