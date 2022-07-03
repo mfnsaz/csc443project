@@ -14,12 +14,12 @@
         <div class="px-5 text-center">
             <h1>Club Listing</h1>
         </div>
-        <nav class="px-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
                     $currDir = $_SERVER['PHP_SELF'];
                     $currUrl = $_SERVER['PHP_HOST'];
-                    $pageTitle = "About";
+                    $pageTitle = "Club Lists";
                     include('../../header/breadcrumb.php');
                 ?>
             </ol>
