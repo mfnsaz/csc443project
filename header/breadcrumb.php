@@ -69,19 +69,22 @@
             $elementArr = $this->getPageArray();
             $i = 0;
             $urlArr = array();
-            foreach($elementArr as $currPageKey => $currPage){
-                if($currPage == ""){
-                    $i++;
-                    continue;
-                } else if ($currPage = "home"){
-                    array_push($urlArr, "/");
-                    $i++;
-                } else if($currPageKey > 2) {
-                    array_push($urlArr, $urlArr[$i-1]."/".$currPage);
-                    $i++;
-                } else {
-                    array_push($urlArr, $currPage);
-                    $i++;
+            foreach($elementArr as $currPage){
+                switch($currPage){
+                    case "":
+                        continue;
+                    case "home":
+                        array_push($urlArr, "/");
+                        continue;
+                    default:
+                        if($i > 2) {
+                            array_push($urlArr, $urlArr[$i-1]."/".$currPage);
+                            $i++;
+                        } else {
+                            array_push($urlArr, $currPage);
+                            $i++;
+                        }
+                        continue;
                 }
             }
             return $urlArr;
