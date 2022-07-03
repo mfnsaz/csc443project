@@ -1,9 +1,9 @@
 <?php
     class Breadcrumb {
-        private $currdir;
-        private $currtitle;
-        private $dirarray;
-        private $crumbhtml;
+        private string $currdir;
+        private string $currtitle;
+        private array $dirarray;
+        private string $crumbhtml;
         function __construct(string $currentDirectory, string $pageTitle) {
             $this->currdir = $currentDirectory;
             if($pageTitle == null){
@@ -27,6 +27,8 @@
         $breadOut = $bcmb->getFullCrumb();
         echo $breadOut;
     } else {
+        $bcmb = new Breadcrumb(__DIR__, "test");
+        print_r($bcmb->getFullCrumb());
         echo "Failed to get breadcrumb";
     }
 ?>
