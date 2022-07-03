@@ -14,7 +14,9 @@
         }
 
         function getDirectoryArray(){
-            return explode("/", $this->currdir);
+            $dirArr = explode("/", $this->currdir);
+            array_unshift($dirArr, "home");
+            return $dirArr;
         }
 
         function getFullCrumb(){
@@ -69,6 +71,8 @@
             foreach($elementArr as $currPage){
                 if($currPage == ""){
                     continue;
+                } else if ($currPage = "home"){
+                    array_push($urlArr, "/");
                 } else if(++$i == 0){
                     array_push($urlArr, "/".$currPage);
                 } else {
