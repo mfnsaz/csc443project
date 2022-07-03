@@ -14,7 +14,7 @@
         <div class="px-5 text-center">
             <h1>Club Listing</h1>
         </div>
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="px-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
                     $currDir = $_SERVER['PHP_SELF'];
