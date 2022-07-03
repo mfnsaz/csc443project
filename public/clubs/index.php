@@ -15,6 +15,13 @@
             <h1>Club Listing</h1>
         </div>
         <div class="px-5">
+            <?php
+                $currDir = __FILE__;
+                $pageTitle = "About";
+                include('../header/breadcrumb.php');
+            ?>
+        </div>
+        <div class="px-5">
             <p>Here, you can find the list of clubs available.</p>
             <?php
                 require_once "../inc/connect.php";
