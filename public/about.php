@@ -17,7 +17,7 @@
         </div>
         <div class="px-5">
             <?php
-                $currDir = basename(getcwd(__FILE__));
+                $currDir = __FILE__;
                 $pageTitle = "About";
                 include('../header/breadcrumb.php');
             ?>
