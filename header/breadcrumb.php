@@ -47,10 +47,7 @@
                 if($currPage == ""){
                     continue;
                 }
-                if($currPage == "index.php"){
-                    array_push($crumbArr, $this->currtitle);
-                }
-                array_push($crumbArr, ucfirst(str_replace([".php"], "", $currPage)));
+                array_push($crumbArr, ucfirst(str_replace([".php"], $this->currtitle, $currPage)));
             }
             return $crumbArr;
         }
