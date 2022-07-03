@@ -15,13 +15,13 @@
         <div class="px-5 text-center">
             <h1>About the UiTM Club Activities Approval System</h1>
         </div>
-        <<nav class="px-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="px-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
                     $currDir = $_SERVER['PHP_SELF'];
                     $currUrl = $_SERVER['PHP_HOST'];
                     $pageTitle = "About";
-                    include('../../header/breadcrumb.php');
+                    include('../header/breadcrumb.php');
                 ?>
             </ol>
         </nav>
