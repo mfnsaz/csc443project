@@ -38,6 +38,8 @@
 
             <h5>and is licensed under the:</h5>
             <p>GNU General Public License v3.0</p>
+
+            <p>The source code for this project can be found <a href="https://github.com/mfnsaz/csc443project">here</a>.</p>
         </div>
         <?php
             include("../header/footer.php");
