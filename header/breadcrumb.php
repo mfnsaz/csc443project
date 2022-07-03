@@ -72,9 +72,11 @@
             foreach($elementArr as $currPage){
                 switch($currPage){
                     case "":
+                        $i++;
                         break;
                     case "home":
                         array_push($urlArr, "/");
+                        $i++;
                         break;
                     default:
                         if($i > 2) {
