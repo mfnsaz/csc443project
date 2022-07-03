@@ -85,8 +85,6 @@
         $crumbStr = $bcmb->getCrumbArray();
         $crumbUrl = $bcmb->getCurrentUrl();
         $crumbStrC = count($crumbStr);
-        echo "<nav style=\"--bs-breadcrumb-divider: '>';\" aria-label=\"breadcrumb\">
-                    <ol class=\"breadcrumb\">";
         foreach($crumbStr as $currPage){
             if(++$i == $crumbStrC){
                 echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
@@ -94,7 +92,6 @@
                 echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
             }
         }
-        echo "</ol></nav>";
     } else {
         $bcmb = new Breadcrumb(__DIR__, "test");
         print_r($bcmb->debugVariables());
