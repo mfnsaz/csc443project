@@ -67,22 +67,18 @@
 
         function getCurrentUrl(){
             $elementArr = $this->getPageArray();
+            $str = "";
             $i = 1;
             $urlArr = array();
             foreach($elementArr as $currPage){
-                if($i > 2) {
-                    array_push($urlArr, $urlArr[$i-1]."/".$currPage);
-                    $i++;
-                    continue;
-                } else if($i == 2) {
-                    array_push($urlArr, $currPage);
-                    $i++;
-                    continue;
-                } else {
-                    array_push($urlArr, "/");
-                    $i++;
+                if($currPage == "home"){
+                    $str = "/";
+                    array_push($urlArr, $str);
                     continue;
                 }
+                $str = $str."/".$currPage;
+                array_push($urlArr, $str);
+                continue;
             }
             return $urlArr;
         }
