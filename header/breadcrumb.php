@@ -45,7 +45,7 @@
                 if($currPage == ""){
                     continue;
                 }
-                array_push($crumbArr, ucfirst(str_replace(".php", "", $currPage)));
+                array_push($crumbArr, ucfirst(str_replace([".php", "index.php"], $this->currtitle, $currPage)));
             }
             return $crumbArr;
         }
@@ -87,7 +87,7 @@
             return $retArr;
         }
     }
-    if(isset($currDir) && isset($pageTitle)){
+    if(isset($currDir) && isset($pageTitle) && isset($pageTitle)){
         $i = 0;
         $bcmb = new Breadcrumb($currDir, $pageTitle);
         $crumbStr = $bcmb->getCrumbArray();
