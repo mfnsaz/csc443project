@@ -47,7 +47,7 @@
                 if($currPage == ""){
                     continue;
                 }
-                array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/gim", $this->currtitle, $currPage)));
+                array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", $this->currtitle, $currPage)));
             }
             return $crumbArr;
         }
