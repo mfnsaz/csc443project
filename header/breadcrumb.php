@@ -70,15 +70,16 @@
             $str = "";
             $i = 1;
             $urlArr = array();
-            foreach($elementArr as $currPage){
-                if($currPage == "home"){
+            foreach($elementArr as $currPageKey => $currPage){
+                if($currPageKey == 0){
                     $str = "/";
                     array_push($urlArr, $str);
                     continue;
+                } else {
+                    $str = $str."/".$currPage;
+                    array_push($urlArr, $str);
+                    continue;
                 }
-                $str = $str."/".$currPage;
-                array_push($urlArr, $str);
-                continue;
             }
             return $urlArr;
         }
