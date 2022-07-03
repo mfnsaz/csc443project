@@ -88,16 +88,16 @@
         }
     }
     if(isset($currDir) && isset($pageTitle)){
-        $i = 1;
+        $i = 0;
         $bcmb = new Breadcrumb($currDir, $pageTitle);
         $crumbStr = $bcmb->getCrumbArray();
         $crumbUrl = $bcmb->getCurrentUrl();
         $crumbStrC = count($crumbStr);
         foreach($crumbStr as $currPage){
-            if(++$i == $crumbStrC){
-                echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
-            } else {
+            if(++$i != $crumbStrC){
                 echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
+            } else {
+                echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
             }
         }
     } else {
