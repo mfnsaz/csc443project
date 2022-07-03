@@ -76,8 +76,11 @@
                 } else if ($currPage = "home"){
                     array_push($urlArr, "/");
                     $i++;
-                } else {
+                } else if($currPageKey > 2) {
                     array_push($urlArr, $urlArr[$i-1]."/".$currPage);
+                    $i++;
+                } else {
+                    array_push($urlArr, $currPage);
                     $i++;
                 }
             }
