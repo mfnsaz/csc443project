@@ -20,6 +20,16 @@
         <?php
             include("../../header/header.php");
         ?>
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Add New User";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <div class="p-3">
             <p class="text-center fw-bolder h5">Create New User</p>
         </div>

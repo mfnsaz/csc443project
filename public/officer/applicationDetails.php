@@ -28,7 +28,16 @@
         <?php
             include("../../header/header.php");
         ?>
-        <!--Nanti kena automatically tarik from database untuk application name, club name, date, time and proposal-->
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Application Details";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <div class="container px-5 my-5">
             <h1 class="pb-4">Club Application Details</h1>
             <?php
