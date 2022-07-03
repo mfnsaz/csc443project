@@ -3,24 +3,71 @@
         private string $currdir;
         private string $currtitle;
         private array $dirarray;
-        private string $crumbhtml;
+        private string $crumbbuild;
         function __construct(string $currentDirectory, string $pageTitle) {
             $this->currdir = $currentDirectory;
-            if($pageTitle == null){
-                $this->currtitle = "";
-            } else {
+            if($pageTitle != NULL){
                 $this->currtitle = $pageTitle;
-            }
-            $this->dirarray = explode("/",$this->currdir);
-            array_unshift($this->dirarray, "Home");
-            array_push($this->dirarray, $this->currtitle);
-            foreach($this->dirarray as $crumb){
-                $this->crumbhtml = ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
+            } else {
+                $this->currtitle = NULL;
             }
         }
 
+        function getDirectoryArray(){
+            return explode("/", $this->currdir);
+        }
+
         function getFullCrumb(){
-            return $this->dirarray;
+            $currDir = $this->getDirectoryArray();
+            $arrSize = count($currDir);
+            $i = 1;
+            $buildList = "";
+            foreach($currDir as $currPage){
+                $currPage = ucfirst(str_replace(".php", "", $currPage));
+                if($currPage == ""){
+                    continue;
+                } else if(++$i == $arrSize){
+                    $valEnd = "";
+                    $buildList =  $buildList . $currPage;
+                } else {
+                    $valEnd = " / ";
+                    $buildList = $buildList . $currPage;
+                }
+                $buildList = $buildList . $valEnd;
+            }
+            return $this->crumbbuild;
+        }
+
+        function getCrumbArray(){
+            $currDir = $this->getDirectoryArray();
+            $crumbArr = array();
+            foreach($currDir as $currPage){
+                array_push($crumbArr, ucfirst(str_replace(".php", "", $currPage)));
+            }
+            return $crumbArr;
+        }
+
+        function getPageArray(){
+            $currDir = $this->getDirectoryArray();
+            $crumbArr = array();
+            foreach($currDir as $currPage){
+                array_push($crumbArr, $currPage);
+            }
+            return $crumbArr;
+        }
+
+        function getCurrentUrl(){
+            $elementArr = $this->getPageArray();
+            $i = 0;
+            $urlArr = array();
+            foreach($elementArr as $currPage){
+                if(++$i == 0){
+                    array_push($urlArr, "/".$currPage);
+                } else {
+                    array_push($urlArr, $urlArr[$i-1]."/".$currPage);
+                }
+            }
+            return $urlArr;
         }
 
         function debugVariables(){
@@ -33,9 +80,21 @@
         }
     }
     if(isset($currDir) && isset($pageTitle)){
+        $i = 1;
         $bcmb = new Breadcrumb($currDir, $pageTitle);
-        $breadOut = $bcmb->getFullCrumb();
-        echo($breadOut);
+        $crumbStr = $bcmb->getCrumbArray();
+        $crumbUrl = $bcmb->getCurrentUrl();
+        $crumbStrC = count($crumbStr);
+        echo "<nav style=\"--bs-breadcrumb-divider: '>';\" aria-label=\"breadcrumb\">
+                    <ol class=\"breadcrumb\">";
+        foreach($crumbStr as $currPage){
+            if(++$i == $crumbStrC){
+                echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
+            } else {
+                echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
+            }
+        }
+        echo "</ol></nav>";
     } else {
         $bcmb = new Breadcrumb(__DIR__, "test");
         print_r($bcmb->debugVariables());
