@@ -16,7 +16,7 @@
         </div>
         <div class="px-5">
             <?php
-                $currDir = __FILE__;
+                $currDir = $_SERVER['PHP_SELF'];
                 $pageTitle = "About";
                 include('../header/breadcrumb.php');
             ?>
