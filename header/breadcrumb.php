@@ -20,7 +20,7 @@
         }
 
         function getFullCrumb(){
-            return $this->crumbhtml;
+            return $this->dirarray;
         }
 
         function debugVariables(){
@@ -35,7 +35,7 @@
     if(isset($currDir) && isset($pageTitle)){
         $bcmb = new Breadcrumb($currDir, $pageTitle);
         $breadOut = $bcmb->getFullCrumb();
-        echo $breadOut;
+        print_r($breadOut);
     } else {
         $bcmb = new Breadcrumb(__DIR__, "test");
         print_r($bcmb->debugVariables());
