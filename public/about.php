@@ -18,7 +18,7 @@
         <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
-                    $currDir = $_SERVER['PHP_SELF'];
+                    $currDir = __DIR__;
                     $currUrl = $_SERVER['PHP_HOST'];
                     $pageTitle = "About Us";
                     include('../header/breadcrumb.php');
