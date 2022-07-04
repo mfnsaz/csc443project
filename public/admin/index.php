@@ -23,6 +23,7 @@
         <div class="px-5">
             <h4 class="py-4">Available actions:</h4>
             <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewClub.php';">New Club</button>
             <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
         </div>
         <?php
