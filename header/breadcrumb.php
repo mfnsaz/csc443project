@@ -109,10 +109,12 @@
         $crumbUrl = $bcmb->getCurrentUrl();
         $crumbStrC = count($crumbStr);
         foreach($crumbStr as $currPage){
-            if(++$i != $crumbStrC){
+            if($i != $crumbStrC){
                 echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
+                $i++;
             } else {
                 echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
+                $i++;
             }
         }
     } else {
