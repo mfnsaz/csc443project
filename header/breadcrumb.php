@@ -60,7 +60,7 @@
                 if($currPage == ""){
                     continue;
                 } else if($currPage == "home"){
-                    array_push($crumbArr, "");
+                    array_push($crumbArr, "/");
                 } else {
                     array_push($crumbArr, $currPage);
                 }
