@@ -29,6 +29,7 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="/clubs/index.php" class="nav-link px-2 link-dark">Clubs</a></li>
             <?php
                 if(isset($_SESSION["uid"])){
                     echo '<li><a href="/doSignOut.php" class="nav-link px-2 link-dark">Logout</a></li>';
