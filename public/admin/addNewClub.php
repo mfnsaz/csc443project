@@ -4,7 +4,7 @@
         header("refresh:5;url=/login.php");
         die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
     }
-    $_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
+    $_SESSION["backPage"] = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!DOCTYPE html>
