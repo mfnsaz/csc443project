@@ -31,11 +31,13 @@
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="/clubs/index.php" class="nav-link px-2 link-dark">Clubs</a></li>
             <?php
+            /*
                 if(isset($_SESSION["uid"])){
                     echo '<li><a href="/doSignOut.php" class="nav-link px-2 link-dark">Logout</a></li>';
                 } else {
                     echo '<li><a href="/login.php" class="nav-link px-2 link-dark">Login</a></li>';
                 }
+            */
             ?>
             <li><a href="/contact.php" class="nav-link px-2 link-dark">Contact</a></li>
             <li><a href="/faq.php" class="nav-link px-2 link-dark">FAQs</a></li>
