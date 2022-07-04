@@ -124,7 +124,7 @@
         $crumbUrl = $bcmb->getCurrentUrl();
         $crumbStrC = count($crumbStr);
         foreach($crumbStr as $currPage){
-            if($i != $crumbStrC){
+            if($i != ($crumbStrC-1)){
                 echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
                 $i++;
             } else {
