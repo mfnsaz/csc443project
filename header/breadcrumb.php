@@ -98,12 +98,27 @@
             array_push($retArr, print_r($this->currdir, true));
             array_push($retArr, print_r($this->currtitle, true));
             array_push($retArr, print_r($this->dirarray, true));
-            array_push($retArr, print_r($this->crumbhtml, true));
+            array_push($retArr, print_r($this->crumbbuild, true));
             return $retArr;
+        }
+
+        function debugPrint(){
+            echo "<h1>DEBUG INFORMATION<h1>";
+            print_r("Current directory: ".$this->currdir);
+            echo "<br>";
+            print_r("Directory Array: ".$this->getDirectoryArray());
+            echo "<br>";
+            print_r("Crumb Array: ".$this->getCrumbArray());
+            echo "<br>";
+            print_r("Page Array: ".$this->getPageArray());
+            echo "<br>";
+            print_r("Current URL Array: ".$this->getCurrentUrl());
+            echo "<br>";
+            return;
         }
     }
     if(isset($currDir) && isset($pageTitle) && isset($pageTitle)){
-        $i = 0;
+        $i = 1;
         $bcmb = new Breadcrumb($currDir, $pageTitle);
         $crumbStr = $bcmb->getCrumbArray();
         $crumbUrl = $bcmb->getCurrentUrl();

@@ -21,6 +21,8 @@
                     $currUrl = $_SERVER['PHP_HOST'];
                     $pageTitle = "Club Lists";
                     include('../../header/breadcrumb.php');
+                    $debugPage = new Breadcrumb($currDir, $pageTitle);
+                    $debugPage->debugPrint();
                 ?>
             </ol>
         </nav>
