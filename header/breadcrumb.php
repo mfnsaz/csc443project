@@ -103,16 +103,16 @@
         }
 
         function debugPrint(){
-            echo "<h1>DEBUG INFORMATION<h1>";
+            echo "<h1>DEBUG INFORMATION</h1>";
             print_r("Current directory: ".$this->currdir);
-            echo "<br>";
-            print_r("Directory Array: ".$this->getDirectoryArray());
-            echo "<br>";
-            print_r("Crumb Array: ".$this->getCrumbArray());
-            echo "<br>";
-            print_r("Page Array: ".$this->getPageArray());
-            echo "<br>";
-            print_r("Current URL Array: ".$this->getCurrentUrl());
+            echo "<br>Directory Array: ";
+            print_r($this->getDirectoryArray());
+            echo "<br>Crumb Array: ";
+            print_r($this->getCrumbArray());
+            echo "<br>Page Array: ";
+            print_r($this->getPageArray());
+            echo "<br>Current URL Array: ";
+            print_r($this->getCurrentUrl());
             echo "<br>";
             return;
         }
@@ -125,7 +125,7 @@
         $crumbStrC = count($crumbStr);
         foreach($crumbStr as $currPage){
             if($i != $crumbStrC){
-                echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[$i]."\">".$currPage."</a></li>";
+                echo "<li class=\"breadcrumb-item\" aria-current=\"page\"><a href=\"".$crumbUrl[($i+1)]."\">".$currPage."</a></li>";
                 $i++;
             } else {
                 echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">".$currPage."</li>";
