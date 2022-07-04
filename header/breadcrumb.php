@@ -59,8 +59,11 @@
             foreach($currDir as $currPage){
                 if($currPage == ""){
                     continue;
+                } else if($currPage == "home"){
+                    array_push($crumbArr, "");
+                } else {
+                    array_push($crumbArr, $currPage);
                 }
-                array_push($crumbArr, $currPage);
             }
             return $crumbArr;
         }
