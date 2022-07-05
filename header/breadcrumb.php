@@ -44,7 +44,7 @@
         function getCrumbArray(){
             $currDir = $this->getDirectoryArray();
             $crumbArr = array();
-            $i = 0;
+            $i = 1;
             $iLimit = count($currDir);
             foreach($currDir as $currPage){
                 if($currPage == ""){
