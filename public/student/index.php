@@ -1,18 +1,24 @@
 <?php
     session_start();
     if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
-        header("refresh:5;url=/login.php");
-        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "STUDENT_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
-        header("refresh:5;url=/login.php");
-        die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
+        $_SESSION["userErrCode"] = "CLUB_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>UiTM Club Activities Approval System - Student</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="https://saringc19.uitm.edu.my/statics/icons/favicon.ico">
@@ -21,13 +27,26 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="px-5 text-center">
-            <h3>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h3>
-        </div>
         <div class="px-5">
-            <h4 class="py-4">Available actions:</h4>
-            <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.php';">New Activity Application</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/student/applicationList.php';">View Application List</button>
+            <div class="text-center">
+                <h1>Student Portal</h1>
+            </div>
+            <div class="py-3">
+                <h4>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h4>
+            </div>
+            <div>
+                <div class="row">
+                    <h4 class="pb-4">Available actions:</h4>
+                    <div class="col p-2">
+                        <b class="pb-2">Create new activity application: </b>
+                        <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.php';">New Activity Application</button>
+                    </div>
+                    <div class="col p-2">
+                        <b class="pb-2">View activity applications list: </b>
+                        <button type="button" class="btn btn-primary" onclick="location.href='/student/applicationList.php';">View Application List</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <?php
             include("../../header/footer.php");

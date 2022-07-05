@@ -15,6 +15,16 @@
         <div class="px-5 text-center">
             <h1>About the UiTM Club Activities Approval System</h1>
         </div>
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "About Us";
+                    include('../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <div class="px-5 py-4">
             <h4 style="text-align: justify; text-justify: inter-word;">The UiTM Club Activities Approval System aims to help streamline club activities application process.
             This system was created to ease the process of club activity proposal. The system features tracking, which would enable the users to learn about the
@@ -31,6 +41,8 @@
 
             <h5>and is licensed under the:</h5>
             <p>GNU General Public License v3.0</p>
+
+            <p>The source code for this project can be found <a href="https://github.com/mfnsaz/csc443project">here</a>.</p>
         </div>
         <?php
             include("../header/footer.php");

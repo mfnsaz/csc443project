@@ -1,8 +1,10 @@
 <?php
     session_start();
     if (!isset($_SESSION["student_id"])){
-        header("refresh:0;url=/login.php");
-        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "STUDENT_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     $studentId = $_SESSION["student_id"];
 ?>
@@ -55,6 +57,16 @@
         <?php
             include("../../header/header.php");
         ?>
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Application List";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <div class="px-5">
             <h4>View Applications</h4>
         </div>

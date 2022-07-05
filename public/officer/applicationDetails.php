@@ -1,12 +1,16 @@
 <?php
     session_start();
     if (!isset($_SESSION["officer_id"])){
-        header("refresh:0;url=/login.php");
-        die('<script>alert("OFFICER_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "OFFICER_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     if (!isset($_GET["app_id"])){
-        header("refresh:0;url=/officer/index.php");
-        die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "APP_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "Required parameter APP_ID is not received. Please contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/officer/applicationList.php?error=true");
+        die();
     }
     $_SESSION["backPage"] = "applicationList.php";
 ?>
@@ -28,8 +32,17 @@
         <?php
             include("../../header/header.php");
         ?>
-        <!--Nanti kena automatically tarik from database untuk application name, club name, date, time and proposal-->
-        <div class="container px-5 my-5">
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = "/officer/applicationList.php/applicationDetails.php";
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Application Details";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
+        <div class="container px-5">
             <h1 class="pb-4">Club Application Details</h1>
             <?php
                 error_reporting(E_ALL);

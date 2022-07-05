@@ -32,7 +32,7 @@
                     <img src="https://virtual.uitm.edu.my/Content/img/Main_Moment.jpg" class="d-block min-vh-50 vh-75 w-100" alt="Second Image">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://scontent.fkul13-1.fna.fbcdn.net/v/t15.5256-10/73429814_1118755788321820_4615715329111228416_n.jpg?stp=cp0_dst-jpg_e15_p600x600_q65&_nc_cat=100&ccb=1-7&_nc_sid=ad6a45&_nc_ohc=dGIIdGKLe7EAX8qBWzM&_nc_ht=scontent.fkul13-1.fna&oh=00_AT_N4Gd2FkuwUZJf2wJ4Td4DOI_SBvN5yCyXoxy1f7fhhA&oe=62BB4BA8" class="d-block min-vh-50 vh-75 w-100" alt="Third Image">
+                    <img src="https://pbs.twimg.com/media/FV16k8rUYAAQaGG?format=jpg&name=large" class="d-block min-vh-50 vh-75 w-100" alt="Third Image">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -1,8 +1,10 @@
 <?php
     session_start();
     if (!isset($_SESSION["admin_id"])){
-        header("refresh:0;url=/login.php");
-        die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "ADMIN_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     $_SESSION["backPage"] = basename(__DIR__).'/'.basename($_SERVER['PHP_SELF']);
 ?>
@@ -20,9 +22,16 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="p-3">
-            <p class="text-center fw-bolder h5">Create New User</p>
-        </div>
+        <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Add New User";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <?php 
             //check if $_GET isset
             if(isset($_GET["error"])){
@@ -49,7 +58,7 @@
             }
         ?>
         <div class="container px-5 my-4">
-            <h3>New User</h3>
+            <h1 class="pb-4">New User</h1>
             <p>Please fill in this form to continue.</p>
             <form id="signupForm" action="../doSignUp.php" method="post">
                 <div class="form-floating mb-3">

@@ -5,12 +5,16 @@
     session_start();
     //echo $_SESSION["app_id"];
     if (!isset($_SESSION["student_id"])){
-        header("refresh:0;url=/login.php");
-        die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "STUDENT_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     if (!isset($_SESSION["app_id"])){
-        header("refresh:0;url=/student/index.php");
-        die('<script>alert("APP_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "APP_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "Required parameter APP_ID is not available. Please contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/student/applicationList.php?error=true");
+        die();
     }
 
     $backPage = $_SESSION["backPage"];
