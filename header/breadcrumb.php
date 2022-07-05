@@ -54,10 +54,10 @@
                     if($i == $iLimit){
                         array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", $this->currtitle, $currPage)));
                     } else {
-                        array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/.(?=[A-Z])/',lcfirst($currPage))), $currPage)));
+                        array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/(?=[A-Z])/',lcfirst($currPage), -1, PREG_SPLIT_NO_EMPTY)), $currPage)));
                     }
                 } else {
-                    array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/.(?=[A-Z])/',lcfirst($currPage))), $currPage)));
+                    array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/(?=[A-Z])/',lcfirst($currPage), -1, PREG_SPLIT_NO_EMPTY)), $currPage)));
                 }
             }
             return $crumbArr;
