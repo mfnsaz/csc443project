@@ -1,8 +1,10 @@
 <?php
     session_start();
     if (!isset($_SESSION["admin_id"])){
-        header("refresh:0;url=/login.php");
-        die('<script>alert("ADMIN_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "ADMIN_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
 ?>
 <!DOCTYPE html>

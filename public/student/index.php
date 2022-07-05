@@ -1,12 +1,16 @@
 <?php
     session_start();
     if (!isset($_SESSION["student_id"]) || $_SESSION["student_id"] == ""){
-        header("refresh:5;url=/login.php");
-        die('<script>alert("STUDENT_ID NOT SET. INVALID SESSION.")</script>');
+        $_SESSION["userErrCode"] = "STUDENT_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
     if (!isset($_SESSION["club_id"]) || $_SESSION["club_id"] == ""){
-        header("refresh:5;url=/login.php");
-        die('<script>alert("CLUB_ID NOT SET. CONTACT THE ADMINISTRATOR.")</script>');
+        $_SESSION["userErrCode"] = "CLUB_ID_NOT_SET";
+        $_SESSION["userErrMsg"] = "The session has expired or is invalid. Please login again. Do contact the administrator if you believe that this should not happen.";
+        header("refresh:0;url=/login.php?error=true");
+        die();
     }
 ?>
 
