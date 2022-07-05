@@ -1,6 +1,6 @@
 <?php
     include "../../header/breadcrumb.php";
 
-    $bdcb = new Breadcrumb("/this/is/a/test/directory", "Dir");
+    $bdcb = new Breadcrumb("/this/is/a/test/directory.php", "Dir");
     $bdcb->debugPrint();
 ?>
