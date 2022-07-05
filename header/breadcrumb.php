@@ -57,7 +57,7 @@
                         array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/.(?=[A-Z])/',lcfirst($currPage))), $currPage)));
                     }
                 } else {
-                    array_push($crumbArr, ucfirst($currPage));
+                    array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/.(?=[A-Z])/',lcfirst($currPage))), $currPage)));
                 }
             }
             return $crumbArr;
