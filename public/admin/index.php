@@ -20,7 +20,10 @@
             include("../../header/header.php");
         ?>
         <div class="px-5 text-center">
-            <h1>Welcome, <?php echo $_SESSION["name"] ?> to the admin panel</h1>
+            <h1>Admin Portal</h1>
+        </div>
+        <div class="px-5">
+            <h3>Welcome, <?php echo $_SESSION["name"] ?> to the admin portal</h3>
         </div>
         <div class="px-5">
             <h4 class="py-4">Available actions:</h4>
