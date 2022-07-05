@@ -21,7 +21,7 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="container">
+        <div class="px-5">
             <div class="row text-center">
                 <h1>Admin Portal</h1>
             </div>
@@ -31,15 +31,15 @@
             <div class="row">
                 <h5 class="pb-4">Available actions:</h5>
                 <div class="col p-2">
-                    <b>Add new user: </b>
+                    <b class="pb-2">Add new user: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
                 </div>
                 <div class="col p-2">
-                    <b>Add new club: </b>
+                    <b class="pb-2">Add new club: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewClub.php';">New Club</button>
                 </div>
                 <div class="col p-2">
-                    <b>View Application: </b>
+                    <b class="pb-2">View Application: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
                 </div>
             </div>
