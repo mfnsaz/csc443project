@@ -26,7 +26,7 @@
                 <h1>Officer Portal</h1>
             </div>
             <div class="row py-3">
-                <h1>Welcome, <?php echo $_SESSION["name"] ?> to the officer portal</h1>
+                <h4>Welcome, <?php echo $_SESSION["name"] ?> to the officer portal</h4>
             </div>
             <div class="row">
                 <h4 class="pb-4">Available actions:</h4>
