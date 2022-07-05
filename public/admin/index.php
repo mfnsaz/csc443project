@@ -19,17 +19,19 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="px-5 text-center">
-            <h1>Admin Portal</h1>
-        </div>
-        <div class="px-5">
-            <h4 class="py-4">Welcome, <?php echo $_SESSION["name"] ?> to the admin portal</h4>
-        </div>
-        <div class="px-5">
-            <h5 class="py-4">Available actions:</h5>
-            <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewClub.php';">New Club</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
+        <div class="container">
+            <div class="px-5 text-center">
+                <h1>Admin Portal</h1>
+            </div>
+            <div class="px-5">
+                <h4 class="py-3">Welcome, <?php echo $_SESSION["name"] ?> to the admin portal</h4>
+            </div>
+            <div class="px-5">
+                <h5 class="pb-4">Available actions:</h5>
+                <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewClub.php';">New Club</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
+            </div>
         </div>
         <?php
             include("../../header/footer.php");
