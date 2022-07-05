@@ -27,13 +27,24 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="px-5 text-center">
-            <h3>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h3>
-        </div>
-        <div class="px-5">
-            <h4 class="py-4">Available actions:</h4>
-            <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.php';">New Activity Application</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/student/applicationList.php';">View Application List</button>
+        <div class="container">
+            <div class="row text-center">
+                <h1>Student Portal</h1>
+            </div>
+            <div class="row py-3">
+                <h4>Welcome, <?php echo $_SESSION["name"] ?> to the student portal</h4>
+            </div>
+            <div class="row">
+                <h4 class="pb-4">Available actions:</h4>
+                <div class="col p-2">
+                    <b>Create new activity application: </b>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/student/formApplication.php';">New Activity Application</button>
+                </div>
+                <div class="col p-2">
+                    <b>View activity applications list: </b>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/student/applicationList.php';">View Application List</button>
+                </div>
+            </div>
         </div>
         <?php
             include("../../header/footer.php");
