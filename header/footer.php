@@ -7,5 +7,5 @@
     $yearNow = date('Y');
 ?>
 <div class="footer bg-dark">
-    <b>©️ <?php echo $yearNow; ?> MFNSAZ. UiTM Activities Application System</b>
+    <b class="text-light p-5">©️ <?php echo $yearNow; ?> MFNSAZ. UiTM Activities Application System</b>
 </div>
