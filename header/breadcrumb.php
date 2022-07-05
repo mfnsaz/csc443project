@@ -47,6 +47,7 @@
             $i = 1;
             $iLimit = count($currDir);
             foreach($currDir as $currPage){
+                $currPage = basename($currPage, ".php");
                 if($currPage == ""){
                     continue;
                 }
