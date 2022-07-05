@@ -66,7 +66,7 @@
                 echo "</div>";
             }
         ?>
-        <div class="container px-5 my-5">
+        <div class="container px-5">
             <h1 class="pb-4">New Activity Application</h1>
             <p>Please fill in the form below.</p>
             <form id="contactForm" action="./doStudentApplication.php" method="post">
@@ -74,13 +74,15 @@
                     <input class="form-control" name="appName" type="text" placeholder="Application Name" required/>
                     <label for="applicationName">Application Name</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" name="startDate" type="date" placeholder="Start Date" required/>
-                    <label for="startDate">Start Date</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" name="endDate" type="date" placeholder="End Date" required/>
-                    <label for="endDate">End Date</label>
+                <div class="form-floating row">
+                    <div class="form-floating col mb-3 ps-2">
+                        <input class="form-control" name="startDate" type="date" placeholder="Start Date" required/>
+                        <label class="px-4" for="startDate">Start Date</label>
+                    </div>
+                    <div class="form-floating col mb-3 pe-2">
+                        <input class="form-control" name="endDate" type="date" placeholder="End Date" required/>
+                        <label class="px-4" for="endDate">End Date</label>
+                    </div>
                 </div>
                 <div class="form-floating mb-3">
                     <input class="form-control" name="time" type="time" placeholder="Time" required/>
