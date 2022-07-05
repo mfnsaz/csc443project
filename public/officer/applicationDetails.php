@@ -35,7 +35,7 @@
         <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
-                    $currDir = $_SERVER['PHP_SELF'];
+                    $currDir = "/officer/applicationList.php/applicationDetails.php";
                     $currUrl = $_SERVER['PHP_HOST'];
                     $pageTitle = "Application Details";
                     include('../../header/breadcrumb.php');
