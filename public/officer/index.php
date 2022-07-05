@@ -21,12 +21,20 @@
         <?php
             include("../../header/header.php");
         ?>
-        <div class="px-5 text-center">
-            <h1>Welcome, <?php echo $_SESSION["name"] ?> to the officer portal</h1>
-        </div>
         <div class="px-5">
-            <h4 class="py-4">Available actions:</h4>
-            <button type="button" class="btn btn-primary" onclick="location.href='/officer/applicationList.php';">View Applications</button>
+            <div class="row text-center">
+                <h1>Officer Portal</h1>
+            </div>
+            <div class="row py-3">
+                <h1>Welcome, <?php echo $_SESSION["name"] ?> to the officer portal</h1>
+            </div>
+            <div class="row">
+                <h4 class="pb-4">Available actions:</h4>
+                <div class="col p-2">
+                    <b class="pb-2">View list of applications for approval: </b>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/officer/applicationList.php';">View Applications</button>
+                </div>
+            </div>
         </div>
         <?php
             include("../../header/footer.php");
