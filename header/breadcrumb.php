@@ -117,7 +117,7 @@
             return;
         }
     }
-    if(isset($currDir) && isset($pageTitle) && isset($pageTitle)){
+    if(isset($currDir) && isset($pageTitle)){
         $i = 0;
         $bcmb = new Breadcrumb($currDir, $pageTitle);
         $crumbStr = $bcmb->getCrumbArray();
