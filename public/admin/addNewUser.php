@@ -32,9 +32,6 @@
                 ?>
             </ol>
         </nav>
-        <div class="p-3">
-            <p class="text-center fw-bolder h5">Create New User</p>
-        </div>
         <?php 
             //check if $_GET isset
             if(isset($_GET["error"])){
@@ -61,7 +58,7 @@
             }
         ?>
         <div class="container px-5 my-4">
-            <h3>New User</h3>
+            <h1 class="pb-4">New User</h1>
             <p>Please fill in this form to continue.</p>
             <form id="signupForm" action="../doSignUp.php" method="post">
                 <div class="form-floating mb-3">
