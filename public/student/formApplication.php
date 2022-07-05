@@ -75,11 +75,11 @@
                     <label for="applicationName">Application Name</label>
                 </div>
                 <div class="form-floating row">
-                    <div class="form-floating col mb-3 ps-2">
+                    <div class="form-floating col mb-3 pe-2">
                         <input class="form-control" name="startDate" type="date" placeholder="Start Date" required/>
                         <label class="px-4" for="startDate">Start Date</label>
                     </div>
-                    <div class="form-floating col mb-3 pe-2">
+                    <div class="form-floating col mb-3 ps-2">
                         <input class="form-control" name="endDate" type="date" placeholder="End Date" required/>
                         <label class="px-4" for="endDate">End Date</label>
                     </div>
