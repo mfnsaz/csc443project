@@ -51,16 +51,11 @@
                 if($currPage == ""){
                     continue;
                 }
-                if(strpos($currPage, '.php')){
-                    if($i == $iLimit){
-                        array_push($crumbArr, ucfirst(preg_replace("/(?:(\S+.php|.php))/", $this->currtitle, $currPage)));
-                        $i++;
-                    } else {
-                        array_push($crumbArr, ucfirst(preg_replace("/(?:(\S+.php|.php))/", join(" ", preg_split('/(?=[A-Z])/',lcfirst($currPage), -1, PREG_SPLIT_NO_EMPTY)), $currPage)));
-                        $i++;
-                    }
+                if($i == $iLimit){
+                    array_push($crumbArr, ucfirst($this->currtitle));
+                    $i++;
                 } else {
-                    array_push($crumbArr, ucfirst(preg_replace("/(?:(\S+.php|.php))/", join(" ", preg_split('/(?=[A-Z])/',lcfirst($currPage), -1, PREG_SPLIT_NO_EMPTY)), $currPage)));
+                    array_push($crumbArr, ucfirst(join(" ", preg_split('/(?=[A-Z])/',lcfirst($currPage), -1, PREG_SPLIT_NO_EMPTY))));
                     $i++;
                 }
             }
