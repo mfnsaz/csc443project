@@ -6,6 +6,6 @@
     $timeNow = date('H:i:s');
     $yearNow = date('Y');
 ?>
-<div class="container footer">
+<div class="footer">
     <b>©️ <?php echo $yearNow; ?> MFNSAZ. UiTM Activities Application System</b>
 </div>
