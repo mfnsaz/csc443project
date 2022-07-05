@@ -32,15 +32,15 @@
             include("../../header/header.php");
         ?>
         <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <?php
-                        $currDir = $_SERVER['PHP_SELF'];
-                        $currUrl = $_SERVER['PHP_HOST'];
-                        $pageTitle = "Application Form";
-                        include('../../header/breadcrumb.php');
-                    ?>
-                </ol>
-            </nav>
+            <ol class="breadcrumb">
+                <?php
+                    $currDir = $_SERVER['PHP_SELF'];
+                    $currUrl = $_SERVER['PHP_HOST'];
+                    $pageTitle = "Application Form";
+                    include('../../header/breadcrumb.php');
+                ?>
+            </ol>
+        </nav>
         <?php 
             //check if $_GET isset
             if(isset($_GET["error"])){
