@@ -42,7 +42,7 @@
                 ?>
             </ol>
         </nav>
-        <div class="container px-5 my-5">
+        <div class="container px-5">
             <h1 class="pb-4">Club Application Details</h1>
             <?php
                 error_reporting(E_ALL);
