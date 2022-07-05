@@ -44,11 +44,21 @@
         function getCrumbArray(){
             $currDir = $this->getDirectoryArray();
             $crumbArr = array();
+            $i = 0;
+            $iLimit = count($currDir);
             foreach($currDir as $currPage){
                 if($currPage == ""){
                     continue;
                 }
-                array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", $this->currtitle, $currPage)));
+                if(strpos($currPage, '.php')){
+                    if($i == $iLimit){
+                        array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", $this->currtitle, $currPage)));
+                    } else {
+                        array_push($crumbArr, ucfirst(preg_replace("/^.*\.(php)$/im", join(" ", preg_split('/.(?=[A-Z])/',lcfirst($currPage))), $currPage)));
+                    }
+                } else {
+                    array_push($crumbArr, ucfirst($currPage));
+                }
             }
             return $crumbArr;
         }
