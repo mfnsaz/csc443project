@@ -50,7 +50,7 @@
                     $url = $_SESSION["utype"];
                     $shortName = strtok($_SESSION["name"], " ");
                     echo "<label class=\"px-2\">Welcome, <a class=\"text-decoration-none\" href=/".$url."/>".$shortName."</a>!</label>";
-                    echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
+                    echo '<button type="button" class="btn btn-danger" onclick="location.href=\'/doSignOut.php\';">Logout</button>';
                 } else {
                     echo '<button type="button" class="btn btn-primary" onclick="location.href=\'/login.php\';">Login</button>';
                 }
