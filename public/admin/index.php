@@ -31,12 +31,15 @@
             <div class="pb-4">
                 <h5>Available actions:</h5>
                 <div>
+                    <b>Add new user: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewUser.php';">New User</button>
                 </div>
                 <div>
+                    <b>Add new club: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/addNewClub.php';">New Club</button>
                 </div>
                 <div>
+                    <b>View Application: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/admin/applicationList.php';">View Applications</button>
                 </div>
             </div>
