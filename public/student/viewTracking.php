@@ -56,9 +56,9 @@
         <nav class="px-5 py-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
-                    $currDir = $_SERVER['PHP_SELF'];
+                    $currDir = "/student/formApplication.php/viewTracking.php";
                     $currUrl = $_SERVER['PHP_HOST'];
-                    $pageTitle = "Application Form";
+                    $pageTitle = "View Tracking";
                     include('../../header/breadcrumb.php');
                 ?>
             </ol>
