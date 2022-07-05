@@ -29,7 +29,7 @@
                 <h4>Welcome, <?php echo $_SESSION["name"] ?> to the officer portal</h4>
             </div>
             <div class="row">
-                <h4 class="pb-4">Available actions:</h4>
+                <h5 class="pb-4">Available actions:</h5>
                 <div class="col p-2">
                     <b class="pb-2">View list of applications for approval: </b>
                     <button type="button" class="btn btn-primary" onclick="location.href='/officer/applicationList.php';">View Applications</button>
