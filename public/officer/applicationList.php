@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/fixedHeader.dataTables.min.css">
         <link rel="icon" type="image/x-icon" href="https://saringc19.uitm.edu.my/statics/icons/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     </head>
     <body>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -28,6 +29,8 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.fixedHeader.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
         <script type="text/javascript">
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -37,14 +40,11 @@
                                         url: '/api/getApplicationList.php?officer_id=<?php echo $officerId ?>',
                                         responsive: true,
                                         dataSrc: 'data',
-                                        columnDefs: [
-                                            {
-                                                targets: -1,
-                                                data: null,
-                                                defaultContent: '<button class="btn btn-primary btn-lg">View Application</button>',
-                                            },
-                                        ],
-                                    }
+                                    },
+                                    dom: 'Bfrtip',
+                                    buttons: [
+                                        'print'
+                                    ],
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
