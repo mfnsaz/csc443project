@@ -36,10 +36,10 @@
                                         url: '/api/getApplicationList.php',
                                         responsive: true,
                                         dataSrc: 'data',
-                                        buttons: [
-                                            'print'
-                                        ],
-                                    }
+                                    },
+                                    buttons: [
+                                        'print'
+                                    ],
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();

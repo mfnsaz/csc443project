@@ -37,10 +37,10 @@
                                         url: '/api/getApplicationList.php?officer_id=<?php echo $officerId ?>',
                                         responsive: true,
                                         dataSrc: 'data',
-                                        buttons: [
-                                            'print'
-                                        ],
-                                    }
+                                    },
+                                    buttons: [
+                                        'print'
+                                    ],
                                 });
                 $("#appTable tbody").on('click', 'button', function() {
                     var data = mainTable.row($(this).parents('tr')).data();
