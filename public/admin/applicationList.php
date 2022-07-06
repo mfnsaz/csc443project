@@ -40,6 +40,7 @@
                                         responsive: true,
                                         dataSrc: 'data',
                                     },
+                                    dom: 'Bfrtip',
                                     buttons: [
                                         'print'
                                     ],
