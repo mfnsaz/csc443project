@@ -37,12 +37,8 @@
                                         url: '/api/getApplicationList.php?officer_id=<?php echo $officerId ?>',
                                         responsive: true,
                                         dataSrc: 'data',
-                                        columnDefs: [
-                                            {
-                                                targets: -1,
-                                                data: null,
-                                                defaultContent: '<button class="btn btn-primary btn-lg">View Application</button>',
-                                            },
+                                        buttons: [
+                                            'print'
                                         ],
                                     }
                                 });
