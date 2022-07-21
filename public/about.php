@@ -36,7 +36,7 @@
             <p>FARAH NATASHA BINTI MUHAMAD HAZRIN (2020898386)</p>
             <p>NUR NABILAH BINTI SHAARI (2020489836)</p>
             <p>SITI SYAHIRAH BINTI AHMADLKUSHAIRY (2020819788)</p>
-            <p>NUR ASNA BINTI FADZIL (2021857372)</p>
+            <p>NUR ASNA NABIHAH BINTI FADZIL (2021857372)</p>
             <p>AZIZAH BINTI AZAHAR (2021620258)</p>
 
             <h5>and is licensed under the:</h5>
